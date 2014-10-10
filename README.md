@@ -31,7 +31,7 @@ RoadWeather
     - Pokud bude chůze delší, vrátíme více údajů. 
   - Dlouhodobější předpověď na dobu vzdálenější než 5 dní:
     - Vrátíme pouze jeden údaj (případně rozsah teplot během dne) 
-    - Až když bude trasa delší než 3 hodiny a délka trasy více než 50 km, budeme předpokládat, že by se počasí mohlo výrazně změnit z  
+    - Až když bude trasa delší než 3 hodiny a délka trasy více než 50 km, budeme předpokládat, že by se počasí mohlo výrazně změnit  
     - Jinak budeme předpokládat, že člověk neurazí dostatečnou vzdálenost pěšky, aby se počasí nějak výrazně změnilo.
 -	Pro jízdu autem / na kole
   -Budeme vracet více údajů i pro plánování vzdálenější než 5 dní. Můžeme totiž urazit vzdálenost delší, aby se projevilo, že jinde je (výrazně) jiné počasí.
