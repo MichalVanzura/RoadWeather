@@ -1,7 +1,7 @@
 RoadWeather
 ===========
 
-#Oficiální zadání
+##Oficiální zadání
 - Mobilní responzivní web s mapou zobrazující informace z nějaké služby. Komunikace bude probíhat z browseru na serverové API, které dále udělá request na službu třetí strany a vrátí výsledky.
 - Technologie: MVC, WebApi.
 -	Napište mobilní webovou aplikaci, která zobrazí mapu, ve které půjde vyhledávat trasu z místa A do B.
@@ -10,7 +10,7 @@ RoadWeather
 -	Aplikace pak na základě vstupních informací zobrazí předpověď počasí v průběhu celé trasy, s ohledem na místo a čas, kdy bude uživatel v daném místě projíždět. Předpověď počasí bude zobrazena přímo v mapě (ikonka počasí a teplota).
 -	Celá aplikace bude přizpůsobena pro mobilní zařízení.
 
-#Finální podoba zadání:
+##Finální podoba zadání:
 -	Uživatel zadá začátek a konec trasy na mapě, případně další waypointy (maximálně 8) na trase a datum/čas začátku cesty.
   - Čas bude zohledněn, pokud konec cesty bude do 5 dní 
   - Pro vzdálenější plánování dokážeme poskytnout předpověď až na 16 dní s jedním údajem pro počasí (zataženo/ jasno…) na den a pro rozsah teplot během tohoto dne
@@ -20,11 +20,11 @@ RoadWeather
 -	a také seznam údajů o počasí, jaké bude během cesty v ‘určitých’ intervalech
   - Velikosti těchto intervalů budou vhodně dopočítány v závislosti na zvoleném způsobu dopravy
   
-##Služby, které chceme použít: 
+###Služby, které chceme použít: 
 - http://openweathermap.com
 - https://developers.google.com/maps/documentation/directions/
 
-##Speciální případy
+###Speciální případy
 -	V případě chůze
   - Krátkodobá předpověď do 5 dní: 
     - Kratší než 3 hodiny bude aplikace vracet pouze jeden údaj o počasí.
