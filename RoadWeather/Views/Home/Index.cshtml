@@ -109,7 +109,7 @@
             var jsonSerialized = JSON.stringify(locations);
             $.ajax({
                 type: "POST",
-                url: "api/weather",
+                url: "/api/weather",
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 data: jsonSerialized,
