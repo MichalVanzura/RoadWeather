@@ -1,24 +1,146 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+﻿<div class="body-content">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="form-group row">
+                <label for="start" class="col-md-1 control-label">Start: </label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="start">
+                </div>
+                <label for="end" class="col-md-1 control-label">End: </label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="end">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-default" onclick="calcRoute();">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="productView"></div>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-    </div>
-</div>
+<div id="map-canvas"></div>
+<div id="warnings_panel" style="width:100%;height:10%;text-align:center"></div>
+
+
+@section Scripts {
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script>
+        $("#start").geocomplete();
+        $("#end").geocomplete();
+    </script>
+    <script>
+        var map;
+        var directionsDisplay;
+        var directionsService;
+        var stepDisplay;
+        var markerArray = [];
+
+        function initialize() {
+            // Instantiate a directions service.
+            directionsService = new google.maps.DirectionsService();
+
+            // Create a map and center it on Manhattan.
+            var mapcenter = new google.maps.LatLng(49.193738, 16.610200);
+            var mapOptions = {
+                zoom: 13,
+                center: mapcenter
+            }
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            // Create a renderer for directions and bind it to the map.
+            var rendererOptions = {
+                map: map
+            }
+            directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions)
+
+            // Instantiate an info window to hold step text.
+            stepDisplay = new google.maps.InfoWindow();
+        }
+
+        function calcRoute() {
+
+            // First, remove any existing markers from the map.
+            for (var i = 0; i < markerArray.length; i++) {
+                markerArray[i].setMap(null);
+            }
+
+            // Now, clear the array itself.
+            markerArray = [];
+
+            // Retrieve the start and end locations and create
+            // a DirectionsRequest using WALKING directions.
+            var start = document.getElementById('start').value;
+            var end = document.getElementById('end').value;
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.WALKING
+            };
+
+            // Route the directions and pass the response to a
+            // function to create markers for each step.
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    var warnings = document.getElementById('warnings_panel');
+                    warnings.innerHTML = '<b>' + response.routes[0].warnings + '</b>';
+                    directionsDisplay.setDirections(response);
+                    showWeatherMarkers(response);
+                }
+            });
+        }
+
+        function parseDirectionResult(directionResult) {
+            var myRoute = directionResult.routes[0].legs[0];
+
+            var locations = new Array();
+            for (var i = 0; i < myRoute.steps.length; i++) {
+                locations.push(
+                    {
+                        'Longitude': myRoute.steps[i].start_location.B,
+                        'Latitude': myRoute.steps[i].start_location.k,
+                    }
+                );
+            }
+            return locations;
+        }
+
+        function showWeatherMarkers(directionResult) {
+            var locations = parseDirectionResult(directionResult);
+            var jsonSerialized = JSON.stringify(locations);
+            $.ajax({
+                type: "POST",
+                url: "api/weather",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: jsonSerialized,
+                success: function (result) {
+                    $.each(result, function (index, mark) {
+                        var image = {
+                            url: mark.Image.Url,
+                            size: new google.maps.Size(50, 50),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(0, 50)
+                        };
+
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(mark.Location.Latitude, mark.Location.Longitude),
+                            icon: image,
+                        });
+                        google.maps.event.addListener(marker, 'click', function () {
+                            stepDisplay.setContent(mark.Title);
+                            stepDisplay.open(map, marker);
+                        });
+                        markerArray.push(marker);
+                        marker.setMap(map);
+                    });
+                },
+                error: function (error) {
+                    alert("There was an error posting the data to the server: " + error.responseText);
+                }
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+}

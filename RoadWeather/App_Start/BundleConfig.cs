@@ -16,13 +16,24 @@ namespace RoadWeather
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/geocomplete").Include(
+                        "~/Scripts/jquery.geocomplete.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
+                        "~/Scripts/bootstrap-datepicker.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/timepicker").Include(
+                        "~/Scripts/jquery.timepicker.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-datepicker.css",
+                      "~/Content/jquery.timepicker.css"));
         }
     }
 }
