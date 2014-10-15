@@ -90,14 +90,14 @@
         }
 
         function parseDirectionResult(directionResult) {
-            var myRoute = directionResult.routes[0].legs[0];
+            var myRoute = directionResult.routes[0].overview_path;
 
             var locations = new Array();
-            for (var i = 0; i < myRoute.steps.length; i++) {
+            for (var i = 0; i < myRoute.length; i++) {
                 locations.push(
                     {
-                        'Longitude': myRoute.steps[i].start_location.B,
-                        'Latitude': myRoute.steps[i].start_location.k,
+                        'Longitude': myRoute[i].lng(),
+                        'Latitude': myRoute[i].lat(),
                     }
                 );
             }
