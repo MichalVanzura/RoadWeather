@@ -34,18 +34,40 @@
         var directionsService;
         var stepDisplay;
         var markerArray = [];
+        var mapcenter;
 
         function initialize() {
             // Instantiate a directions service.
             directionsService = new google.maps.DirectionsService();
 
-            // Create a map and center it on Manhattan.
-            var mapcenter = new google.maps.LatLng(49.193738, 16.610200);
             var mapOptions = {
-                zoom: 13,
-                center: mapcenter
-            }
+                zoom: 13
+            };
+
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            if (navigator.geolocation) {
+                //create a map according user geolocation
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    mapcenter = new google.maps.LatLng(position.coords.latitude,
+                                                     position.coords.longitude);
+
+                    var icon = 'http://maps.google.com/mapfiles/kml/pal3/icon28.png';
+                    var geomarker = new google.maps.Marker({
+                        position: mapcenter,
+                        map: map,
+                        icon: icon
+                    });
+
+                    markerArray.push(geomarker);
+                    map.setCenter(mapcenter);
+                }, function () {
+                    handleNoGeolocation(true);
+                });
+            } else {
+                
+                handleNoGeolocation(false);
+            }
 
             // Create a renderer for directions and bind it to the map.
             var rendererOptions = {
@@ -55,6 +77,17 @@
 
             // Instantiate an info window to hold step text.
             stepDisplay = new google.maps.InfoWindow();
+        }
+
+        function handleNoGeolocation(errorFlag) {
+            // Create a map and center it on Brno.
+            var options = {
+                map: map,
+                position: new google.maps.LatLng(49.19522, 16.60796),
+            };
+
+            var infowindow = new google.maps.InfoWindow(options);
+            map.setCenter(options.position);
         }
 
         function calcRoute() {
