@@ -25,6 +25,9 @@ namespace RoadWeather
             bundles.Add(new ScriptBundle("~/bundles/timepicker").Include(
                         "~/Scripts/jquery.timepicker.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
+                       "~/Scripts/jquery.datetimepicker.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
