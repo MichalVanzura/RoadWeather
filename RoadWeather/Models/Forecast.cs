@@ -9,7 +9,7 @@ namespace RoadWeather.Models
     public class Forecast
     {
         public List<Weather> Weather { get; set; }
-        public Main Main { get; set; }
+        public MainValues Main { get; set; }
         public Wind Wind { get; set; }
         public Clouds Clouds { get; set; }
     }
@@ -36,7 +36,7 @@ namespace RoadWeather.Models
         public double GroundLevel { get; set; }
         public double Humidity { get; set; }
     }
-
+    /*
     public struct Wind
     {
         public double Speed { get; set; }
@@ -45,5 +45,5 @@ namespace RoadWeather.Models
 
     public struct Clouds {
         public int All { get; set; }
-    }
+    }*/
 }
