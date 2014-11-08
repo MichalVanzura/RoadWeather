@@ -12,7 +12,7 @@ namespace RoadWeather.Models
         public double Longitude { get; set; }
     }
 
-    public class LocationsAtTime
+    public class Trip
     {
         public IEnumerable<Location> Locations { get; set; }
         [DataType(DataType.Date)]

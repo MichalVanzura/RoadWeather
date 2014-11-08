@@ -18,7 +18,7 @@ namespace RoadWeather.Controllers
 
         List<Marker> markers = new List<Marker>();
 
-        private bool AvailableFor5DayForecast(LocationsAtTime message)
+        private bool AvailableFor5DayForecast(Trip message)
         {
             // 5 day forecast is returned for today and 4 following days
             // last entry is midnight of the 5th day
@@ -144,7 +144,7 @@ namespace RoadWeather.Controllers
         }
 
         [HttpPost]
-        public async Task<JToken> GetWeatherMarkers([FromBody]LocationsAtTime message)
+        public async Task<JToken> GetWeatherMarkers([FromBody]Trip message)
         {
             log.Debug("Method GetWeatherMarkers called.");
             var locations = message.Locations;
