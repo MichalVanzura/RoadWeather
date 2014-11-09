@@ -19,6 +19,15 @@
                 <div class="col-md-4">
                     <input type="text" id="when-picker" class="form-control"/>
                 </div>
+                <label for="mode-picker" class="col-md-2 control-label">Mode of Travel: </label>
+                <div class="col-md-4">
+                    <select id="mode" class="col-md-4" onchange="calcRoute();" style="margin-top: 7px">
+                        <option value="DRIVING">Driving</option>
+                        <option value="WALKING">Walking</option>
+                        <option value="BICYCLING">Bicycling</option>
+                        <!----<option value="TRANSIT">Transit</option>-->
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -115,12 +124,13 @@
 
             // Retrieve the start and end locations and create
             // a DirectionsRequest using WALKING directions.
+            var selectedMode = document.getElementById('mode').value;
             var start = document.getElementById('start').value;
             var end = document.getElementById('end').value;
             var request = {
                 origin: start,
                 destination: end,
-                travelMode: google.maps.TravelMode.DRIVING
+                travelMode: google.maps.TravelMode[selectedMode]
             };
 
             // Route the directions and pass the response to a
