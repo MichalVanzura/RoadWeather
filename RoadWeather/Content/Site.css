@@ -4,6 +4,10 @@
     padding: 0px;
 }
 
+#loading img {
+    width: 20px;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding: 25px;

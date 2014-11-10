@@ -1,17 +1,22 @@
 ﻿<div class="body-content">
     <div class="form-horizontal">
         <div class="form-group">
-            <div class="form-group row">
-                <label for="start" class="col-md-1 control-label">Start: </label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="start">
+            <div class="row">
+                <div class="form-group col-sm-5">
+                    <label for="start" class="col-sm-2 control-label">Start: </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="start">
+                    </div>
                 </div>
-                <label for="end" class="col-md-1 control-label">End: </label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="end">
+                <div class="form-group col-sm-5">
+                    <label for="end" class="col-sm-2 control-label">End: </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="end">
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-default" onclick="calcRoute();">Submit</button>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-default col-sm-6" onclick="calcRoute();">Submit</button>
+                    <div class="col-sm-6" id="loading" style="display:none;"><img src="~/Content/Images/loader.gif" /></div>
                 </div>
             </div>
         </div>
@@ -20,7 +25,6 @@
 </div>
 <div id="map-canvas"></div>
 <div id="warnings_panel" style="width:100%;height:10%;text-align:center"></div>
-
 
 @section Scripts {
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
@@ -65,7 +69,7 @@
                     handleNoGeolocation(true);
                 });
             } else {
-                
+
                 handleNoGeolocation(false);
             }
 
@@ -174,6 +178,15 @@
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
+
+        var loading = $("#loading");
+        $(document).ajaxStart(function () {
+            loading.show();
+        });
+
+        $(document).ajaxStop(function () {
+            loading.hide();
+        });
 
     </script>
 }

@@ -142,7 +142,6 @@
     </Compile>
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Marker.cs" />
-    <Compile Include="Models\Route.cs" />
     <Compile Include="Models\Forecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -151,6 +150,7 @@
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\loader.gif" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
