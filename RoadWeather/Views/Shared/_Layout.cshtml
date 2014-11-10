@@ -6,6 +6,8 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/jquery.datetimepicker.css")
+
 </head>
 <body>
     
@@ -14,6 +16,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/geocomplete")
+    @Scripts.Render("~/bundles/datetimepicker")
     @RenderSection("scripts", required: false)
 </body>
 </html>
