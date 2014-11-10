@@ -1,4 +1,5 @@
-﻿<div class="body-content">
+﻿
+<div class="body-content">
     <div class="form-horizontal">
         <div class="form-group">
             <div class="form-group row">
@@ -17,7 +18,7 @@
             <div class=" form-group row">
                 <label for="when-picker" class="col-md-1 control-label">When: </label>
                 <div class="col-md-4">
-                    <input type="text" id="when-picker" class="form-control"/>
+                    <input type="text" id="when-picker" class="form-control" />
                 </div>
                 <label for="mode-picker" class="col-md-2 control-label">Mode of Travel: </label>
                 <div class="col-md-4">
@@ -29,27 +30,38 @@
                     </select>
                 </div>
             </div>
+            <div class=" form-group row" >
+                <label for="waypoint" class="col-md-1 control-label">Add destinations: </label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="waypoint" style="display: inline;" >
+                    <input type="image" style="vertical-align: middle;" src="~/add_icon.png" name="add_image" width="30" height="30" onclick="addToList();">
+                    <input type="image" id="list" style="vertical-align: middle;" src="~/list_icon.png" name="list_image" width="30" height="30">
+                </div>
+            </div>
         </div>
+        <div id="productView"></div>
     </div>
-    <div id="productView"></div>
 </div>
 <div id="map-canvas"></div>
 <div id="warnings_panel" style="width:100%;height:10%;text-align:center"></div>
 
-
 @section Scripts {
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
+    <script src="~/Scripts/jBox.min.js"></script>
+    <link href="http://code.jboxcdn.com/0.3.2/jBox.css" rel="stylesheet">
+
     <script>
         $("#start").geocomplete();
         $("#end").geocomplete();
+        $("#waypoint").geocomplete();
         $("#when-picker").datetimepicker({
             step: 60,
             minDate: 0,
             maxDate: '+1970/01/15',
             roundTime: 'ceil'
-            
+
         });
-    </script>   
+    </script>
     <script>
         var map;
         var directionsDisplay;
@@ -57,9 +69,27 @@
         var stepDisplay;
         var markerArray = [];
         var mapcenter;
+        var waypts = [];
+
+        var destinations = $('#list').jBox('Tooltip', {
+            width: 300,
+            height: 200,
+            trigger: 'click',
+            title: 'Your destinations'
+        });
+
+        var check_message = $('#waypoint').jBox('Tooltip', {
+            width: 280,
+            height: 50,
+            closeOnClick: true,
+            trigger: 'click',
+            content: '<div style="color:red"><b>Destination must be filled out!</b></div>'
+        });
+        check_message.disable();
 
         function initialize() {
             // Instantiate a directions service.
+
             directionsService = new google.maps.DirectionsService();
 
             var mapOptions = {
@@ -87,7 +117,7 @@
                     handleNoGeolocation(true);
                 });
             } else {
-                
+
                 handleNoGeolocation(false);
             }
 
@@ -112,6 +142,35 @@
             map.setCenter(options.position);
         }
 
+
+        function addToList()
+        {
+            var placeName = document.getElementById("waypoint").value;
+            if (placeName == "" || placeName == null) {
+                check_message.enable();
+                check_message.open();
+            } else {
+                check_message.close();
+                var str = "<ol>";
+                waypts.push({ location: placeName, stopover: true });
+                document.getElementById("waypoint").value = "";
+                for (var i = 0; i < waypts.length; i++) {
+                    str += '<li>' + waypts[i].location + '</li>';
+                }
+                str += "</ol>"
+                destinations.setContent(str);
+                check_message.disable();
+
+                var notice = new jBox('Notice', {
+                    content: '<b>' + placeName + '</b>' + ' added to destinations!',
+                    autoClose: '4000',
+                    color: 'green'
+                });
+            }         
+        }
+
+       
+
         function calcRoute() {
 
             // First, remove any existing markers from the map.
@@ -127,9 +186,15 @@
             var selectedMode = document.getElementById('mode').value;
             var start = document.getElementById('start').value;
             var end = document.getElementById('end').value;
+
+            //var waypts = [];
+            //var checkboxArray = document.getElementById('waypoints');
+
             var request = {
                 origin: start,
                 destination: end,
+                waypoints: waypts,
+                optimizeWaypoints: true,
                 travelMode: google.maps.TravelMode[selectedMode]
             };
 
@@ -147,7 +212,7 @@
 
         function parseDirectionResult(directionResult) {
             var myRoute = directionResult.routes[0].overview_path;
-            
+
             var locations = new Array();
             for (var i = 0; i < myRoute.length; i++) {
                 locations.push(
@@ -175,13 +240,13 @@
                 "duration": duration
             };
             var jsonSerialized = JSON.stringify(message);
-            
+
             $.ajax({
                 type: "POST",
                 url: "/api/weather",
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                    data: jsonSerialized,
+                data: jsonSerialized,
                 success: function (result) {
                     $.each(result, function (index, mark) {
                         var image = {
