@@ -44,3 +44,5 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.bar { font-size: 17px; color:#B6B6B4;}
