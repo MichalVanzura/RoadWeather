@@ -1,48 +1,49 @@
-﻿
-<div class="body-content">
-    <div class=" form-group row">
-        <div class="col-md-4">
-            <input type="image" id="car" style="vertical-align: middle;" src="~/Content/Images/google-car.png" value="DRIVING" width="30" height="30" onclick="calcRoute(drivingMode());">
-            <input type="image" id="person" style="vertical-align: middle;" src="~/Content/Images/google-person.png" value="WALKING" width="30" height="30" onclick="calcRoute(walkingMode());">
-            <input type="image" id="bike" style="vertical-align: middle;" src="~/Content/Images/google-bike.png" value="BICYCLING" width="30" height="30" onclick="calcRoute(bicyclingMode());">
-            <span class="bar">|</span>
-            <input type="image" id="when-picker" style="vertical-align: middle;" src="~/Content/Images/calendar-time.png" onclick="function(){ ('.datetimepicker').datetimepicker()}" />
-
+﻿<div id="container">
+    <div id="nav">
+        <div class="form-group row">
+            <div class="col-md-12">
+                <input type="image" id="car" style="vertical-align: middle;" src="~/Content/Images/google-car.png" value="DRIVING" width="30" height="30" onclick="calcRoute(drivingMode());">
+                <input type="image" id="person" style="vertical-align: middle;" src="~/Content/Images/google-person.png" value="WALKING" width="30" height="30" onclick="calcRoute(walkingMode());">
+                <input type="image" id="bike" style="vertical-align: middle;" src="~/Content/Images/google-bike.png" value="BICYCLING" width="30" height="30" onclick="calcRoute(bicyclingMode());">
+                <span class="bar">|</span>
+                <input type="image" id="when-picker" style="vertical-align: middle;" src="~/Content/Images/calendar-time.png" onclick="function(){ ('.datetimepicker').datetimepicker()}">
+            </div>
         </div>
-    </div>
-    <div class="form-horizontal">
         <div class="row">
-            <div class="form-group col-sm-5">
-                <label for="start" class="col-sm-2 control-label">Start: </label>
+            <div class="form-group col-sm-10">
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="start">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-5">
-                <label for="end" class="col-sm-2 control-label">End: </label>
+            <div class="form-group col-sm-10">
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="end">
                 </div>
+                <div class="col-sm-2">
+                    <button id="submit" type="submit" class="btn btn-default col-sm-6" onclick="calcRoute(drivingMode());"></button>
+                    <div class="col-sm-6" id="loading" style="display:none;"><img src="~/Content/Images/loader.gif" /></div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-2">
-            <button id="submit" type="submit" class="btn btn-default col-sm-6" onclick="calcRoute(drivingMode());"></button>
-            <div class="col-sm-6" id="loading" style="display:none;"><img src="~/Content/Images/loader.gif" /></div>
-        </div>
-        <div class=" form-group row">
-            <label for="waypoint" class="col-md-1 control-label">Add destinations: </label>
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="waypoint" style="display: inline;">
-                <input type="image" style="vertical-align: middle;" src="~/add_icon.png" name="add_image" width="30" height="30" onclick="addToList();">
-                <input type="image" id="list" style="vertical-align: middle;" src="~/list_icon.png" name="list_image" width="30" height="30">
+        <div class="row">
+            <div class="form-group col-sm-10">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="waypoint" style="display: inline;">
+                </div>
+                <div class="col-sm-2">
+                    <input type="image" style="vertical-align: middle;" src="~/Content/Images/google-add.png" name="add_image" width="30" height="30" onclick="addToList();">
+                </div>
+                <div class="col-sm-2">
+                    <input type="image" id="list" style="vertical-align: middle;" src="~/list_icon.png" name="list_image" width="30" height="30">
+                </div>
             </div>
         </div>
+        <div id="productView"></div>
     </div>
-    <div id="productView"></div>
+    <div id="map-canvas"></div>
 </div>
-<div id="map-canvas"></div>
 <div id="warnings_panel" style="width:100%;height:10%;text-align:center"></div>
 
 @section Scripts {

@@ -11,7 +11,7 @@ namespace RoadWeather.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "RoadWeather";
 
             return View();
         }

@@ -46,3 +46,12 @@ input[type="checkbox"].input-validation-error {
 }
 
 .bar { font-size: 17px; color:#B6B6B4;}
+
+html { height: 100% }
+body { height: 100%; margin: 0px; padding: 0px }
+#container { width: 100%; height: 100% }
+#nav { z-index: 100; position: absolute; 
+       margin: 10px 0px 0px 90px; background-color: #fff; 
+       border: 1px #B6B6B4 Solid; padding: 5px; 
+}
+#map { width: 100%; height: 100% }

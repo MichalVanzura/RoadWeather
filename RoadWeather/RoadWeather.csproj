@@ -156,6 +156,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\calendar-time.png" />
+    <Content Include="Content\Images\google-add.png" />
     <Content Include="Content\Images\google-bike-selected.png" />
     <Content Include="Content\Images\google-bike.png" />
     <Content Include="Content\Images\google-car-selected.png" />
