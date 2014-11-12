@@ -6,7 +6,7 @@
                 <input type="image" id="person" style="vertical-align: middle;" src="~/Content/Images/google-person.png" value="WALKING" width="30" height="30" onclick="calcRoute(walkingMode());">
                 <input type="image" id="bike" style="vertical-align: middle;" src="~/Content/Images/google-bike.png" value="BICYCLING" width="30" height="30" onclick="calcRoute(bicyclingMode());">
                 <span class="bar">|</span>
-                <input type="image" id="when-picker" style="vertical-align: middle;" src="~/Content/Images/calendar-time.png" onclick="function(){ ('.datetimepicker').datetimepicker()}">
+                <input type="image" id="when-picker" style="vertical-align: middle;" src="~/Content/Images/calendar-time.png" onclick="function picker(){ ('.datetimepicker').datetimepicker()}">
             </div>
         </div>
         <div class="row">
@@ -73,7 +73,7 @@
         var waypts = [];
 
         var destinations = $('#list').jBox('Tooltip', {
-            width: 300,
+            width: 400,
             height: 200,
             trigger: 'click',
             title: 'Your destinations'
@@ -303,5 +303,36 @@
             loading.hide();
         });
 
+        function remove_destination(id) {
+            waypts.splice(id, 1);
+            print_destinations();
+        }
+
+        function print_destinations()
+        {
+            var str = "";
+            for (var i = 0; i < waypts.length; i++) {
+                str += '<input type="text" class="destination_style" name="destination" value="' + waypts[i].location + '" readonly style="display: inline;">';
+                str += '<input type="button" class="image_style"  id="' + i + '" onclick="remove_destination(this.id)">'
+                str += '<br/>'
+            }
+
+            destinations.setContent(str);
+        }
+
+        function addToList() {
+            check_message.close();
+            var placeName = document.getElementById("waypoint").value;
+            if (placeName == "" || placeName == null || placeName == "Zadejte polohu") {
+                check_message.enable();
+                check_message.open();
+            } else {
+                check_message.close();
+                waypts.push({ location: placeName, stopover: true });
+                document.getElementById("waypoint").value = "";
+                print_destinations();
+                check_message.disable();
+            }
+        }
     </script>
 }
