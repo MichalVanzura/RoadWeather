@@ -44,3 +44,37 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.destination_style {
+    border-bottom: 2px solid black;
+    border-bottom-left-radius: 10px;
+    border-left: 2px solid black;
+    border-right: 0 none #FFF;
+    border-top: 2px solid black;
+    border-top-left-radius: 10px;
+    float: left;
+    font-size: 15pt;
+    height: 40px;
+    margin-top: .2cm;
+    padding: 2px;
+    width: 600px;
+}
+
+.image_style {
+    background: #EEE url("Images/cross-delete.png") no-repeat 24px 24px;
+    background-position: 6px 6px;
+    background-color: white;
+    background-size: 24px 24px;
+    border: 0;
+    border-bottom: 2px solid black;
+    border-bottom-right-radius: 10px;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    border-top-right-radius: 10px;
+    color: #fff;
+    float: left;
+    font-weight: 700;
+    height: 40px;
+    margin-top: .2cm;
+    width: 10%;
+}

@@ -1,5 +1,4 @@
-﻿
-<div class="body-content">
+﻿<div class="body-content">
     <div class=" form-group row">
         <div class="col-md-4">
             <input type="image" id="car" style="vertical-align: middle;" src="~/Content/Images/google-car.png" value="DRIVING" width="30" height="30" onclick="calcRoute(drivingMode());">
@@ -41,7 +40,7 @@
                 <div class="col-md-4">
                     <input type="text" class="form-control" id="waypoint" style="display: inline;">
                     <input type="image" style="vertical-align: middle;" src="~/add_icon.png" name="add_image" width="30" height="30" onclick="addToList();">
-                    <input type="image" id="list" style="vertical-align: middle;" src="~/list_icon.png" name="list_image" width="30" height="30">
+                    <input type="image" id="list" style="vertical-align: middle;" src="~/list_icon.png" name="list_image" width="30" height="30" >
                 </div>
             </div>
         </div>
@@ -77,7 +76,7 @@
         var waypts = [];
 
         var destinations = $('#list').jBox('Tooltip', {
-            width: 300,
+            width: 400,
             height: 200,
             trigger: 'click',
             title: 'Your destinations'
@@ -147,6 +146,22 @@
             map.setCenter(options.position);
         }
 
+        function remove_destination(id) {
+            waypts.splice(id, 1);
+            print_destinations();        
+        }
+
+        function print_destinations()
+        {
+            var str = "";
+            for (var i = 0; i < waypts.length; i++) {
+                str += '<input type="text" class="destination_style" name="destination" value="' + waypts[i].location + '" readonly style="display: inline;">';
+                str += '<input type="button" class="image_style"  id="' + i + '" onclick="remove_destination(this.id)">'
+                str += '<br/>'
+            }
+            
+            destinations.setContent(str);
+        }
 
         function addToList() {
             var placeName = document.getElementById("waypoint").value;
@@ -155,16 +170,10 @@
                 check_message.open();
             } else {
                 check_message.close();
-                var str = "<ol>";
                 waypts.push({ location: placeName, stopover: true });
                 document.getElementById("waypoint").value = "";
-                for (var i = 0; i < waypts.length; i++) {
-                    str += '<li>' + waypts[i].location + '</li>';
-                }
-                str += "</ol>"
-                destinations.setContent(str);
+                print_destinations();
                 check_message.disable();
-
                 var notice = new jBox('Notice', {
                     content: '<b>' + placeName + '</b>' + ' added to destinations!',
                     autoClose: '4000',
