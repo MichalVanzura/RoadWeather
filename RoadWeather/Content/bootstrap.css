@@ -185,6 +185,13 @@ input[type="submit"] {
   -webkit-appearance: button;
 }
 
+#submit {
+    width: 60px;
+    height: 30px;
+    background-image: url(../Content/Images/search.png);
+    background-repeat: no-repeat;
+}
+
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -6813,4 +6820,5 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
 }

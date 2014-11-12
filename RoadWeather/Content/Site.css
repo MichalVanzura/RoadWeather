@@ -45,6 +45,9 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+.bar { font-size: 17px; color:#B6B6B4;}
+
+
 .destination_style {
     border-bottom: 2px solid black;
     border-bottom-left-radius: 10px;
