@@ -2,9 +2,9 @@
     <div id="nav">
         <div class="form-group row">
             <div class="col-md-12">
-                <input type="image" id="car" style="vertical-align: middle;" src="~/Content/Images/google-car.png" value="DRIVING" width="30" height="30" onclick="calcRoute(drivingMode());">
-                <input type="image" id="person" style="vertical-align: middle;" src="~/Content/Images/google-person.png" value="WALKING" width="30" height="30" onclick="calcRoute(walkingMode());">
-                <input type="image" id="bike" style="vertical-align: middle;" src="~/Content/Images/google-bike.png" value="BICYCLING" width="30" height="30" onclick="calcRoute(bicyclingMode());">
+                <input type="image" id="car" style="vertical-align: middle;" src="~/Content/Images/google-car.png" value="DRIVING" width="30" height="30" onclick="drivingMode(); calcRoute();">
+                <input type="image" id="person" style="vertical-align: middle;" src="~/Content/Images/google-person.png" value="WALKING" width="30" height="30" onclick="walkingMode(); calcRoute();">
+                <input type="image" id="bike" style="vertical-align: middle;" src="~/Content/Images/google-bike.png" value="BICYCLING" width="30" height="30" onclick="bicyclingMode(); calcRoute();">
                 <span class="bar">|</span>
                 <input type="image" id="when-picker" style="vertical-align: middle;" src="~/Content/Images/calendar-time.png" onclick="function picker(){ ('.datetimepicker').datetimepicker()}">
             </div>
@@ -22,7 +22,7 @@
                     <input type="text" class="form-control" id="end">
                 </div>
                 <div class="col-sm-2">
-                    <button id="submit" type="submit" class="btn btn-default col-sm-6" onclick="calcRoute(drivingMode());"></button>
+                    <button id="submit" type="submit" class="btn btn-default col-sm-6" onclick="calcRoute();"></button>
                     <div class="col-sm-6" id="loading" style="display:none;"><img src="~/Content/Images/loader.gif" /></div>
                 </div>
             </div>
@@ -71,6 +71,7 @@
         var markerArray = [];
         var mapcenter;
         var waypts = [];
+        var travelMode;
 
         var destinations = $('#list').jBox('Tooltip', {
             width: 400,
@@ -98,7 +99,7 @@
             };
 
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
+            drivingMode();
             if (navigator.geolocation) {
                 //create a map according user geolocation
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -173,24 +174,24 @@
             document.getElementById('car').src = "../Content/Images/google-car-selected.png";
             document.getElementById('bike').src = "../Content/Images/google-bike.png";
             document.getElementById('person').src = "../Content/Images/google-person.png";
-            return document.getElementById('car').value
+            travelMode = document.getElementById('car').value
         }
 
         function walkingMode() {
             document.getElementById('car').src = "../Content/Images/google-car.png";
             document.getElementById('bike').src = "../Content/Images/google-bike.png";
             document.getElementById('person').src = "../Content/Images/google-person-selected.png";
-            return document.getElementById('person').value
+            travelMode = document.getElementById('person').value
         }
 
         function bicyclingMode() {
             document.getElementById('car').src = "../Content/Images/google-car.png";
             document.getElementById('bike').src = "../Content/Images/google-bike-selected.png";
             document.getElementById('person').src = "../Content/Images/google-person.png";
-            return document.getElementById('bike').value
+            travelMode = document.getElementById('bike').value
         }
 
-        function calcRoute(selectedMode) {
+        function calcRoute() {
 
             // First, remove any existing markers from the map.
             for (var i = 0; i < markerArray.length; i++) {
@@ -213,7 +214,7 @@
                 destination: end,
                 waypoints: waypts,
                 optimizeWaypoints: true,
-                travelMode: google.maps.TravelMode[selectedMode]
+                travelMode: google.maps.TravelMode[travelMode]
             };
 
             // Route the directions and pass the response to a
