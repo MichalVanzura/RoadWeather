@@ -144,22 +144,17 @@
             map.setCenter(options.position);
         }
 
-
         function addToList() {
+            check_message.close();
             var placeName = document.getElementById("waypoint").value;
-            if (placeName == "" || placeName == null) {
+            if (placeName == "" || placeName == null || placeName == "Zadejte polohu") {
                 check_message.enable();
                 check_message.open();
             } else {
                 check_message.close();
-                var str = "<ol>";
                 waypts.push({ location: placeName, stopover: true });
                 document.getElementById("waypoint").value = "";
-                for (var i = 0; i < waypts.length; i++) {
-                    str += '<li>' + waypts[i].location + '</li>';
-                }
-                str += "</ol>"
-                destinations.setContent(str);
+                print_destinations();
                 check_message.disable();
 
                 var notice = new jBox('Notice', {
@@ -321,19 +316,6 @@
             destinations.setContent(str);
         }
 
-        function addToList() {
-            check_message.close();
-            var placeName = document.getElementById("waypoint").value;
-            if (placeName == "" || placeName == null || placeName == "Zadejte polohu") {
-                check_message.enable();
-                check_message.open();
-            } else {
-                check_message.close();
-                waypts.push({ location: placeName, stopover: true });
-                document.getElementById("waypoint").value = "";
-                print_destinations();
-                check_message.disable();
-            }
-        }
+        
     </script>
 }
