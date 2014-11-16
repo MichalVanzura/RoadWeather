@@ -1,0 +1,26 @@
+﻿@media screen and (min-width: 768px) {
+    .icon {
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+    }
+
+    .search-button {
+        height: 35px;
+    }
+
+    .waypoint {
+        height: 40px;
+    }
+
+    .angular-google-map,
+    .angular-google-map-container {
+        height: 100%;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    #nav-conatiner {
+        margin-left: 80px;
+    }
+}
