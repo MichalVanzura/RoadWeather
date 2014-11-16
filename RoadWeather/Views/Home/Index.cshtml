@@ -1,321 +1,59 @@
-﻿<div id="container">
-    <div id="nav">
-        <div class="form-group row">
-            <div class="col-md-12">
-                <input type="image" id="car" style="vertical-align: middle;" src="~/Content/Images/google-car.png" value="DRIVING" width="30" height="30" onclick="drivingMode(); calcRoute();">
-                <input type="image" id="person" style="vertical-align: middle;" src="~/Content/Images/google-person.png" value="WALKING" width="30" height="30" onclick="walkingMode(); calcRoute();">
-                <input type="image" id="bike" style="vertical-align: middle;" src="~/Content/Images/google-bike.png" value="BICYCLING" width="30" height="30" onclick="bicyclingMode(); calcRoute();">
-                <span class="bar">|</span>
-                <input type="image" id="when-picker" style="vertical-align: middle;" src="~/Content/Images/calendar-time.png" onclick="function picker(){ ('.datetimepicker').datetimepicker()}">
-            </div>
-        </div>
+﻿<div id="container" ng-controller="MapController">
+    <div id="nav-conatiner" class="navbar-fixed-top col-xs-9 col-sm-5 col-lg-3">
         <div class="row">
-            <div class="form-group col-sm-10">
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="start">
+            <div class="col-xs-12">
+                <button class="collapse-button" ng-click="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-chevron-up" ng-class="{'glyphicon-chevron-down': isCollapsed, 'glyphicon-chevron-up': !isCollapsed}"></span></button>
+            </div>
+        </div>
+        <div collapse="isCollapsed">
+            <div class="nav">
+                <div class="container-fluid">
+                    <div class="row">
+                        <input type="image" class="icon" ng-src="{{mode == 'DRIVING' ? '/Content/Images/google-car-selected.png' : '/Content/Images/google-car.png'}}" value="DRIVING" ng-click="changeMode('DRIVING')">
+                        <input type="image" class="icon" ng-src="{{mode == 'WALKING' ? '/Content/Images/google-person-selected.png' : '/Content/Images/google-person.png'}}" value="WALKING" ng-click="changeMode('WALKING')">
+                        <input type="image" class="icon" ng-src="{{mode == 'BICYCLING' ? '/Content/Images/google-bike-selected.png' : '/Content/Images/google-bike.png'}}" value="BICYCLING" ng-click="changeMode('BICYCLING')">
+                        <span class="bar">|</span>
+                        <input type="image" class="icon" src="~/Content/Images/calendar-time.png" datetimepicker="{step: 60, minDate: 0, maxDate: '+1970/01/15', roundTime: 'ceil'}" ng-model="dateTime">
+                    </div>
+                    <hr />
+                    <div class="row" ng-repeat="waypoint in waypoints track by $index">
+                        <div class="col-xs-9 col-sm-10">
+                            <input type="text" class="waypoint" ng-class="$last ? 'last' : 'any'" ng-model="waypoints[$index]" ng-autocomplete />
+                        </div>
+                        <div class="col-xs-3 col-sm-2">
+                            <input ng-show="waypoints.length > 2" type="image" class="icon" src="~/Content/Images/google-remove.png" ng-click="removeWaypoint($index)">
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <input type="image" class="icon" src="~/Content/Images/google-add.png" ng-click="addWaypoint()">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button id="submit" class="search-button col-xs-4 text-right" type="submit" ng-click="getDirections()"></button>
+                    <div class="col-xs-2" ng-show="loading"><img src="~/Content/Images/loader.gif" /></div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-sm-10">
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="end">
-                </div>
-                <div class="col-sm-2">
-                    <button id="submit" type="submit" class="btn btn-default col-sm-6" onclick="calcRoute();"></button>
-                    <div class="col-sm-6" id="loading" style="display:none;"><img src="~/Content/Images/loader.gif" /></div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-10">
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="waypoint" style="display: inline;">
-                </div>
-                <div class="col-sm-2">
-                    <input type="image" style="vertical-align: middle;" src="~/Content/Images/google-add.png" name="add_image" width="30" height="30" onclick="addToList();">
-                </div>
-                <div class="col-sm-2">
-                    <input type="image" id="list" style="vertical-align: middle;" src="~/list_icon.png" name="list_image" width="30" height="30">
-                </div>
-            </div>
-        </div>
-        <div id="productView"></div>
     </div>
-    <div id="map-canvas"></div>
+
+    <div class="angular-google-map-container">
+        <ui-gmap-google-map events="map.events" center='map.center' zoom='map.zoom' control="map.control" class="col-sm-8 col-xs-12">
+            <ui-gmap-marker coords="marker.coords" icon="marker.icon" idkey="marker.id" options="marker.options" click="showWindowClick(marker.id)" events="marker.events" ng-repeat="marker in markers">
+                <ui-gmap-window options="windowOptions[marker.id]" closeclick="closeWindowClick(marker.id)">
+                    {{marker.message}}
+                </ui-gmap-window>
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+
+        <div class="col-sm-4 col-xs-12">
+            <table class="table">
+                <tr ng-repeat="marker in markers track by $index">
+                    <td><view-marker mark="marker.message"></view-marker></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
-<div id="warnings_panel" style="width:100%;height:10%;text-align:center"></div>
-
-@section Scripts {
-    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
-    <script src="~/Scripts/jBox.min.js"></script>
-    <link href="http://code.jboxcdn.com/0.3.2/jBox.css" rel="stylesheet">
-
-    <script>
-        $("#start").geocomplete();
-        $("#end").geocomplete();
-        $("#waypoint").geocomplete();
-        $("#when-picker").datetimepicker({
-            step: 60,
-            minDate: 0,
-            maxDate: '+1970/01/15',
-            roundTime: 'ceil'
-
-        });
-    </script>
-    <script>
-        var map;
-        var directionsDisplay;
-        var directionsService;
-        var stepDisplay;
-        var markerArray = [];
-        var mapcenter;
-        var waypts = [];
-        var travelMode;
-
-        var destinations = $('#list').jBox('Tooltip', {
-            width: 400,
-            height: 200,
-            trigger: 'click',
-            title: 'Your destinations'
-        });
-
-        var check_message = $('#waypoint').jBox('Tooltip', {
-            width: 280,
-            height: 50,
-            closeOnClick: true,
-            trigger: 'click',
-            content: '<div style="color:red"><b>Destination must be filled out!</b></div>'
-        });
-        check_message.disable();
-
-        function initialize() {
-            // Instantiate a directions service.
-
-            directionsService = new google.maps.DirectionsService();
-
-            var mapOptions = {
-                zoom: 13
-            };
-
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-            drivingMode();
-            if (navigator.geolocation) {
-                //create a map according user geolocation
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    mapcenter = new google.maps.LatLng(position.coords.latitude,
-                                                     position.coords.longitude);
-
-                    var icon = 'http://maps.google.com/mapfiles/kml/pal3/icon28.png';
-                    var geomarker = new google.maps.Marker({
-                        position: mapcenter,
-                        map: map,
-                        icon: icon
-                    });
-
-                    markerArray.push(geomarker);
-                    map.setCenter(mapcenter);
-                }, function () {
-                    handleNoGeolocation(true);
-                });
-            } else {
-
-                handleNoGeolocation(false);
-            }
-
-            // Create a renderer for directions and bind it to the map.
-            var rendererOptions = {
-                map: map
-            }
-            directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions)
-
-            // Instantiate an info window to hold step text.
-            stepDisplay = new google.maps.InfoWindow();
-        }
-
-        function handleNoGeolocation(errorFlag) {
-            // Create a map and center it on Brno.
-            var options = {
-                map: map,
-                position: new google.maps.LatLng(49.19522, 16.60796),
-            };
-
-            var infowindow = new google.maps.InfoWindow(options);
-            map.setCenter(options.position);
-        }
-
-        function addToList() {
-            check_message.close();
-            var placeName = document.getElementById("waypoint").value;
-            if (placeName == "" || placeName == null || placeName == "Zadejte polohu") {
-                check_message.enable();
-                check_message.open();
-            } else {
-                check_message.close();
-                waypts.push({ location: placeName, stopover: true });
-                document.getElementById("waypoint").value = "";
-                print_destinations();
-                check_message.disable();
-
-                var notice = new jBox('Notice', {
-                    content: '<b>' + placeName + '</b>' + ' added to destinations!',
-                    autoClose: '4000',
-                    color: 'green'
-                });
-            }
-        }
-
-        function drivingMode() {
-            document.getElementById('car').src = "../Content/Images/google-car-selected.png";
-            document.getElementById('bike').src = "../Content/Images/google-bike.png";
-            document.getElementById('person').src = "../Content/Images/google-person.png";
-            travelMode = document.getElementById('car').value
-        }
-
-        function walkingMode() {
-            document.getElementById('car').src = "../Content/Images/google-car.png";
-            document.getElementById('bike').src = "../Content/Images/google-bike.png";
-            document.getElementById('person').src = "../Content/Images/google-person-selected.png";
-            travelMode = document.getElementById('person').value
-        }
-
-        function bicyclingMode() {
-            document.getElementById('car').src = "../Content/Images/google-car.png";
-            document.getElementById('bike').src = "../Content/Images/google-bike-selected.png";
-            document.getElementById('person').src = "../Content/Images/google-person.png";
-            travelMode = document.getElementById('bike').value
-        }
-
-        function calcRoute() {
-
-            // First, remove any existing markers from the map.
-            for (var i = 0; i < markerArray.length; i++) {
-                markerArray[i].setMap(null);
-            }
-
-            // Now, clear the array itself.
-            markerArray = [];
-
-            // Retrieve the start and end locations and create
-            // a DirectionsRequest using WALKING directions.
-            var start = document.getElementById('start').value;
-            var end = document.getElementById('end').value;
-
-            //var waypts = [];
-            //var checkboxArray = document.getElementById('waypoints');
-
-            var request = {
-                origin: start,
-                destination: end,
-                waypoints: waypts,
-                optimizeWaypoints: true,
-                travelMode: google.maps.TravelMode[travelMode]
-            };
-
-            // Route the directions and pass the response to a
-            // function to create markers for each step.
-            directionsService.route(request, function (response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    var warnings = document.getElementById('warnings_panel');
-                    warnings.innerHTML = '<b>' + response.routes[0].warnings + '</b>';
-                    directionsDisplay.setDirections(response);
-                    showWeatherMarkers(response);
-                }
-            });
-        }
-
-        function parseDirectionResult(directionResult) {
-            var myRoute = directionResult.routes[0].overview_path;
-
-            var locations = new Array();
-            for (var i = 0; i < myRoute.length; i++) {
-                locations.push(
-                    {
-                        'Longitude': myRoute[i].lng(),
-                        'Latitude': myRoute[i].lat(),
-                    }
-                );
-            }
-            return locations;
-        }
-
-        function showWeatherMarkers(directionResult) {
-            var locations = parseDirectionResult(directionResult);
-            var dateTime = $("#when-picker").datetimepicker('getDate');
-            var route = directionResult.routes[0];
-            var duration = 0;
-
-            $.each(route.legs, function (index, value) {
-                duration += route.legs[index].duration.value;
-            });
-            var message = {
-                "locations": locations,
-                "startDateTime": dateTime.val(),
-                "duration": duration
-            };
-            var jsonSerialized = JSON.stringify(message);
-
-            $.ajax({
-                type: "POST",
-                url: "/api/weather",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: jsonSerialized,
-                success: function (result) {
-                    $.each(result, function (index, mark) {
-                        var image = {
-                            url: mark.Image.Url,
-                            size: new google.maps.Size(50, 50),
-                            origin: new google.maps.Point(0, 0),
-                            anchor: new google.maps.Point(0, 50)
-                        };
-
-                        var marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(mark.Location.Latitude, mark.Location.Longitude),
-                            icon: image,
-                        });
-                        google.maps.event.addListener(marker, 'click', function () {
-                            stepDisplay.setContent(mark.Title);
-                            stepDisplay.open(map, marker);
-                        });
-                        markerArray.push(marker);
-                        marker.setMap(map);
-                    });
-                },
-                error: function (error) {
-                    alert("There was an error posting the data to the server: " + error.responseText);
-                }
-            });
-        }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
-
-        var loading = $("#loading");
-        $(document).ajaxStart(function () {
-            loading.show();
-        });
-
-        $(document).ajaxStop(function () {
-            loading.hide();
-        });
-
-        function remove_destination(id) {
-            waypts.splice(id, 1);
-            print_destinations();
-        }
-
-        function print_destinations()
-        {
-            var str = "";
-            for (var i = 0; i < waypts.length; i++) {
-                str += '<input type="text" class="destination_style" name="destination" value="' + waypts[i].location + '" readonly style="display: inline;">';
-                str += '<input type="button" class="image_style"  id="' + i + '" onclick="remove_destination(this.id)">'
-                str += '<br/>'
-            }
-
-            destinations.setContent(str);
-        }
-
-        
-    </script>
-}
