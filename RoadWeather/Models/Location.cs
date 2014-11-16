@@ -19,4 +19,10 @@ namespace RoadWeather.Models
         public DateTime StartDateTime { get; set; }
         public int Duration { get; set; }
     }
+
+    public class LocationDetail
+    {
+        public Location Location { get; set; }
+        public DateTime Time { get; set; }
+    }
 }

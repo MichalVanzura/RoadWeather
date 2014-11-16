@@ -6,19 +6,19 @@ using System.Web;
 
 namespace RoadWeather.Models
 {
-    public class Forecast3Hours
+    public class ForecastShortTerm
     {
         [JsonProperty(PropertyName = "list")]
-        public List<Forecast3HoursEntry> Entries { get; set; }
+        public List<ForecastShortTermEntry> Entries { get; set; }
     }
 
-    public class ForecastDaily
+    public class ForecastLongTerm
     {
         [JsonProperty(PropertyName = "list")]
         public List<ForecastDailyEntry> Entries { get; set; }
     }
 
-    public class Forecast3HoursEntry
+    public class ForecastShortTermEntry
     {
         [JsonProperty(PropertyName = "dt")]
         public int UnixTimestamp { get; set; }
@@ -30,6 +30,14 @@ namespace RoadWeather.Models
         public List<WeatherDescription> WeatherDescription { get; set; }
         public Clouds Clouds { get; set; }
         public Wind Wind { get; set; }
+        
+        [JsonIgnore]
+        public DateTime ForecastTime
+        {
+            get { return UnixTimeConverter.UnixTimeStampToDateTime(UnixTimestamp); }
+        }
+
+    
     }
 
     public class ForecastDailyEntry
@@ -45,6 +53,14 @@ namespace RoadWeather.Models
         public int Deg { get; set; }
         public int Clouds { get; set; }
         public double? Rain { get; set; }
+
+        [JsonIgnore]
+        public DateTime ForecastTime
+        {
+            get { return UnixTimeConverter.UnixTimeStampToDateTime(UnixTimestamp); }
+        }
+
+
     }
 
     public class MainValues
@@ -89,5 +105,21 @@ namespace RoadWeather.Models
     {
         public double Speed { get; set; }
         public double Deg { get; set; }
+    }
+
+    internal class UnixTimeConverter
+    {
+        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0 , System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp)/*.ToLocalTime()*/;
+            return dtDateTime;
+        }
+
+        public static long DateTimeToUnixTimestamp(DateTime dateTime)
+        {
+            return (long)(dateTime - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
+        }
     }
 }

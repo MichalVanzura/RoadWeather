@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -139,14 +142,17 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\LocationWeatherProvider.cs" />
+    <Compile Include="Managers\WeatherUtils.cs" />
+    <Compile Include="Managers\TripWeatherManager.cs" />
+    <Compile Include="Managers\WeatherProvider.cs" />
+    <Compile Include="Models\ForecastEntryAdapter.cs" />
     <Compile Include="Models\Forecasts.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Marker.cs" />
-    <Compile Include="Models\Forecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
