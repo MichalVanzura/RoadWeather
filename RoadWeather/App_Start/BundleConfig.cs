@@ -16,14 +16,23 @@ namespace RoadWeather
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/geocomplete").Include(
-                        "~/Scripts/jquery.geocomplete.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular.min.js",
+                        "~/Scripts/ngAutocomplete.js",
+                        "~/Scripts/ui-bootstrap-0.11.2.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
-                        "~/Scripts/bootstrap-datepicker.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angularGoogleMaps").Include(
+                        "~/Scripts/angular-google-maps.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/timepicker").Include(
-                        "~/Scripts/jquery.timepicker.js"));
+            bundles.Add(new ScriptBundle("~/bundles/loadash").Include(
+                        "~/Scripts/lodash.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angularApp").Include(
+                        "~/Scripts/app.js",
+                        "~/Scripts/controllers.js",
+                        "~/Scripts/directives.js",
+                        "~/Scripts/services.js"));
+
 
             bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
                        "~/Scripts/jquery.datetimepicker.js"));
@@ -35,6 +44,7 @@ namespace RoadWeather
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/small.css",
                       "~/Content/bootstrap-datepicker.css",
                       "~/Content/jquery.timepicker.css"));
         }

@@ -1,9 +1,4 @@
-﻿html, body, #map-canvas {
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-}
-
+﻿
 #loading img {
     width: 20px;
 }
@@ -45,16 +40,41 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
-.bar { font-size: 17px; color:#B6B6B4;}
-
-html { height: 100% }
-body { height: 100%; margin: 0px; padding: 0px }
-#container { width: 100%; height: 100% }
-#nav { z-index: 100; position: absolute; 
-       margin: 10px 0px 0px 90px; background-color: #fff; 
-       border: 1px #B6B6B4 Solid; padding: 5px; 
+.bar {
+    font-size: 17px;
+    color: #B6B6B4;
 }
-#map { width: 100%; height: 100% }
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+#nav-conatiner {
+    z-index: 100;
+    margin: 0 0 0 30px;
+}
+
+    #nav-conatiner .nav {
+        background-color: #fff;
+        border: 1px #B6B6B4 Solid;
+        padding: 10px 10px 0;
+    }
+
+#map {
+    width: 100%;
+    height: 100%;
+}
 
 .destination_style {
     border-bottom: 1px solid #B6B6B4;
@@ -89,3 +109,66 @@ body { height: 100%; margin: 0px; padding: 0px }
     margin-top: .2cm;
     width: 10%;
 }
+
+.angular-google-map,
+.angular-google-map-container {
+    padding: 0;
+    height: 300px;
+}
+
+.icon {
+    width: 46px;
+    height: 46px;
+    padding: 8px;
+    vertical-align: middle;
+}
+
+    .icon:hover {
+        opacity: 0.7;
+    }
+
+hr {
+    border-bottom: 1px solid #d7d7d7;
+    margin: 0 -15px;
+}
+
+.waypoint {
+    background-color: #fff;
+    background-image: none;
+    border: none;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 44px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    width: 100%;
+}
+
+    .waypoint.any {
+        border-bottom: 1px solid #dbdbdb;
+    }
+
+    .waypoint.last {
+        border: none;
+    }
+
+.search-button {
+    height: 40px;
+    background: url('/Content/Images/search.png') 50% 50% no-repeat #4D90FE;
+    border: none;
+}
+
+    .search-button:hover {
+        background-color: #2c73e8;
+    }
+
+.collapse-button {
+    height: 35px;
+    border: none;
+    background-color: #4D90FE;
+}
+
+    .collapse-button .glyphicon {
+        padding: 0 10px;
+    }

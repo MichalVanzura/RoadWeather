@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="roadWeatherApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -9,14 +9,19 @@
     @Styles.Render("~/Content/jquery.datetimepicker.css")
 
 </head>
-<body>    
+<body>
 
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/geocomplete")
+    @Scripts.Render("~/bundles/angular")
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    @Scripts.Render("~/bundles/loadash")
+    @Scripts.Render("~/bundles/angularGoogleMaps")
+    @Scripts.Render("~/bundles/angularApp")
     @Scripts.Render("~/bundles/datetimepicker")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
