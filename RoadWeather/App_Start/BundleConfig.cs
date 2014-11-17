@@ -30,6 +30,9 @@ namespace RoadWeather
             bundles.Add(new ScriptBundle("~/bundles/loadash").Include(
                         "~/Scripts/lodash.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
+                        "~/Scripts/underscore-min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/angularApp").Include(
                         "~/Scripts/app.js",
                         "~/Scripts/controllers.js",
