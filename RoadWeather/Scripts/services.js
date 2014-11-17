@@ -78,14 +78,16 @@ roadWeatherApp.factory('getMessage', function () {
     }
 });
 
-roadWeatherApp.factory('getWeatherMarkers', function ($http) {
-    return {
-        getWeatherMarkers: function (message) {
-            return $http({
-                method: "post",
-                url: "/api/weather",
-                data: message
-            });
-        }
-    };
-});
+roadWeatherApp.factory('getWeatherMarkers', ['$http',
+    function ($http) {
+        return {
+            getWeatherMarkers: function (message) {
+                return $http({
+                    method: "post",
+                    url: "/api/weather",
+                    data: message
+                });
+            }
+        };
+    }
+]);
