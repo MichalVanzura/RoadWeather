@@ -69,7 +69,7 @@
                     travelMode: maps.TravelMode[$scope.mode]
                 };
 
-                directionsService.route(request, function (response, status) {
+                directionsService.route(request, function (response, status) {                                        
                     if (status === maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
                         directionsDisplay.setMap($scope.map.control.getGMap());
@@ -88,8 +88,11 @@
                                 });
                                 $scope.loading = false;
                             });
+                    } else if (status === maps.DirectionsStatus.ZERO_RESULTS) {
+                        alert('Submitted route is not available');
+                        $scope.loading = false;
                     } else {
-                        alert('Google route unsuccesfull!');
+                        alert('Computing route was unsuccesfull');
                         $scope.loading = false;
                     }
                 });
