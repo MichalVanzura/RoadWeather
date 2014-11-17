@@ -19,6 +19,7 @@ namespace RoadWeather
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.min.js",
                         "~/Scripts/ngAutocomplete.js",
+                        "~/Scripts/angular-route.min.js",
                         "~/Scripts/ui-bootstrap-0.11.2.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularGoogleMaps").Include(
