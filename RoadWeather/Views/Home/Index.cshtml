@@ -5,7 +5,7 @@
                 <button class="collapse-button" ng-click="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-chevron-up" ng-class="{'glyphicon-chevron-down': isCollapsed, 'glyphicon-chevron-up': !isCollapsed}"></span></button>
             </div>
         </div>
-        <div collapse="isCollapsed">
+        <div collapse="isCollapsed" ng-cloak>
             <div class="nav">
                 <div class="container-fluid">
                     <div class="row">
@@ -46,14 +46,14 @@
     <div class="map-container col-sm-8 col-xs-12">
         <ui-gmap-google-map events="map.events" center='map.center' zoom='map.zoom' control="map.control">
             <ui-gmap-marker coords="marker.coords" icon="marker.icon" idkey="marker.id" options="marker.options" click="showWindowClick(marker.id)" events="marker.events" ng-repeat="marker in markers">
-                <ui-gmap-window options="windowOptions[marker.id]" closeclick="closeWindowClick(marker.id)">
+                <ui-gmap-window options="windowOptions[marker.id]" closeclick="closeWindowClick(marker.id)" ng-cloak>
                     {{marker.message}}
                 </ui-gmap-window>
             </ui-gmap-marker>
         </ui-gmap-google-map>
     </div>
 
-    <div class="col-sm-4 col-xs-12">
+    <div class="col-sm-4 col-xs-12" ng-cloak>
         <table class="table">
             <tr ng-repeat="marker in markers track by $index">
                 <td><view-marker mark="marker.message"></view-marker></td>
