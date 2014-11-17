@@ -13,13 +13,17 @@
         height: 40px;
     }
 
-    .angular-google-map,
-    .angular-google-map-container {
+    .map-container {
         height: 100%;
+    }
+
+    #nav-conatiner {
+        z-index: 100;
+        margin: 0 30px;
     }
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 400px), screen and (max-height: 528px) {
     #nav-conatiner {
         margin-left: 80px;
     }

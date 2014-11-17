@@ -26,34 +26,38 @@
                     </div>
                     <hr />
                     <div class="row">
-                        <input type="image" class="icon" src="~/Content/Images/google-add.png" ng-click="addWaypoint()">
+                        <div class="col-xs-6">
+                            <input type="image" class="icon col-xs-6" src="~/Content/Images/google-add.png" ng-click="addWaypoint()">
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <img class="icon" ng-show="loading" src="~/Content/Images/loader.gif" />
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
                     <button id="submit" class="search-button col-xs-4 text-right" type="submit" ng-click="getDirections()"></button>
-                    <div class="col-xs-2" ng-show="loading"><img src="~/Content/Images/loader.gif" /></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="angular-google-map-container">
-        <ui-gmap-google-map events="map.events" center='map.center' zoom='map.zoom' control="map.control" class="col-sm-8 col-xs-12">
+    <div class="map-container col-sm-8 col-xs-12">
+        <ui-gmap-google-map events="map.events" center='map.center' zoom='map.zoom' control="map.control">
             <ui-gmap-marker coords="marker.coords" icon="marker.icon" idkey="marker.id" options="marker.options" click="showWindowClick(marker.id)" events="marker.events" ng-repeat="marker in markers">
                 <ui-gmap-window options="windowOptions[marker.id]" closeclick="closeWindowClick(marker.id)">
                     {{marker.message}}
                 </ui-gmap-window>
             </ui-gmap-marker>
         </ui-gmap-google-map>
+    </div>
 
-        <div class="col-sm-4 col-xs-12">
-            <table class="table">
-                <tr ng-repeat="marker in markers track by $index">
-                    <td><view-marker mark="marker.message"></view-marker></td>
-                </tr>
-            </table>
-        </div>
+    <div class="col-sm-4 col-xs-12">
+        <table class="table">
+            <tr ng-repeat="marker in markers track by $index">
+                <td><view-marker mark="marker.message"></view-marker></td>
+            </tr>
+        </table>
     </div>
 </div>
