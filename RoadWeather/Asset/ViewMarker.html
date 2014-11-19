@@ -1,2 +1,30 @@
-﻿
-{{data}}
+﻿<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Desc</th>
+            <th>Temp (°C)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="marker in markers track by $index">
+            <td>
+                <img src="{{marker.icon.url}}" />
+            </td>
+            <td>
+                {{marker.message.DateTime | date: 'shortDate'}}
+            </td>
+            <td>
+                {{marker.message.DateTime | date: 'shortTime'}}
+            </td>
+            <td>
+                {{marker.message.Description}}
+            </td>
+            <td>
+                {{marker.message.Temperature}}
+            </td>
+        </tr>
+    </tbody>
+</table>

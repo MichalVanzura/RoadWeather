@@ -15,9 +15,7 @@
                     longitude: mark.Location.Longitude
                 },
                 icon: image,
-                message: {
-                    title: mark.Title,
-                }
+                message: mark.Text,
 
             };
 

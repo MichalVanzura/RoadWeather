@@ -54,10 +54,6 @@
     </div>
 
     <div class="col-sm-4 col-xs-12" ng-cloak>
-        <table class="table">
-            <tr ng-repeat="marker in markers track by $index">
-                <td><view-marker mark="marker.message"></view-marker></td>
-            </tr>
-        </table>
+        <view-marker markers="markers"></view-marker>
     </div>
 </div>

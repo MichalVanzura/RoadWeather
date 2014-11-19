@@ -12,7 +12,7 @@ roadWeatherApp.directive('viewMarker', function () {
         restrict: 'AE',
         scope:
                 {
-                    data: "=mark",
+                    markers: "=",
                 },
 
         templateUrl: '/Asset/ViewMarker.html'

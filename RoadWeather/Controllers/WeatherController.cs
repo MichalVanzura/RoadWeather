@@ -33,10 +33,16 @@ namespace RoadWeather.Controllers
                         Latitude = kvp.Key.Location.Latitude,
                         Longitude = kvp.Key.Location.Longitude,
                     },
-                    Title = string.Format("<div style='width: 120px;'><b>{0}</b><br/>{1}°C<br/>{2}</div>",
-                        kvp.Value.Description,
-                        kvp.Value.Temperature,
-                        kvp.Value.DateTime.ToShortTimeString()),
+                    Text = new Text
+                    {
+                        Description = kvp.Value.Description,
+                        Temperature = kvp.Value.Temperature,
+                        DateTime = kvp.Value.DateTime
+                    },
+                    //string.Format("<div style='width: 120px;'><b>{0}</b><br/>{1}°C<br/>{2}</div>",
+                    //    kvp.Value.Description,
+                    //    kvp.Value.Temperature,
+                    //    kvp.Value.DateTime.ToShortTimeString()),
                     Image = new Image
                     {
                         Url = string.Format("http://openweathermap.org/img/w/{0}.png", kvp.Value.Icon)
