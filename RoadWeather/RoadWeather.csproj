@@ -164,6 +164,7 @@
     <Content Include="Content\Images\google-person-selected.png" />
     <Content Include="Content\Images\google-person.png" />
     <Content Include="Content\Images\google-remove.png" />
+    <Content Include="Content\Images\google-trasa.png" />
     <Content Include="Content\Images\list_icon.png" />
     <Content Include="Content\Images\loader.gif" />
     <Content Include="Content\Images\search.png" />

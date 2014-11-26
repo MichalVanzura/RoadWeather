@@ -62,13 +62,13 @@ body {
 
 #nav-conatiner {
     z-index: 100;
-    margin: 0 0 0 30px;
+    margin: 0 0 0 0px;
 }
 
     #nav-conatiner .nav {
         background-color: #fff;
         border: 1px #B6B6B4 Solid;
-        padding: 10px 10px 0;
+        padding: 0px 10px 0;
     }
 
 
@@ -118,11 +118,18 @@ body {
 }
 
 .icon {
-    width: 46px;
-    height: 46px;
-    padding: 8px;
+    width: 28px;
+    height: 28px;
     vertical-align: middle;
 }
+.delete {
+    width:23px;
+    vertical-align: middle;
+    align-content: right;
+    margin-top: 10px;
+    margin-left: -15px;
+}
+
 
     .icon:hover {
         opacity: 0.7;
@@ -155,7 +162,7 @@ hr {
     }
 
 .search-button {
-    height: 40px;
+    height: 28px;
     background: url('/Content/Images/search.png') 50% 50% no-repeat #4D90FE;
     border: none;
 }
@@ -165,9 +172,10 @@ hr {
     }
 
 .collapse-button {
-    height: 35px;
+    height: 28px;
     border: none;
-    background-color: #4D90FE;
+    background: url('/Content/Images/google-trasa.png') no-repeat;
+    padding: 18px 15px;
 }
 
     .collapse-button .glyphicon {

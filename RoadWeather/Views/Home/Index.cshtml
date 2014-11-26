@@ -1,11 +1,5 @@
 ﻿<div id="container" ng-controller="MapController">
-    <div id="nav-conatiner" class="navbar-fixed-top col-xs-9 col-sm-5 col-lg-3">
-        <div class="row">
-            <div class="col-xs-12">
-                <button class="collapse-button" ng-click="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-chevron-up" ng-class="{'glyphicon-chevron-down': isCollapsed, 'glyphicon-chevron-up': !isCollapsed}"></span></button>
-            </div>
-        </div>
-        <div collapse="isCollapsed" ng-cloak>
+    <div id="nav-conatiner" class="navbar-fixed-top col-xxs-9 col-xs-5 col-sm-4 col-md-3 col-lg-2-3">     
             <div class="nav">
                 <div class="container-fluid">
                     <div class="row">
@@ -14,31 +8,35 @@
                         <input type="image" class="icon" ng-src="{{mode == 'BICYCLING' ? '/Content/Images/google-bike-selected.png' : '/Content/Images/google-bike.png'}}" value="BICYCLING" ng-click="changeMode('BICYCLING')">
                         <span class="bar">|</span>
                         <input type="image" class="icon" src="~/Content/Images/calendar-time.png" datetimepicker="{step: 60, minDate: 0, maxDate: '+1970/01/15', roundTime: 'ceil'}" ng-model="dateTime">
+                        <span class="bar">|</span>
+                        <button class="collapse-button" ng-click="isCollapsed = !isCollapsed"></button>
                     </div>
-                    <hr />
-                    <div class="row" ng-repeat="waypoint in waypoints track by $index">
-                        <div class="col-xs-9 col-sm-10">
-                            <input type="text" class="waypoint" ng-class="$last ? 'last' : 'any'" ng-model="waypoints[$index]" ng-autocomplete />
+                    <div collapse="isCollapsed" ng-cloak>
+                        <hr />
+                        <div class="row" ng-repeat="waypoint in waypoints track by $index">
+                            <div class="col-xs-9 col-sm-10-11">
+                                <input type="text" class="waypoint" ng-class="$last ? 'last' : 'any'" ng-model="waypoints[$index]" ng-autocomplete />
+                            </div>
+                            <div class="col-xs-1 col-sm-1">
+                                <input ng-show="waypoints.length > 2" type="image" class="delete" src="~/Content/Images/google-remove.png" ng-click="removeWaypoint($index)">
+                            </div>
                         </div>
-                        <div class="col-xs-3 col-sm-2">
-                            <input ng-show="waypoints.length > 2" type="image" class="icon" src="~/Content/Images/google-remove.png" ng-click="removeWaypoint($index)">
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input type="image" class="icon col-xs-6" src="~/Content/Images/google-add.png" ng-click="addWaypoint()">
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <img class="icon" ng-show="loading" src="~/Content/Images/loader.gif" />
+                            </div>
                         </div>
                     </div>
-                    <hr />
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <input type="image" class="icon col-xs-6" src="~/Content/Images/google-add.png" ng-click="addWaypoint()">
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            <img class="icon" ng-show="loading" src="~/Content/Images/loader.gif" />
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button id="submit" class="search-button col-xs-4 text-right" type="submit" ng-click="getDirections()"></button>
-                </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button id="submit" class="search-button col-xs-4 text-right" type="submit" ng-click="getDirections()"></button>
             </div>
         </div>
     </div>
