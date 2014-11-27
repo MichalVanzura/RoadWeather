@@ -74,6 +74,9 @@
                         directionsDisplay.setDirections(response);
                         directionsDisplay.setMap($scope.map.control.getGMap());
 
+                        if ($scope.dateTime == null) {
+                            $scope.dateTime = new Date();
+                        }
                         var message = getMessage.parseDirectionResult(response, $scope.dateTime);
                         getWeatherMarkers.getWeatherMarkers(message).success(
                             function (data) {
