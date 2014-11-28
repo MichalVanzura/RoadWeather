@@ -136,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\IWeatherProvider.cs" />
     <Compile Include="Managers\LocationWeatherProvider.cs" />
     <Compile Include="Managers\WeatherUtils.cs" />
     <Compile Include="Managers\TripWeatherManager.cs" />
