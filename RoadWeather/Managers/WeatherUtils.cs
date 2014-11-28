@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using log4net;
+using System.Diagnostics.Contracts;
 
 namespace RoadWeather.Managers
 {
@@ -22,6 +23,10 @@ namespace RoadWeather.Managers
         /// <returns>True if available for short term</returns>
         public static bool AvailableForShortTermForecast(Trip trip)
         {
+            if (trip == null)
+            {
+                throw new ArgumentNullException("Trip is null");
+            }
             // 5 day forecast is returned for today and 4 following days
             // last entry is midnight of the 5th day
             bool isShortTerm = trip.StartDateTime.AddSeconds(trip.Duration) < DateTime.Now.Date.AddDays(5);
@@ -37,6 +42,15 @@ namespace RoadWeather.Managers
         /// <returns>Forecast entry closest</returns>
         public static ForecastShortTermEntry SelectShortTermEntry(LocationDetail location, ForecastShortTerm forecast)
         {
+            if (location == null)
+            {
+                throw new ArgumentNullException("Location is null");
+            }
+            if (forecast == null)
+            {
+                throw new ArgumentNullException("Forecast is null");
+            }
+
             var entry = forecast.Entries
                     .OrderBy(e => (e.ForecastTime - location.Time).Duration())
                     .FirstOrDefault();
@@ -44,7 +58,7 @@ namespace RoadWeather.Managers
             {
                 string msg = "No forecast was chosen as closest";
                 log.Error(msg);
-                throw new Exception(msg);
+                throw new NullReferenceException(msg);
             }
             return entry;
         }
@@ -57,12 +71,21 @@ namespace RoadWeather.Managers
         /// <returns>Forecast for the day</returns>
         public static ForecastDailyEntry SelectLongTermEntry(LocationDetail location, ForecastLongTerm forecast)
         {
+            if (location == null)
+            {
+                throw new ArgumentNullException("Location is null");
+            }
+            if (forecast == null)
+            {
+                throw new ArgumentNullException("Forecast is null");
+            }
+
             var entry = forecast.Entries.Where(x => x.ForecastTime.Date == location.Time.Date).FirstOrDefault();
             if (entry == null)
             {
                 string msg = "No forecast for the day selected";
                 log.Error(msg);
-                throw new Exception(msg);
+                throw new NullReferenceException(msg);
             }
             return entry;
         }

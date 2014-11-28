@@ -8,6 +8,8 @@ namespace RoadWeather.Test.Models
     [TestClass]
     public class RoadWeatherTestModels
     {
+
+
         [TestMethod]
         public void Trip_require_short_term_forecast()
         {
