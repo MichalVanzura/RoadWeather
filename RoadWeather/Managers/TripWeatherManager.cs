@@ -38,6 +38,7 @@ namespace RoadWeather.Managers
             else
             {
                 //TODO: check end time doesn't exceed 16 days
+                //bool exceed = trip.StartDateTime.AddSeconds(trip.Duration) > DateTime.Now.Date.AddDays(16);
                 var locationForecasts = await GetLongTermForecastForTrip(trip);
                 foreach (var kvp in locationForecasts)
                 {

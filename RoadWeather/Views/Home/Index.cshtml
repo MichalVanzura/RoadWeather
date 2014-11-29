@@ -45,7 +45,7 @@
         <ui-gmap-google-map events="map.events" center='map.center' zoom='map.zoom' control="map.control">
             <ui-gmap-marker coords="marker.coords" icon="marker.icon" idkey="marker.id" options="marker.options" click="showWindowClick(marker.id)" events="marker.events" ng-repeat="marker in markers">
                 <ui-gmap-window options="windowOptions[marker.id]" closeclick="closeWindowClick(marker.id)" ng-cloak>
-                    {{marker.message}}
+                    {{marker.message_bubble}}
                 </ui-gmap-window>
             </ui-gmap-marker>
         </ui-gmap-google-map>
