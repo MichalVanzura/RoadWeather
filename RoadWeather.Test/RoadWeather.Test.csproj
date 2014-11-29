@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Controllers\RoadWeatherTestControllers.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersWeatherUtils.cs" />
+    <Compile Include="Managers\RoadWeatherTestManagersWeatherProvides.cs" />
     <Compile Include="Models\RoadWeatherTestModels.cs" />
     <Compile Include="WeatherServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
