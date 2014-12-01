@@ -4,6 +4,9 @@ using RoadWeather.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
+using Microsoft.QualityTools.Testing.Fakes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RoadWeather.Test.Managers
 {
@@ -12,9 +15,90 @@ namespace RoadWeather.Test.Managers
     {
 
         #region GetForecastForTrip
+
+        [TestMethod]
+ 
+        public void Test_GetForecastForTrip_Return()
+        {
+            //Arrange
+            Location location = new Location();
+            List<Location> list = new List<Location>();
+
+            for (int i = 0; i < 200; i++)
+            {
+                list.Add(location);
+            }
+
+            Trip trip = new Trip();
+            trip.Locations = list;
+            trip.Duration = 72000;
+            trip.StartDateTime = new DateTime(2014, 12, 01, 20, 00, 00);
+
+            TripWeatherManager temp = new TripWeatherManager();
+
+            //Act
+            Task<Dictionary<LocationDetail, ForecastEntryAdapter>> result = temp.GetForecastForTrip(trip);
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(Task<Dictionary<LocationDetail, ForecastEntryAdapter>>));
+        }
+
         #endregion
 
         #region GetShortTermForecastForTrip
+
+        [TestMethod]
+        public void Test_GetShortTermForecastForTrip_Return()
+        {
+            //Arrange
+            Location location = new Location();
+            List<Location> list = new List<Location>();
+
+            for (int i = 0; i < 200; i++)
+            {
+                list.Add(location);
+            }
+
+            Trip trip = new Trip();
+            trip.Locations = list;
+            trip.Duration = 72000;
+            trip.StartDateTime = new DateTime(2014, 12, 01, 20, 00, 00);
+
+            TripWeatherManager temp = new TripWeatherManager();
+
+            //Act
+            Task<Dictionary<LocationDetail, ForecastShortTermEntry>> result = temp.GetShortTermForecastForTrip(trip);
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(Task<Dictionary<LocationDetail, ForecastShortTermEntry>>));
+        }
+
+        /* This method is not working. I would expect ArgumentNullException will be thrown, because
+         * trip is null, but nothing happens.
+         * The same for not short therm trip, there should be ArgumentException as well
+        [TestMethod]
+        [ExpectedException(typeof(System.ArgumentNullException))]
+        public void Test_GetShortTermForecastForTrip_NullTrip()
+        {
+            //Arrange
+            var dtNow = new DateTime(2014, 12, 01, 15, 0, 0);
+            var dtStart = new DateTime(2014, 12, 20, 20, 0, 0);
+
+            var trip = new Trip();
+            trip.StartDateTime = dtStart;
+            trip.Duration = 3600; // one hour
+
+            TripWeatherManager temp = new TripWeatherManager();
+
+            using (ShimsContext.Create())
+            {
+                System.Fakes.ShimDateTime.NowGet = () => { return dtNow; };
+
+                //Act
+                Task<Dictionary<LocationDetail, ForecastShortTermEntry>> result = temp.GetShortTermForecastForTrip(null);
+            }
+        }*/
+
         #endregion
 
 
