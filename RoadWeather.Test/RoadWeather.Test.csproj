@@ -40,6 +40,10 @@
     <Reference Include="mscorlib.4.0.0.0.Fakes">
       <HintPath>FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -60,7 +64,10 @@
     <Compile Include="Controllers\RoadWeatherTestControllers.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersWeatherUtils.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersWeatherProvides.cs" />
-    <Compile Include="Models\RoadWeatherTestModels.cs" />
+    <Compile Include="Managers\RoadWeatherTestManagersTripWeatherManager.cs" />
+    <Compile Include="Models\RoadWeatherTestModelsForecastEntryAdapter.cs" />
+    <Compile Include="Models\RoadWeatherTestModelsMarker.cs" />
+    <Compile Include="Models\RoadWeatherTestModelsLocation.cs" />
     <Compile Include="WeatherServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +81,7 @@
     <None Include="app.config" />
     <Fakes Include="Fakes\System.fakes" />
     <Fakes Include="Fakes\mscorlib.fakes" />
+    <Fakes Include="Fakes\RoadWeather.fakes" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

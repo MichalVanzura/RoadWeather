@@ -93,7 +93,7 @@
                             });
                     } else if (status === maps.DirectionsStatus.ZERO_RESULTS) {
                         alert('Submitted route is not available');
-                        $scope.loading = false;
+                        $scope.loading = false;                 
                     } else {
                         alert('Computing route was unsuccesfull');
                         $scope.loading = false;
