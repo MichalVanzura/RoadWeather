@@ -793,6 +793,9 @@
         <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Call_GetTimeForLocationsIListOfLocationInt32DateTime">
+            <summary>Sets the shim of TripWeatherManager.Call_GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Int32 stepDuration, DateTime start)</summary>
+        </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Constructor">
             <summary>Sets the shim of TripWeatherManager.TripWeatherManager()</summary>
         </member>
@@ -819,6 +822,9 @@
         </member>
         <member name="T:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances">
             <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.Call_GetTimeForLocationsIListOfLocationInt32DateTime">
+            <summary>Sets the shim of TripWeatherManager.Call_GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Int32 stepDuration, DateTime start)</summary>
         </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.GetForecastForTripTrip">
             <summary>Sets the shim of TripWeatherManager.GetForecastForTrip(Trip trip)</summary>

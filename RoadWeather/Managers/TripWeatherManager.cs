@@ -114,5 +114,12 @@ namespace RoadWeather.Managers
             }
             return list;
         }
+
+        //Use this wrapper method in unit test.
+        //This makes the actual call to the private method "GetTimeForLocations"
+        public List<LocationDetail> Call_GetTimeForLocations(IList<Location> selectedLocations, int stepDuration, DateTime start)
+        {
+            return GetTimeForLocations(selectedLocations,stepDuration,start);
+        }
     }
 }
