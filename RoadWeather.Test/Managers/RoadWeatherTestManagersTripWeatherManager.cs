@@ -12,13 +12,6 @@ namespace RoadWeather.Test.Managers
     {
 
         #region GetForecastForTrip
-
-        [TestMethod]
-        public void Test_GetForecastForTrip_Return()
-        {
-
-        }
-
         #endregion
 
         #region GetShortTermForecastForTrip
