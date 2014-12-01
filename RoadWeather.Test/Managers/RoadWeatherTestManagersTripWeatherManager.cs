@@ -32,6 +32,54 @@ namespace RoadWeather.Test.Managers
         #endregion
 
         #region SelectLocationsInIntervals
+
+
+        [TestMethod]
+        public void Test_SelectLocationsInIntervals_Return()
+        {
+
+            //Arrange
+            Location location = new Location();
+            List<Location> list = new List<Location>();
+
+            for (int i = 0; i < 200; i++)
+            {
+                list.Add(location);
+            }
+
+            TripWeatherManager temp = new TripWeatherManager();
+
+            //Act
+            List<Location> result = temp.Call_SelectLocationsInIntervals(list, list.Count()/10);
+
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(List<Location>));
+        }
+
+
+        [TestMethod]
+        public void Test_SelectLocationsInIntervals_ListCount()
+        {
+
+            //Arrange
+            Location location = new Location();
+            List<Location> list = new List<Location>();
+
+            for (int i = 0; i < 200; i++)
+            {
+                list.Add(location);
+            }
+
+            TripWeatherManager temp = new TripWeatherManager();
+
+            //Act
+            List<Location> result = temp.Call_SelectLocationsInIntervals(list, list.Count() / 10);
+
+
+            //Assert
+            Assert.AreEqual(result.Count(), 10);
+        }
         #endregion
 
         #region GetTimeForLocations

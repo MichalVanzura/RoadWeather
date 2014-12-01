@@ -96,9 +96,23 @@ namespace RoadWeather.Managers
             return locationsWithTime;
         }
 
+        //Use this wrapper method in unit test.
+        //This makes the actual call to the private method "GetLocationsInIntervalsWithTime"
+        public List<LocationDetail> Call_GetLocationsInIntervalsWithTime(Trip trip)
+        {
+            return GetLocationsInIntervalsWithTime(trip);
+        }
+
         private List<Location> SelectLocationsInIntervals(IList<Location> locations, int stepLength)
         {
             return locations.Where((x, i) => i % stepLength == 0).ToList();
+        }
+
+        //Use this wrapper method in unit test.
+        //This makes the actual call to the private method "SelectLocationsInIntervals"
+        public List<Location> Call_SelectLocationsInIntervals(IList<Location> locations, int stepLength)
+        {
+            return SelectLocationsInIntervals(locations, stepLength);
         }
 
         private List<LocationDetail> GetTimeForLocations(IList<Location> selectedLocations, int stepDuration, DateTime start)
