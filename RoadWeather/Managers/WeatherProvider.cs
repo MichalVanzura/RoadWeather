@@ -12,7 +12,7 @@ namespace RoadWeather.Managers
     /// <summary>
     /// This class is able to provide selected mode of forecast for location provided.
     /// </summary>
-    public class WeatherProvider
+    public class WeatherProvider : RoadWeather.Managers.IWeatherProvider
     {
         private static readonly ILog log = LogManager.GetLogger("WeatherProvider");
         private static readonly string WEATHER_API_URI_LONG =  @"http://api.openweathermap.org/data/2.5/forecast/daily?lat={0}&lon={1}&APPID=3e498b17220c9b49140ea1bb8a94c010&units=metric&cnt=16";

@@ -136,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\IWeatherProvider.cs" />
     <Compile Include="Managers\LocationWeatherProvider.cs" />
     <Compile Include="Managers\WeatherUtils.cs" />
     <Compile Include="Managers\TripWeatherManager.cs" />
@@ -231,7 +232,9 @@
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
