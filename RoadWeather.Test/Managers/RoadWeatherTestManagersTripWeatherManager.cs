@@ -103,6 +103,62 @@ namespace RoadWeather.Test.Managers
 
 
         #region GetLongTermForecastForTrip
+
+        [TestMethod]
+        public void Test_GetLongTermForecastForTrip_Return()
+        {
+            //Arrange
+            Location location = new Location();
+            List<Location> list = new List<Location>();
+
+            for (int i = 0; i < 200; i++)
+            {
+                list.Add(location);
+            }
+
+            Trip trip = new Trip();
+            trip.Locations = list;
+            trip.Duration = 72000;
+            trip.StartDateTime = new DateTime(2014, 12, 01, 20, 00, 00);
+
+            TripWeatherManager temp = new TripWeatherManager();
+
+            //Act
+            Task<Dictionary<LocationDetail, ForecastDailyEntry>> result = temp.GetLongTermForecastForTrip(trip);
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(Task<Dictionary<LocationDetail, ForecastDailyEntry>>));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AggregateException))]
+        public void Test_GetLongTermForecastForTrip_TripNull_Failed()
+        {
+            //Arrange
+            List<Location> list = new List<Location>();
+
+            for (int i = 0; i < 200; i++)
+            {
+                Location location = new Location();
+                location.Latitude = i;
+                location.Longitude = i;
+                list.Add(location);
+            }
+
+            Trip trip = new Trip();
+            trip.Locations = list;
+            trip.Duration = 72000;
+            trip.StartDateTime = new DateTime(2014, 12, 01, 20, 00, 00);
+
+            TripWeatherManager temp = new TripWeatherManager();
+
+            //Act
+            Task<Dictionary<LocationDetail, ForecastDailyEntry>> result = temp.GetLongTermForecastForTrip(null);
+
+            //Assert
+            Assert.AreEqual(result.Result.Count, 10);
+        }
+
         #endregion
 
         #region GetLocationsInIntervalsWithTime
@@ -241,19 +297,18 @@ namespace RoadWeather.Test.Managers
             Assert.AreEqual(result.Count(), 10);
         }
 
-        /* I was expected, that there will be 200 locations in the list and each will have unique 
-         * longitude and latitude in range <0..199>, but this is not working.
-         * In the end there are 200 locations and every of them has latitude and longitude 199
+
         [TestMethod]
         public void Test_SelectLocationsInIntervals_ListValue()
         {
 
             //Arrange
-            Location location = new Location();
+            
             List<Location> list = new List<Location>();
 
             for (int i = 0; i < 200; i++)
             {
+                Location location = new Location();
                 location.Latitude = i;
                 location.Longitude = i;
                 list.Add(location);
@@ -266,8 +321,8 @@ namespace RoadWeather.Test.Managers
 
 
             //Assert
-            Assert.AreEqual(list[20].Latitude, 19);
-        }*/
+            Assert.AreEqual(result[4].Latitude, 80);
+        }
 
 
         #endregion

@@ -25,6 +25,11 @@ namespace RoadWeather.Managers
         /// <returns>Weather for locations on the trip</returns>
         public async Task<Dictionary<LocationDetail, ForecastEntryAdapter>> GetForecastForTrip(Trip trip)
         {
+            if (trip == null)
+            {
+                throw new ArgumentNullException("Trip is null");
+            }
+
             var dictResult = new Dictionary<LocationDetail, ForecastEntryAdapter>();        
             if (WeatherUtils.AvailableForShortTermForecast(trip))
             {
@@ -72,6 +77,11 @@ namespace RoadWeather.Managers
         /// <returns>Weather for locations on the trip</returns>
         public async Task<Dictionary<LocationDetail, ForecastDailyEntry>> GetLongTermForecastForTrip(Trip trip)
         {
+            if (trip == null)
+            {
+                throw new ArgumentNullException("Trip is null");
+            }
+
             var locations = GetLocationsInIntervalsWithTime(trip);
             return await provider.GetEntriesForLocationsLongTerm(locations);
         }
@@ -83,6 +93,11 @@ namespace RoadWeather.Managers
         /// <returns>List of locations with time</returns>
         private List<LocationDetail> GetLocationsInIntervalsWithTime(Trip trip)
         {
+            if (trip == null)
+            {
+                throw new ArgumentNullException("Trip is null");
+            }
+
             var locations = trip.Locations;
             int stepLength = locations.Count() / INTERVAL_COUNT;
 
@@ -94,6 +109,7 @@ namespace RoadWeather.Managers
             var selectedLocations = SelectLocationsInIntervals(trip.Locations.ToList(), stepLength);
             var locationsWithTime = GetTimeForLocations(selectedLocations, stepDuration, trip.StartDateTime);
             return locationsWithTime;
+
         }
 
         //Use this wrapper method in unit test.
