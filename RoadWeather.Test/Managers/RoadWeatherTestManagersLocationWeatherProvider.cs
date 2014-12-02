@@ -33,12 +33,8 @@ namespace RoadWeather.Test.Managers
 
             LocationWeatherProvider temp = new LocationWeatherProvider();
 
-
-            //Act
-            Task<Dictionary<LocationDetail, ForecastDailyEntry>> result = temp.GetEntriesForLocationsLongTerm(listDetail);
-
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(Task<Dictionary<LocationDetail, ForecastDailyEntry>>));
+            //Act and Assert
+            Assert.IsInstanceOfType(temp.GetEntriesForLocationsLongTerm(listDetail), typeof(Task<Dictionary<LocationDetail, ForecastDailyEntry>>));
         }
 
         #endregion
@@ -65,11 +61,8 @@ namespace RoadWeather.Test.Managers
             }
             LocationWeatherProvider temp = new LocationWeatherProvider();
 
-            //Act
-            Task<Dictionary<LocationDetail, ForecastShortTermEntry>> result = temp.GetEntriesForLocationsShortTerm(listDetail);
-
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(Task<Dictionary<LocationDetail, ForecastShortTermEntry>>));
+            //Act and Assert
+            Assert.IsInstanceOfType(temp.GetEntriesForLocationsShortTerm(listDetail), typeof(Task<Dictionary<LocationDetail, ForecastShortTermEntry>>));
         }
 
         #endregion

@@ -6,7 +6,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using Microsoft.QualityTools.Testing.Fakes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RoadWeather.Test.Managers
 {
@@ -36,11 +35,8 @@ namespace RoadWeather.Test.Managers
 
             TripWeatherManager temp = new TripWeatherManager();
 
-            //Act
-            Task<Dictionary<LocationDetail, ForecastEntryAdapter>> result = temp.GetForecastForTrip(trip);
-
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(Task<Dictionary<LocationDetail, ForecastEntryAdapter>>));
+            //Act and Assert
+            Assert.IsInstanceOfType(temp.GetForecastForTrip(trip), typeof(Task<Dictionary<LocationDetail, ForecastEntryAdapter>>));
         }
 
         #endregion
@@ -66,11 +62,8 @@ namespace RoadWeather.Test.Managers
 
             TripWeatherManager temp = new TripWeatherManager();
 
-            //Act
-            Task<Dictionary<LocationDetail, ForecastShortTermEntry>> result = temp.GetShortTermForecastForTrip(trip);
-
             //Assert
-            Assert.IsInstanceOfType(result, typeof(Task<Dictionary<LocationDetail, ForecastShortTermEntry>>));
+            Assert.IsInstanceOfType(temp.GetShortTermForecastForTrip(trip), typeof(Task<Dictionary<LocationDetail, ForecastShortTermEntry>>));
         }
 
         /* This method is not working. I would expect ArgumentNullException will be thrown, because
@@ -123,11 +116,8 @@ namespace RoadWeather.Test.Managers
 
             TripWeatherManager temp = new TripWeatherManager();
 
-            //Act
-            Task<Dictionary<LocationDetail, ForecastDailyEntry>> result = temp.GetLongTermForecastForTrip(trip);
-
             //Assert
-            Assert.IsInstanceOfType(result, typeof(Task<Dictionary<LocationDetail, ForecastDailyEntry>>));
+            Assert.IsInstanceOfType(temp.GetLongTermForecastForTrip(trip), typeof(Task<Dictionary<LocationDetail, ForecastDailyEntry>>));
         }
 
         [TestMethod]
@@ -181,11 +171,10 @@ namespace RoadWeather.Test.Managers
             trip.StartDateTime = new DateTime(2014, 12, 01, 20, 00, 00);
 
             TripWeatherManager temp = new TripWeatherManager();
-            //Act
-            List<LocationDetail> result = temp.Call_GetLocationsInIntervalsWithTime(trip);
 
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(List<LocationDetail>));
+
+            //Act and Assert
+            Assert.IsInstanceOfType(temp.Call_GetLocationsInIntervalsWithTime(trip), typeof(List<LocationDetail>));
         }
 
         [TestMethod]
@@ -265,12 +254,9 @@ namespace RoadWeather.Test.Managers
 
             TripWeatherManager temp = new TripWeatherManager();
 
-            //Act
-            List<Location> result = temp.Call_SelectLocationsInIntervals(list, list.Count()/10);
 
-
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(List<Location>));
+            //Act and Assert
+            Assert.IsInstanceOfType(temp.Call_SelectLocationsInIntervals(list, list.Count()/10), typeof(List<Location>));
         }
 
 
@@ -345,11 +331,8 @@ namespace RoadWeather.Test.Managers
             
             TripWeatherManager temp = new TripWeatherManager();
 
-            //Act
-            List<LocationDetail> result = temp.Call_GetTimeForLocations(list, stepDuration, date);
-
             //Assert
-            Assert.IsInstanceOfType(result, typeof(List<LocationDetail>));
+            Assert.IsInstanceOfType(temp.Call_GetTimeForLocations(list, stepDuration, date), typeof(List<LocationDetail>));
         }
 
         [TestMethod]

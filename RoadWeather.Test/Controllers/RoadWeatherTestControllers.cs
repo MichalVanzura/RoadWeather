@@ -33,11 +33,8 @@ namespace RoadWeather.Test.Controllers
 
             WeatherController temp = new WeatherController();
 
-            //Act
-            Task<List<Marker>> result = temp.GetWeatherMarkers(trip);
-
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(Task<List<Marker>>));
+            //Act and Assert
+            Assert.IsInstanceOfType(temp.GetWeatherMarkers(trip), typeof(Task<List<Marker>>));
 
         }
 

@@ -21,11 +21,8 @@ namespace RoadWeather.Test.Managers
             Location location = new Location();
             WeatherProvider provider = new WeatherProvider();
 
-            //Act
-            Task<ForecastLongTerm> result = provider.GetForecastLongTerm(location);
-
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(Task<ForecastLongTerm>));
+            //Act and Assert
+            Assert.IsInstanceOfType(provider.GetForecastLongTerm(location), typeof(Task<ForecastLongTerm>));
         }
 
         /* This one is probably totally bad, but I do not know how to test, that the result is equal
@@ -57,11 +54,8 @@ namespace RoadWeather.Test.Managers
             Location location = new Location();
             WeatherProvider provider = new WeatherProvider();
 
-            //Act
-            Task<ForecastShortTerm> result = provider.GetForecastShortTerm(location);
-
-            //Assert
-            Assert.IsInstanceOfType(result, typeof(Task<ForecastShortTerm>));
+            //Act and Assert
+            Assert.IsInstanceOfType(provider.GetForecastShortTerm(location), typeof(Task<ForecastShortTerm>));
         }
         #endregion
     }
