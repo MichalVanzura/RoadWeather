@@ -33,26 +33,26 @@ namespace RoadWeather.Managers
             var dictResult = new Dictionary<LocationDetail, ForecastEntryAdapter>();        
             if (WeatherUtils.AvailableForShortTermForecast(trip))
             {
-                var locationForecasts = await GetShortTermForecastForTrip(trip);
-                foreach (var kvp in locationForecasts)
-                {
-                    dictResult.Add(kvp.Key, new ForecastEntryAdapter(kvp.Value));
-                }
+                var locations = GetLocationsInIntervalsWithTime(trip);
+                var locationForecasts = await provider.GetEntriesForLocationsShortTerm(locations);
+
+                dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntryAdapter(kvp.Value));
+
                 return dictResult;
             }
             else
             {
                 //TODO: check end time doesn't exceed 16 days
                 //bool exceed = trip.StartDateTime.AddSeconds(trip.Duration) > DateTime.Now.Date.AddDays(16);
-                var locationForecasts = await GetLongTermForecastForTrip(trip);
-                foreach (var kvp in locationForecasts)
-                {
-                    dictResult.Add(kvp.Key, new ForecastEntryAdapter(kvp.Value));
-                }
+                var locations = GetLocationsInIntervalsWithTime(trip);
+                var locationForecasts = await provider.GetEntriesForLocationsLongTerm(locations);
+
+                dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntryAdapter(kvp.Value));
                 return dictResult;
             }
         }
 
+        /*
         /// <summary>
         /// Returns dictionary of location details and short term entry for trip.
         /// </summary>
@@ -68,8 +68,9 @@ namespace RoadWeather.Managers
             }
             var locations = GetLocationsInIntervalsWithTime(trip);
             return await provider.GetEntriesForLocationsShortTerm(locations);
-        }
+        }*/
 
+        /*
         /// <summary>
         /// Returns dictionary of location details and long term entry for trip.
         /// </summary>
@@ -84,7 +85,7 @@ namespace RoadWeather.Managers
 
             var locations = GetLocationsInIntervalsWithTime(trip);
             return await provider.GetEntriesForLocationsLongTerm(locations);
-        }
+        }*/
 
         /// <summary>
         /// Returns locations in intervals for the trip with estimated time.
