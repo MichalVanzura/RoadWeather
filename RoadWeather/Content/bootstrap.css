@@ -626,10 +626,10 @@ th {
   content: "\e112";
 }
 .glyphicon-chevron-up:before {
-  content: url('/Content/Images/google-trasa.png');
+  content: url('/Content/Images/arrow-up.png');
 }
 .glyphicon-chevron-down:before {
-  content: url('/Content/Images/google-trasa.png');
+  content: url('/Content/Images/arrow-up.png');
 }
 .glyphicon-retweet:before {
   content: "\e115";

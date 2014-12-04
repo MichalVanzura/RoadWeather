@@ -174,11 +174,12 @@ hr {
 .collapse-button {
     height: 28px;
     border: none;
-    background: url('/Content/Images/google-trasa.png') no-repeat;
-    padding: 18px 15px;
+    background: url('/Content/Images/arrow-up.png') no-repeat;
+    padding: 13px 15px;
 }
 
-    .collapse-button .glyphicon {
+    .collapse-button .glyph
+     {
         padding: 0 10px;
     }
 
