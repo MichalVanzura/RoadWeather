@@ -5,15 +5,22 @@ using System.Linq;
 using System.Web;
 using log4net;
 using System.Diagnostics.Contracts;
+using RoadWeather.Managers.Interfaces;
 
 namespace RoadWeather.Managers
 {
     /// <summary>
     /// Provides helper methods for weather entities
     /// </summary>
-    public static class WeatherUtils
+    public class WeatherUtils : RoadWeather.Managers.Interfaces.IWeatherUtils
     {
         private static readonly ILog log = LogManager.GetLogger("WeatherUtils");
+        private IClock clock;
+
+        public WeatherUtils(IClock clock)
+        {
+            this.clock = clock;
+        }
 
         /// <summary>
         /// Returns true if trip is available for short term forecast. 
@@ -21,7 +28,7 @@ namespace RoadWeather.Managers
         /// </summary>
         /// <param name="trip">Trip to be assessed</param>
         /// <returns>True if available for short term</returns>
-        public static bool AvailableForShortTermForecast(Trip trip)
+        public bool AvailableForShortTermForecast(Trip trip)
         {
             if (trip == null)
             {
@@ -29,7 +36,7 @@ namespace RoadWeather.Managers
             }
             // 5 day forecast is returned for today and 4 following days
             // last entry is midnight of the 5th day
-            bool isShortTerm = trip.StartDateTime.AddSeconds(trip.Duration) < DateTime.Now.Date.AddDays(5);
+            bool isShortTerm = trip.StartDateTime.AddSeconds(trip.Duration) < clock.Now.Date.AddDays(5);
             log.Debug("Trip " + (isShortTerm ? "is " : "isn't ") + "available for short term forecast.");
             return isShortTerm;
         }
@@ -40,7 +47,7 @@ namespace RoadWeather.Managers
         /// <param name="location">Location</param>
         /// <param name="forecast">Forecasts for location</param>
         /// <returns>Forecast entry closest</returns>
-        public static ForecastShortTermEntry SelectShortTermEntry(LocationDetail location, ForecastShortTerm forecast)
+        public ForecastShortTermEntry SelectShortTermEntry(LocationDetail location, ForecastShortTerm forecast)
         {
             if (location == null)
             {
@@ -69,7 +76,7 @@ namespace RoadWeather.Managers
         /// <param name="location">Location</param>
         /// <param name="forecast">Forecasts for location</param>
         /// <returns>Forecast for the day</returns>
-        public static ForecastDailyEntry SelectLongTermEntry(LocationDetail location, ForecastLongTerm forecast)
+        public ForecastDailyEntry SelectLongTermEntry(LocationDetail location, ForecastLongTerm forecast)
         {
             if (location == null)
             {

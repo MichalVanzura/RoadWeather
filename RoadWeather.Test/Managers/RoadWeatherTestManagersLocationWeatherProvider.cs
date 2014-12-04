@@ -10,7 +10,7 @@ namespace RoadWeather.Test.Managers
     [TestClass]
     public class RoadWeatherTestManagersLocationWeatherProvider
     {
-
+        /*
         #region GetEntriesForLocationsLongTerm
 
         [TestMethod]
@@ -66,5 +66,6 @@ namespace RoadWeather.Test.Managers
         }
 
         #endregion
+         * */
     }
 }

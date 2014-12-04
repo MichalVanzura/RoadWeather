@@ -4,6 +4,81 @@
         <name>RoadWeather.Fakes</name>
     </assembly>
     <members>
+        <member name="T:RoadWeather.App_Start.Fakes.ShimUnityConfig">
+            <summary>Shim type of RoadWeather.App_Start.UnityConfig</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.ShimUnityConfig.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.ShimUnityConfig.#ctor(RoadWeather.App_Start.UnityConfig)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.ShimUnityConfig.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.ShimUnityConfig.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityConfig.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityConfig.Constructor">
+            <summary>Sets the shim of UnityConfig.UnityConfig()</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityConfig.GetConfiguredContainer">
+            <summary>Sets the shim of UnityConfig.GetConfiguredContainer()</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityConfig.RegisterTypesIUnityContainer">
+            <summary>Sets the shim of UnityConfig.RegisterTypes(IUnityContainer container)</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityConfig.StaticConstructor">
+            <summary>Sets the shim of UnityConfig.UnityConfig()</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityConfig._cctorb__0">
+            <summary>Sets the shim of UnityConfig.&lt;.cctor&gt;b__0()</summary>
+        </member>
+        <member name="T:RoadWeather.App_Start.Fakes.ShimUnityConfig.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:RoadWeather.App_Start.Fakes.ShimUnityWebActivator">
+            <summary>Shim type of RoadWeather.App_Start.UnityWebActivator</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.ShimUnityWebActivator.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.ShimUnityWebActivator.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.ShimUnityWebActivator.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityWebActivator.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityWebActivator.Shutdown">
+            <summary>Sets the shim of UnityWebActivator.Shutdown()</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.ShimUnityWebActivator.Start">
+            <summary>Sets the shim of UnityWebActivator.Start()</summary>
+        </member>
+        <member name="T:RoadWeather.App_Start.Fakes.StubUnityConfig">
+            <summary>Stub type of RoadWeather.App_Start.UnityConfig</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.StubUnityConfig.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RoadWeather.App_Start.Fakes.StubUnityConfig.InitializeStub">
+            <summary>Initializes a new instance of type StubUnityConfig</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.StubUnityConfig.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.StubUnityConfig.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RoadWeather.App_Start.Fakes.StubUnityConfig.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
         <member name="T:RoadWeather.Controllers.Fakes.ShimHomeController">
             <summary>Shim type of RoadWeather.Controllers.HomeController</summary>
         </member>
@@ -85,8 +160,8 @@
         <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
-        <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.Constructor">
-            <summary>Sets the shim of WeatherController.WeatherController()</summary>
+        <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.ConstructorITripWeatherManager">
+            <summary>Sets the shim of WeatherController.WeatherController(ITripWeatherManager twm)</summary>
         </member>
         <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.GetWeatherMarkersTrip">
             <summary>Sets the shim of WeatherController.GetWeatherMarkers(Trip trip)</summary>
@@ -94,11 +169,23 @@
         <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.StaticConstructor">
             <summary>Sets the shim of WeatherController.WeatherController()</summary>
         </member>
+        <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.TripWeatherManagerGet">
+            <summary>Sets the shim of WeatherController.get_TripWeatherManager()</summary>
+        </member>
+        <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.TripWeatherManagerSetITripWeatherManager">
+            <summary>Sets the shim of WeatherController.set_TripWeatherManager(ITripWeatherManager value)</summary>
+        </member>
         <member name="T:RoadWeather.Controllers.Fakes.ShimWeatherController.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
         <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.AllInstances.GetWeatherMarkersTrip">
             <summary>Sets the shim of WeatherController.GetWeatherMarkers(Trip trip)</summary>
+        </member>
+        <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.AllInstances.TripWeatherManagerGet">
+            <summary>Sets the shim of WeatherController.get_TripWeatherManager()</summary>
+        </member>
+        <member name="P:RoadWeather.Controllers.Fakes.ShimWeatherController.AllInstances.TripWeatherManagerSetITripWeatherManager">
+            <summary>Sets the shim of WeatherController.set_TripWeatherManager(ITripWeatherManager value)</summary>
         </member>
         <member name="T:RoadWeather.Controllers.Fakes.StubHomeController">
             <summary>Stub type of RoadWeather.Controllers.HomeController</summary>
@@ -343,7 +430,7 @@
         <member name="T:RoadWeather.Controllers.Fakes.StubWeatherController">
             <summary>Stub type of RoadWeather.Controllers.WeatherController</summary>
         </member>
-        <member name="M:RoadWeather.Controllers.Fakes.StubWeatherController.#ctor">
+        <member name="M:RoadWeather.Controllers.Fakes.StubWeatherController.#ctor(RoadWeather.Managers.Interfaces.ITripWeatherManager)">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:RoadWeather.Controllers.Fakes.StubWeatherController.BadRequest(System.String)">
@@ -751,11 +838,14 @@
         <member name="M:RoadWeather.Managers.Fakes.ShimLocationWeatherProvider.BehaveAsNotImplemented">
             <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimLocationWeatherProvider.Bind(RoadWeather.Managers.Interfaces.ILocationWeatherProvider)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimLocationWeatherProvider.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimLocationWeatherProvider.Constructor">
-            <summary>Sets the shim of LocationWeatherProvider.LocationWeatherProvider()</summary>
+        <member name="P:RoadWeather.Managers.Fakes.ShimLocationWeatherProvider.ConstructorIWeatherProviderIWeatherUtils">
+            <summary>Sets the shim of LocationWeatherProvider.LocationWeatherProvider(IWeatherProvider weatherProvider, IWeatherUtils utils)</summary>
         </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimLocationWeatherProvider.GetEntriesForLocationsLongTermListOfLocationDetail">
             <summary>Sets the shim of LocationWeatherProvider.GetEntriesForLocationsLongTerm(List`1&lt;LocationDetail&gt; locations)</summary>
@@ -775,6 +865,87 @@
         <member name="P:RoadWeather.Managers.Fakes.ShimLocationWeatherProvider.AllInstances.GetEntriesForLocationsShortTermListOfLocationDetail">
             <summary>Sets the shim of LocationWeatherProvider.GetEntriesForLocationsShortTerm(List`1&lt;LocationDetail&gt; locations)</summary>
         </member>
+        <member name="T:RoadWeather.Managers.Fakes.ShimSystemClock">
+            <summary>Shim type of RoadWeather.Managers.SystemClock</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimSystemClock.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimSystemClock.#ctor(RoadWeather.Managers.SystemClock)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimSystemClock.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimSystemClock.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimSystemClock.Bind(RoadWeather.Managers.Interfaces.IClock)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimSystemClock.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimSystemClock.Constructor">
+            <summary>Sets the shim of SystemClock.SystemClock()</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimSystemClock.NowGet">
+            <summary>Sets the shim of SystemClock.get_Now()</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Fakes.ShimSystemClock.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimSystemClock.AllInstances.NowGet">
+            <summary>Sets the shim of SystemClock.get_Now()</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Fakes.ShimTripIntervalManager">
+            <summary>Shim type of RoadWeather.Managers.TripIntervalManager</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimTripIntervalManager.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimTripIntervalManager.#ctor(RoadWeather.Managers.TripIntervalManager)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimTripIntervalManager.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimTripIntervalManager.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimTripIntervalManager.Bind(RoadWeather.Managers.Interfaces.ITripIntervalManager)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.Constructor">
+            <summary>Sets the shim of TripIntervalManager.TripIntervalManager()</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.GetLocationsInIntervalsWithTimeTrip">
+            <summary>Sets the shim of TripIntervalManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.GetTimeForLocationsIListOfLocationInt32DateTime">
+            <summary>Sets the shim of TripIntervalManager.GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Int32 stepDuration, DateTime start)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.SelectLocationsInIntervalsIListOfLocationInt32">
+            <summary>Sets the shim of TripIntervalManager.SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.StaticConstructor">
+            <summary>Sets the shim of TripIntervalManager.TripIntervalManager()</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.GetLocationsInIntervalsWithTimeTrip">
+            <summary>Sets the shim of TripIntervalManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.GetTimeForLocationsIListOfLocationInt32DateTime">
+            <summary>Sets the shim of TripIntervalManager.GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Int32 stepDuration, DateTime start)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.SelectLocationsInIntervalsIListOfLocationInt32">
+            <summary>Sets the shim of TripIntervalManager.SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
+        </member>
         <member name="T:RoadWeather.Managers.Fakes.ShimTripWeatherManager">
             <summary>Shim type of RoadWeather.Managers.TripWeatherManager</summary>
         </member>
@@ -790,71 +961,38 @@
         <member name="M:RoadWeather.Managers.Fakes.ShimTripWeatherManager.BehaveAsNotImplemented">
             <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Bind(RoadWeather.Managers.Interfaces.ITripWeatherManager)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Call_GetLocationsInIntervalsWithTimeTrip">
-            <summary>Sets the shim of TripWeatherManager.Call_GetLocationsInIntervalsWithTime(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Call_GetTimeForLocationsIListOfLocationInt32DateTime">
-            <summary>Sets the shim of TripWeatherManager.Call_GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Int32 stepDuration, DateTime start)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Call_SelectLocationsInIntervalsIListOfLocationInt32">
-            <summary>Sets the shim of TripWeatherManager.Call_SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.Constructor">
-            <summary>Sets the shim of TripWeatherManager.TripWeatherManager()</summary>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.ConstructorILocationWeatherProviderIWeatherUtilsITripIntervalManager">
+            <summary>Sets the shim of TripWeatherManager.TripWeatherManager(ILocationWeatherProvider locationWeatherProvider, IWeatherUtils weatherUtils, ITripIntervalManager tripIntervalMgr)</summary>
         </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.GetForecastForTripTrip">
             <summary>Sets the shim of TripWeatherManager.GetForecastForTrip(Trip trip)</summary>
         </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.GetLocationsInIntervalsWithTimeTrip">
-            <summary>Sets the shim of TripWeatherManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.GetLongTermForecastForTripTrip">
-            <summary>Sets the shim of TripWeatherManager.GetLongTermForecastForTrip(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.GetShortTermForecastForTripTrip">
-            <summary>Sets the shim of TripWeatherManager.GetShortTermForecastForTrip(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.GetTimeForLocationsIListOfLocationInt32DateTime">
-            <summary>Sets the shim of TripWeatherManager.GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Int32 stepDuration, DateTime start)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.SelectLocationsInIntervalsIListOfLocationInt32">
-            <summary>Sets the shim of TripWeatherManager.SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
-        </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.StaticConstructor">
             <summary>Sets the shim of TripWeatherManager.TripWeatherManager()</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager._GetForecastForTripb__0KeyValuePairOfLocationDetailForecastShortTermEntry">
+            <summary>Sets the shim of TripWeatherManager.&lt;GetForecastForTrip&gt;b__0(KeyValuePair`2&lt;LocationDetail,ForecastShortTermEntry&gt; kvp)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager._GetForecastForTripb__1KeyValuePairOfLocationDetailForecastShortTermEntry">
+            <summary>Sets the shim of TripWeatherManager.&lt;GetForecastForTrip&gt;b__1(KeyValuePair`2&lt;LocationDetail,ForecastShortTermEntry&gt; kvp)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager._GetForecastForTripb__2KeyValuePairOfLocationDetailForecastDailyEntry">
+            <summary>Sets the shim of TripWeatherManager.&lt;GetForecastForTrip&gt;b__2(KeyValuePair`2&lt;LocationDetail,ForecastDailyEntry&gt; kvp)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager._GetForecastForTripb__3KeyValuePairOfLocationDetailForecastDailyEntry">
+            <summary>Sets the shim of TripWeatherManager.&lt;GetForecastForTrip&gt;b__3(KeyValuePair`2&lt;LocationDetail,ForecastDailyEntry&gt; kvp)</summary>
         </member>
         <member name="T:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.Call_GetLocationsInIntervalsWithTimeTrip">
-            <summary>Sets the shim of TripWeatherManager.Call_GetLocationsInIntervalsWithTime(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.Call_GetTimeForLocationsIListOfLocationInt32DateTime">
-            <summary>Sets the shim of TripWeatherManager.Call_GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Int32 stepDuration, DateTime start)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.Call_SelectLocationsInIntervalsIListOfLocationInt32">
-            <summary>Sets the shim of TripWeatherManager.Call_SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
-        </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.GetForecastForTripTrip">
             <summary>Sets the shim of TripWeatherManager.GetForecastForTrip(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.GetLocationsInIntervalsWithTimeTrip">
-            <summary>Sets the shim of TripWeatherManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.GetLongTermForecastForTripTrip">
-            <summary>Sets the shim of TripWeatherManager.GetLongTermForecastForTrip(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.GetShortTermForecastForTripTrip">
-            <summary>Sets the shim of TripWeatherManager.GetShortTermForecastForTrip(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.GetTimeForLocationsIListOfLocationInt32DateTime">
-            <summary>Sets the shim of TripWeatherManager.GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Int32 stepDuration, DateTime start)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripWeatherManager.AllInstances.SelectLocationsInIntervalsIListOfLocationInt32">
-            <summary>Sets the shim of TripWeatherManager.SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
         </member>
         <member name="T:RoadWeather.Managers.Fakes.ShimWeatherProvider">
             <summary>Shim type of RoadWeather.Managers.WeatherProvider</summary>
@@ -870,6 +1008,9 @@
         </member>
         <member name="M:RoadWeather.Managers.Fakes.ShimWeatherProvider.BehaveAsNotImplemented">
             <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimWeatherProvider.Bind(RoadWeather.Managers.Interfaces.IWeatherProvider)">
+            <summary>Binds the members of the interface to the shim.</summary>
         </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimWeatherProvider.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
@@ -901,17 +1042,26 @@
         <member name="M:RoadWeather.Managers.Fakes.ShimWeatherUtils.#ctor">
             <summary>Initializes a new shim instance</summary>
         </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimWeatherUtils.#ctor(RoadWeather.Managers.WeatherUtils)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
         <member name="M:RoadWeather.Managers.Fakes.ShimWeatherUtils.BehaveAsCurrent">
             <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
         </member>
         <member name="M:RoadWeather.Managers.Fakes.ShimWeatherUtils.BehaveAsNotImplemented">
             <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="M:RoadWeather.Managers.Fakes.ShimWeatherUtils.Bind(RoadWeather.Managers.Interfaces.IWeatherUtils)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimWeatherUtils.AvailableForShortTermForecastTrip">
             <summary>Sets the shim of WeatherUtils.AvailableForShortTermForecast(Trip trip)</summary>
         </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimWeatherUtils.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimWeatherUtils.ConstructorIClock">
+            <summary>Sets the shim of WeatherUtils.WeatherUtils(IClock clock)</summary>
         </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimWeatherUtils.SelectLongTermEntryLocationDetailForecastLongTerm">
             <summary>Sets the shim of WeatherUtils.SelectLongTermEntry(LocationDetail location, ForecastLongTerm forecast)</summary>
@@ -922,10 +1072,22 @@
         <member name="P:RoadWeather.Managers.Fakes.ShimWeatherUtils.StaticConstructor">
             <summary>Sets the shim of WeatherUtils.WeatherUtils()</summary>
         </member>
+        <member name="T:RoadWeather.Managers.Fakes.ShimWeatherUtils.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimWeatherUtils.AllInstances.AvailableForShortTermForecastTrip">
+            <summary>Sets the shim of WeatherUtils.AvailableForShortTermForecast(Trip trip)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimWeatherUtils.AllInstances.SelectLongTermEntryLocationDetailForecastLongTerm">
+            <summary>Sets the shim of WeatherUtils.SelectLongTermEntry(LocationDetail location, ForecastLongTerm forecast)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimWeatherUtils.AllInstances.SelectShortTermEntryLocationDetailForecastShortTerm">
+            <summary>Sets the shim of WeatherUtils.SelectShortTermEntry(LocationDetail location, ForecastShortTerm forecast)</summary>
+        </member>
         <member name="T:RoadWeather.Managers.Fakes.StubLocationWeatherProvider">
             <summary>Stub type of RoadWeather.Managers.LocationWeatherProvider</summary>
         </member>
-        <member name="M:RoadWeather.Managers.Fakes.StubLocationWeatherProvider.#ctor">
+        <member name="M:RoadWeather.Managers.Fakes.StubLocationWeatherProvider.#ctor(RoadWeather.Managers.Interfaces.IWeatherProvider,RoadWeather.Managers.Interfaces.IWeatherUtils)">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:RoadWeather.Managers.Fakes.StubLocationWeatherProvider.InitializeStub">
@@ -940,10 +1102,46 @@
         <member name="P:RoadWeather.Managers.Fakes.StubLocationWeatherProvider.InstanceObserver">
             <summary>Gets or sets the instance observer.</summary>
         </member>
+        <member name="T:RoadWeather.Managers.Fakes.StubSystemClock">
+            <summary>Stub type of RoadWeather.Managers.SystemClock</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.StubSystemClock.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.StubSystemClock.InitializeStub">
+            <summary>Initializes a new instance of type StubSystemClock</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubSystemClock.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubSystemClock.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubSystemClock.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Fakes.StubTripIntervalManager">
+            <summary>Stub type of RoadWeather.Managers.TripIntervalManager</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.StubTripIntervalManager.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.StubTripIntervalManager.InitializeStub">
+            <summary>Initializes a new instance of type StubTripIntervalManager</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubTripIntervalManager.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubTripIntervalManager.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubTripIntervalManager.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
         <member name="T:RoadWeather.Managers.Fakes.StubTripWeatherManager">
             <summary>Stub type of RoadWeather.Managers.TripWeatherManager</summary>
         </member>
-        <member name="M:RoadWeather.Managers.Fakes.StubTripWeatherManager.#ctor">
+        <member name="M:RoadWeather.Managers.Fakes.StubTripWeatherManager.#ctor(RoadWeather.Managers.Interfaces.ILocationWeatherProvider,RoadWeather.Managers.Interfaces.IWeatherUtils,RoadWeather.Managers.Interfaces.ITripIntervalManager)">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:RoadWeather.Managers.Fakes.StubTripWeatherManager.InitializeStub">
@@ -975,6 +1173,120 @@
         </member>
         <member name="P:RoadWeather.Managers.Fakes.StubWeatherProvider.InstanceObserver">
             <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Fakes.StubWeatherUtils">
+            <summary>Stub type of RoadWeather.Managers.WeatherUtils</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.StubWeatherUtils.#ctor(RoadWeather.Managers.Interfaces.IClock)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Fakes.StubWeatherUtils.InitializeStub">
+            <summary>Initializes a new instance of type StubWeatherUtils</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubWeatherUtils.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubWeatherUtils.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.StubWeatherUtils.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Interfaces.Fakes.StubIClock">
+            <summary>Stub type of RoadWeather.Managers.Interfaces.IClock</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubIClock.#ctor">
+            <summary>Initializes a new instance of type StubIClock</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubIClock.NowGet">
+            <summary>Sets the stub of IClock.get_Now()</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Interfaces.Fakes.StubIClock.rw::RoadWeather#Managers#Interfaces#IClock#Now">
+            <summary>Sets the stub of IClock.get_Now()</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Interfaces.Fakes.StubILocationWeatherProvider">
+            <summary>Stub type of RoadWeather.Managers.Interfaces.ILocationWeatherProvider</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubILocationWeatherProvider.#ctor">
+            <summary>Initializes a new instance of type StubILocationWeatherProvider</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubILocationWeatherProvider.GetEntriesForLocationsLongTermListOfLocationDetail">
+            <summary>Sets the stub of ILocationWeatherProvider.GetEntriesForLocationsLongTerm(List`1&lt;LocationDetail&gt; locations)</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubILocationWeatherProvider.GetEntriesForLocationsShortTermListOfLocationDetail">
+            <summary>Sets the stub of ILocationWeatherProvider.GetEntriesForLocationsShortTerm(List`1&lt;LocationDetail&gt; locations)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubILocationWeatherProvider.rw::RoadWeather#Managers#Interfaces#ILocationWeatherProvider#GetEntriesForLocationsLongTerm(System.Collections.Generic.List{RoadWeather.Models.LocationDetail})">
+            <summary>Sets the stub of ILocationWeatherProvider.GetEntriesForLocationsLongTerm(List`1&lt;LocationDetail&gt; locations)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubILocationWeatherProvider.rw::RoadWeather#Managers#Interfaces#ILocationWeatherProvider#GetEntriesForLocationsShortTerm(System.Collections.Generic.List{RoadWeather.Models.LocationDetail})">
+            <summary>Sets the stub of ILocationWeatherProvider.GetEntriesForLocationsShortTerm(List`1&lt;LocationDetail&gt; locations)</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Interfaces.Fakes.StubITripIntervalManager">
+            <summary>Stub type of RoadWeather.Managers.Interfaces.ITripIntervalManager</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubITripIntervalManager.#ctor">
+            <summary>Initializes a new instance of type StubITripIntervalManager</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubITripIntervalManager.GetLocationsInIntervalsWithTimeTrip">
+            <summary>Sets the stub of ITripIntervalManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubITripIntervalManager.rw::RoadWeather#Managers#Interfaces#ITripIntervalManager#GetLocationsInIntervalsWithTime(RoadWeather.Models.Trip)">
+            <summary>Sets the stub of ITripIntervalManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Interfaces.Fakes.StubITripWeatherManager">
+            <summary>Stub type of RoadWeather.Managers.Interfaces.ITripWeatherManager</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubITripWeatherManager.#ctor">
+            <summary>Initializes a new instance of type StubITripWeatherManager</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubITripWeatherManager.GetForecastForTripTrip">
+            <summary>Sets the stub of ITripWeatherManager.GetForecastForTrip(Trip trip)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubITripWeatherManager.rw::RoadWeather#Managers#Interfaces#ITripWeatherManager#GetForecastForTrip(RoadWeather.Models.Trip)">
+            <summary>Sets the stub of ITripWeatherManager.GetForecastForTrip(Trip trip)</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherProvider">
+            <summary>Stub type of RoadWeather.Managers.Interfaces.IWeatherProvider</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherProvider.#ctor">
+            <summary>Initializes a new instance of type StubIWeatherProvider</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherProvider.GetForecastLongTermLocation">
+            <summary>Sets the stub of IWeatherProvider.GetForecastLongTerm(Location location)</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherProvider.GetForecastShortTermLocation">
+            <summary>Sets the stub of IWeatherProvider.GetForecastShortTerm(Location location)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherProvider.rw::RoadWeather#Managers#Interfaces#IWeatherProvider#GetForecastLongTerm(RoadWeather.Models.Location)">
+            <summary>Sets the stub of IWeatherProvider.GetForecastLongTerm(Location location)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherProvider.rw::RoadWeather#Managers#Interfaces#IWeatherProvider#GetForecastShortTerm(RoadWeather.Models.Location)">
+            <summary>Sets the stub of IWeatherProvider.GetForecastShortTerm(Location location)</summary>
+        </member>
+        <member name="T:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherUtils">
+            <summary>Stub type of RoadWeather.Managers.Interfaces.IWeatherUtils</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherUtils.#ctor">
+            <summary>Initializes a new instance of type StubIWeatherUtils</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherUtils.AvailableForShortTermForecastTrip">
+            <summary>Sets the stub of IWeatherUtils.AvailableForShortTermForecast(Trip trip)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherUtils.rw::RoadWeather#Managers#Interfaces#IWeatherUtils#AvailableForShortTermForecast(RoadWeather.Models.Trip)">
+            <summary>Sets the stub of IWeatherUtils.AvailableForShortTermForecast(Trip trip)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherUtils.rw::RoadWeather#Managers#Interfaces#IWeatherUtils#SelectLongTermEntry(RoadWeather.Models.LocationDetail,RoadWeather.Models.ForecastLongTerm)">
+            <summary>Sets the stub of IWeatherUtils.SelectLongTermEntry(LocationDetail location, ForecastLongTerm forecast)</summary>
+        </member>
+        <member name="M:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherUtils.rw::RoadWeather#Managers#Interfaces#IWeatherUtils#SelectShortTermEntry(RoadWeather.Models.LocationDetail,RoadWeather.Models.ForecastShortTerm)">
+            <summary>Sets the stub of IWeatherUtils.SelectShortTermEntry(LocationDetail location, ForecastShortTerm forecast)</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherUtils.SelectLongTermEntryLocationDetailForecastLongTerm">
+            <summary>Sets the stub of IWeatherUtils.SelectLongTermEntry(LocationDetail location, ForecastLongTerm forecast)</summary>
+        </member>
+        <member name="F:RoadWeather.Managers.Interfaces.Fakes.StubIWeatherUtils.SelectShortTermEntryLocationDetailForecastShortTerm">
+            <summary>Sets the stub of IWeatherUtils.SelectShortTermEntry(LocationDetail location, ForecastShortTerm forecast)</summary>
         </member>
         <member name="T:RoadWeather.Models.Fakes.ShimClouds">
             <summary>Shim type of RoadWeather.Models.Clouds</summary>
@@ -1150,80 +1462,80 @@
         <member name="P:RoadWeather.Models.Fakes.ShimForecastDailyEntry.AllInstances.WeatherDescriptionSetListOfWeatherDescription">
             <summary>Sets the shim of ForecastDailyEntry.set_WeatherDescription(List`1&lt;WeatherDescription&gt; value)</summary>
         </member>
-        <member name="T:RoadWeather.Models.Fakes.ShimForecastEntryAdapter">
-            <summary>Shim type of RoadWeather.Models.ForecastEntryAdapter</summary>
+        <member name="T:RoadWeather.Models.Fakes.ShimForecastEntry">
+            <summary>Shim type of RoadWeather.Models.ForecastEntry</summary>
         </member>
-        <member name="M:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.#ctor">
+        <member name="M:RoadWeather.Models.Fakes.ShimForecastEntry.#ctor">
             <summary>Initializes a new shim instance</summary>
         </member>
-        <member name="M:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.#ctor(RoadWeather.Models.ForecastEntryAdapter)">
+        <member name="M:RoadWeather.Models.Fakes.ShimForecastEntry.#ctor(RoadWeather.Models.ForecastEntry)">
             <summary>Initializes a new shim for the given instance</summary>
         </member>
-        <member name="M:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.BehaveAsCurrent">
+        <member name="M:RoadWeather.Models.Fakes.ShimForecastEntry.BehaveAsCurrent">
             <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
         </member>
-        <member name="M:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.BehaveAsNotImplemented">
+        <member name="M:RoadWeather.Models.Fakes.ShimForecastEntry.BehaveAsNotImplemented">
             <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.Behavior">
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.ConstructorForecastDailyEntry">
-            <summary>Sets the shim of ForecastEntryAdapter.ForecastEntryAdapter(ForecastDailyEntry entry)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.ConstructorForecastDailyEntry">
+            <summary>Sets the shim of ForecastEntry.ForecastEntry(ForecastDailyEntry entry)</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.ConstructorForecastShortTermEntry">
-            <summary>Sets the shim of ForecastEntryAdapter.ForecastEntryAdapter(ForecastShortTermEntry entry)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.ConstructorForecastShortTermEntry">
+            <summary>Sets the shim of ForecastEntry.ForecastEntry(ForecastShortTermEntry entry)</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.DateTimeGet">
-            <summary>Sets the shim of ForecastEntryAdapter.get_DateTime()</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.DateTimeGet">
+            <summary>Sets the shim of ForecastEntry.get_DateTime()</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.DateTimeSetDateTime">
-            <summary>Sets the shim of ForecastEntryAdapter.set_DateTime(DateTime value)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.DateTimeSetDateTime">
+            <summary>Sets the shim of ForecastEntry.set_DateTime(DateTime value)</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.DescriptionGet">
-            <summary>Sets the shim of ForecastEntryAdapter.get_Description()</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.DescriptionGet">
+            <summary>Sets the shim of ForecastEntry.get_Description()</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.DescriptionSetString">
-            <summary>Sets the shim of ForecastEntryAdapter.set_Description(String value)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.DescriptionSetString">
+            <summary>Sets the shim of ForecastEntry.set_Description(String value)</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.IconGet">
-            <summary>Sets the shim of ForecastEntryAdapter.get_Icon()</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.IconGet">
+            <summary>Sets the shim of ForecastEntry.get_Icon()</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.IconSetString">
-            <summary>Sets the shim of ForecastEntryAdapter.set_Icon(String value)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.IconSetString">
+            <summary>Sets the shim of ForecastEntry.set_Icon(String value)</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.TemperatureGet">
-            <summary>Sets the shim of ForecastEntryAdapter.get_Temperature()</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.TemperatureGet">
+            <summary>Sets the shim of ForecastEntry.get_Temperature()</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.TemperatureSetInt32">
-            <summary>Sets the shim of ForecastEntryAdapter.set_Temperature(Int32 value)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.TemperatureSetInt32">
+            <summary>Sets the shim of ForecastEntry.set_Temperature(Int32 value)</summary>
         </member>
-        <member name="T:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances">
+        <member name="T:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances.DateTimeGet">
-            <summary>Sets the shim of ForecastEntryAdapter.get_DateTime()</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.DateTimeGet">
+            <summary>Sets the shim of ForecastEntry.get_DateTime()</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances.DateTimeSetDateTime">
-            <summary>Sets the shim of ForecastEntryAdapter.set_DateTime(DateTime value)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.DateTimeSetDateTime">
+            <summary>Sets the shim of ForecastEntry.set_DateTime(DateTime value)</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances.DescriptionGet">
-            <summary>Sets the shim of ForecastEntryAdapter.get_Description()</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.DescriptionGet">
+            <summary>Sets the shim of ForecastEntry.get_Description()</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances.DescriptionSetString">
-            <summary>Sets the shim of ForecastEntryAdapter.set_Description(String value)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.DescriptionSetString">
+            <summary>Sets the shim of ForecastEntry.set_Description(String value)</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances.IconGet">
-            <summary>Sets the shim of ForecastEntryAdapter.get_Icon()</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.IconGet">
+            <summary>Sets the shim of ForecastEntry.get_Icon()</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances.IconSetString">
-            <summary>Sets the shim of ForecastEntryAdapter.set_Icon(String value)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.IconSetString">
+            <summary>Sets the shim of ForecastEntry.set_Icon(String value)</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances.TemperatureGet">
-            <summary>Sets the shim of ForecastEntryAdapter.get_Temperature()</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.TemperatureGet">
+            <summary>Sets the shim of ForecastEntry.get_Temperature()</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntryAdapter.AllInstances.TemperatureSetInt32">
-            <summary>Sets the shim of ForecastEntryAdapter.set_Temperature(Int32 value)</summary>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.TemperatureSetInt32">
+            <summary>Sets the shim of ForecastEntry.set_Temperature(Int32 value)</summary>
         </member>
         <member name="T:RoadWeather.Models.Fakes.ShimForecastLongTerm">
             <summary>Shim type of RoadWeather.Models.ForecastLongTerm</summary>
@@ -2011,25 +2323,25 @@
         <member name="P:RoadWeather.Models.Fakes.StubForecastDailyEntry.InstanceObserver">
             <summary>Gets or sets the instance observer.</summary>
         </member>
-        <member name="T:RoadWeather.Models.Fakes.StubForecastEntryAdapter">
-            <summary>Stub type of RoadWeather.Models.ForecastEntryAdapter</summary>
+        <member name="T:RoadWeather.Models.Fakes.StubForecastEntry">
+            <summary>Stub type of RoadWeather.Models.ForecastEntry</summary>
         </member>
-        <member name="M:RoadWeather.Models.Fakes.StubForecastEntryAdapter.#ctor(RoadWeather.Models.ForecastDailyEntry)">
+        <member name="M:RoadWeather.Models.Fakes.StubForecastEntry.#ctor(RoadWeather.Models.ForecastDailyEntry)">
             <summary>Initializes a new instance</summary>
         </member>
-        <member name="M:RoadWeather.Models.Fakes.StubForecastEntryAdapter.#ctor(RoadWeather.Models.ForecastShortTermEntry)">
+        <member name="M:RoadWeather.Models.Fakes.StubForecastEntry.#ctor(RoadWeather.Models.ForecastShortTermEntry)">
             <summary>Initializes a new instance</summary>
         </member>
-        <member name="M:RoadWeather.Models.Fakes.StubForecastEntryAdapter.InitializeStub">
-            <summary>Initializes a new instance of type StubForecastEntryAdapter</summary>
+        <member name="M:RoadWeather.Models.Fakes.StubForecastEntry.InitializeStub">
+            <summary>Initializes a new instance of type StubForecastEntry</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.StubForecastEntryAdapter.CallBase">
+        <member name="P:RoadWeather.Models.Fakes.StubForecastEntry.CallBase">
             <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.StubForecastEntryAdapter.InstanceBehavior">
+        <member name="P:RoadWeather.Models.Fakes.StubForecastEntry.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
-        <member name="P:RoadWeather.Models.Fakes.StubForecastEntryAdapter.InstanceObserver">
+        <member name="P:RoadWeather.Models.Fakes.StubForecastEntry.InstanceObserver">
             <summary>Gets or sets the instance observer.</summary>
         </member>
         <member name="T:RoadWeather.Models.Fakes.StubForecastLongTerm">

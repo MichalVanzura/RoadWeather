@@ -1,7 +1,7 @@
 ﻿using System;
-namespace RoadWeather.Managers
+namespace RoadWeather.Managers.Interfaces
 {
-    interface IWeatherProvider
+    public interface IWeatherProvider
     {
         System.Threading.Tasks.Task<RoadWeather.Models.ForecastLongTerm> GetForecastLongTerm(RoadWeather.Models.Location location);
         System.Threading.Tasks.Task<RoadWeather.Models.ForecastShortTerm> GetForecastShortTerm(RoadWeather.Models.Location location);

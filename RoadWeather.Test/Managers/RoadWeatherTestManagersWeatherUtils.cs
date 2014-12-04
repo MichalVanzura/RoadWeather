@@ -16,7 +16,7 @@ namespace RoadWeather.Test.Managers
     [TestClass]
     public class RoadWeatherTestManagersWeatherUtils
     {
-
+        /*
         #region AvailableForShortTermForecast
 
         [TestMethod]
@@ -279,5 +279,6 @@ namespace RoadWeather.Test.Managers
 
 
         #endregion
+         */
     }
 }

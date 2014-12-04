@@ -5,16 +5,25 @@ using System.Web;
 using RoadWeather.Models;
 using System.Threading.Tasks;
 using log4net;
+using RoadWeather.Managers.Interfaces;
+
 
 namespace RoadWeather.Managers
 {
     /// <summary>
     /// This class retrieves forecasts for locations provided.
     /// </summary>
-    public class LocationWeatherProvider
+    public class LocationWeatherProvider : RoadWeather.Managers.Interfaces.ILocationWeatherProvider
     {
-        private WeatherProvider provider = new WeatherProvider();
         private static readonly ILog log = LogManager.GetLogger("LocationWeatherProvider");
+        private IWeatherProvider weatherProvider;
+        private IWeatherUtils weatherUtils;
+
+        public LocationWeatherProvider(IWeatherProvider weatherProvider, IWeatherUtils utils)
+        {
+            this.weatherProvider = weatherProvider;
+            this.weatherUtils = utils;
+        }
 
         /// <summary>
         /// Returns complete long term forecasts for list of locations specified.
@@ -27,7 +36,7 @@ namespace RoadWeather.Managers
             var dictOfTasks = new Dictionary<LocationDetail, Task<ForecastLongTerm>>();
             foreach (LocationDetail loc in locations)
             {
-                dictOfTasks.Add(loc, provider.GetForecastLongTerm(loc.Location));
+                dictOfTasks.Add(loc, weatherProvider.GetForecastLongTerm(loc.Location));
             }
             await Task.WhenAll(dictOfTasks.Values);
 
@@ -35,7 +44,7 @@ namespace RoadWeather.Managers
             var dictOfResults = new Dictionary<LocationDetail, ForecastDailyEntry>();
             foreach (var locAndTask in dictOfTasks)
             {
-                var selectedEntry = WeatherUtils.SelectLongTermEntry(locAndTask.Key, locAndTask.Value.Result);
+                var selectedEntry = weatherUtils.SelectLongTermEntry(locAndTask.Key, locAndTask.Value.Result);
                 dictOfResults.Add(locAndTask.Key, selectedEntry);
             }
             return dictOfResults;
@@ -52,7 +61,7 @@ namespace RoadWeather.Managers
             var dictOfTasks = new Dictionary<LocationDetail, Task<ForecastShortTerm>>();
             foreach (LocationDetail loc in locations)
             {
-                dictOfTasks.Add(loc, provider.GetForecastShortTerm(loc.Location));
+                dictOfTasks.Add(loc, weatherProvider.GetForecastShortTerm(loc.Location));
             }
             await Task.WhenAll(dictOfTasks.Values);
 
@@ -60,12 +69,10 @@ namespace RoadWeather.Managers
             var dictOfResults = new Dictionary<LocationDetail, ForecastShortTermEntry>();
             foreach (var locAndTask in dictOfTasks)
             {
-                var selectedEntry = WeatherUtils.SelectShortTermEntry(locAndTask.Key, locAndTask.Value.Result);
+                var selectedEntry = weatherUtils.SelectShortTermEntry(locAndTask.Key, locAndTask.Value.Result);
                 dictOfResults.Add(locAndTask.Key, selectedEntry);
             }
             return dictOfResults;
         }
-
-        
     }
 }

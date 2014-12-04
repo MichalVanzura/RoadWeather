@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoadWeather.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,6 +21,8 @@ namespace RoadWeather
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            UnityWebActivator.Start();
 
             log4net.Config.XmlConfigurator.Configure();
             log.Info("Application is starting!!");
