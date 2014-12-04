@@ -36,7 +36,7 @@ namespace RoadWeather.Test.Managers
             TripWeatherManager temp = new TripWeatherManager();
 
             //Act and Assert
-            Assert.IsInstanceOfType(temp.GetForecastForTrip(trip), typeof(Task<Dictionary<LocationDetail, ForecastEntryAdapter>>));
+            Assert.IsInstanceOfType(temp.GetForecastForTrip(trip), typeof(Task<Dictionary<LocationDetail, ForecastEntry>>));
         }
 
         #endregion

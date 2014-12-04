@@ -6,51 +6,30 @@ using System.Web;
 
 namespace RoadWeather.Models
 {
-    public class ForecastEntryAdapter
+    public class ForecastEntry
     {
-        private string description;
-        private int temperature;
-        private DateTime dateTime;
-        private string icon;
+        public string Icon {get; set; }
 
-        public string Icon
+        public string Description {get; set;}
+
+        public int Temperature {get; set;}
+
+        public DateTime DateTime {get; set; }
+
+        public ForecastEntry(ForecastShortTermEntry entry)
         {
-            get { return icon; }
-            set { icon = value; }
+            this.Description = entry.WeatherDescription[0].Main;
+            this.Temperature = (int)Math.Round(entry.MainValues.Temp);
+            this.DateTime = entry.ForecastTime;
+            this.Icon = entry.WeatherDescription[0].Icon;
         }
 
-        public string Description
+        public ForecastEntry(ForecastDailyEntry entry)
         {
-            get { return description; }
-            set { description = value; }
-        }
-
-        public int Temperature
-        {
-            get { return temperature; }
-            set { temperature = value; }
-        }
-
-        public DateTime DateTime
-        {
-            get { return dateTime; }
-            set { dateTime = value; }
-        }
-
-        public ForecastEntryAdapter(ForecastShortTermEntry entry)
-        {
-            this.description = entry.WeatherDescription[0].Main;
-            this.temperature = (int)Math.Round(entry.MainValues.Temp);
-            this.dateTime = entry.ForecastTime;
-            this.icon = entry.WeatherDescription[0].Icon;
-        }
-
-        public ForecastEntryAdapter(ForecastDailyEntry entry)
-        {
-            this.description = entry.WeatherDescription[0].Description;
-            this.temperature = (int)Math.Round(entry.Temp.Day);
-            this.dateTime = entry.ForecastTime;
-            this.icon = entry.WeatherDescription[0].Icon;
+            this.Description = entry.WeatherDescription[0].Description;
+            this.Temperature = (int)Math.Round(entry.Temp.Day);
+            this.DateTime = entry.ForecastTime;
+            this.Icon = entry.WeatherDescription[0].Icon;
 
         }
     }

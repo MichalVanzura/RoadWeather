@@ -23,20 +23,20 @@ namespace RoadWeather.Managers
         /// </summary>
         /// <param name="trip">Trip</param>
         /// <returns>Weather for locations on the trip</returns>
-        public async Task<Dictionary<LocationDetail, ForecastEntryAdapter>> GetForecastForTrip(Trip trip)
+        public async Task<Dictionary<LocationDetail, ForecastEntry>> GetForecastForTrip(Trip trip)
         {
             if (trip == null)
             {
                 throw new ArgumentNullException("Trip is null");
             }
 
-            var dictResult = new Dictionary<LocationDetail, ForecastEntryAdapter>();        
+            var dictResult = new Dictionary<LocationDetail, ForecastEntry>();        
             if (WeatherUtils.AvailableForShortTermForecast(trip))
             {
                 var locations = GetLocationsInIntervalsWithTime(trip);
                 var locationForecasts = await provider.GetEntriesForLocationsShortTerm(locations);
 
-                dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntryAdapter(kvp.Value));
+                dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntry(kvp.Value));
 
                 return dictResult;
             }
@@ -47,46 +47,13 @@ namespace RoadWeather.Managers
                 var locations = GetLocationsInIntervalsWithTime(trip);
                 var locationForecasts = await provider.GetEntriesForLocationsLongTerm(locations);
 
-                dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntryAdapter(kvp.Value));
+                dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntry(kvp.Value));
+
                 return dictResult;
             }
         }
 
-        /*
-        /// <summary>
-        /// Returns dictionary of location details and short term entry for trip.
-        /// </summary>
-        /// <param name="trip">Trip</param>
-        /// <returns>Weather for locations on the trip</returns>
-        public async Task<Dictionary<LocationDetail, ForecastShortTermEntry>> GetShortTermForecastForTrip(Trip trip)
-        {
-            if (!WeatherUtils.AvailableForShortTermForecast(trip))
-            {
-                string msg = "Provided trip does not qualify for short term forecast.";
-                log.Error(msg);
-                throw new ArgumentException(msg);
-            }
-            var locations = GetLocationsInIntervalsWithTime(trip);
-            return await provider.GetEntriesForLocationsShortTerm(locations);
-        }*/
-
-        /*
-        /// <summary>
-        /// Returns dictionary of location details and long term entry for trip.
-        /// </summary>
-        /// <param name="trip">Trip</param>
-        /// <returns>Weather for locations on the trip</returns>
-        public async Task<Dictionary<LocationDetail, ForecastDailyEntry>> GetLongTermForecastForTrip(Trip trip)
-        {
-            if (trip == null)
-            {
-                throw new ArgumentNullException("Trip is null");
-            }
-
-            var locations = GetLocationsInIntervalsWithTime(trip);
-            return await provider.GetEntriesForLocationsLongTerm(locations);
-        }*/
-
+     
         /// <summary>
         /// Returns locations in intervals for the trip with estimated time.
         /// </summary>

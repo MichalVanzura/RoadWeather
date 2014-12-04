@@ -19,7 +19,9 @@ namespace RoadWeather.Managers
         private static readonly string WEATHER_API_URI_SHORT =  @"http://api.openweathermap.org/data/2.5/forecast?lat={0}&lon={1}&APPID=3e498b17220c9b49140ea1bb8a94c010&units=metric";
 
         /// <summary>
-        /// Returns long term forecast for location specified
+        /// Returns long term forecast for location specified. Long term forecast returns daily 
+        /// weather entries which contain general info for whole day. Forecast is provided for
+        /// 16 days into the future.
         /// </summary>
         /// <param name="location">Location</param>
         /// <returns>Long term forecast for location</returns>
@@ -46,7 +48,9 @@ namespace RoadWeather.Managers
         }
 
         /// <summary>
-        /// Returns short term forecast for location specified
+        /// Returns short term forecast for location specified. Short term forecast returns 
+        /// weather forecast in 3 hour intervals. Forecast has entries until today's midnight 
+        /// and then next 4 days.
         /// </summary>
         /// <param name="location">Location</param>
         /// <returns>Short term forecast for location</returns>
