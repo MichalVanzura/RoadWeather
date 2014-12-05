@@ -166,9 +166,35 @@ hr {
     background: url('/Content/Images/search.png') 50% 50% no-repeat #4D90FE;
     border: none;
 }
+.temperature{
+    width:35px;
+    vertical-align: middle;
+    align-content: right;
+    margin-top: -10px;
+    margin-left: 2px;
+}
 
+.bubblebox{
+    background-color:rgba(255,0,0,0.5);
+}
+
+.description{
+    font-size: 110%;
+    position:relative;
+    bottom: 1px;
+
+}
+
+.celsius{
+     font-size: 100%;
+     position: relative;
+     bottom: 13px;
+}
     .search-button:hover {
         background-color: #2c73e8;
+    }
+    .desc{
+        font-size: 30px;
     }
 
 .collapse-button {

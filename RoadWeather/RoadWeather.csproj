@@ -198,6 +198,7 @@
     <Content Include="Content\Images\list_icon.png" />
     <Content Include="Content\Images\loader.gif" />
     <Content Include="Content\Images\search.png" />
+    <Content Include="Content\Images\temperature.png" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\small.css" />

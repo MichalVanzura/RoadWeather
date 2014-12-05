@@ -16,7 +16,6 @@
                 },
                 icon: image,
                 message: mark.Text,
-                message_bubble: "Description: " + mark.Text.Description + ", Temperature: " + mark.Text.Temperature + "°C, DateTime: " + mark.Text.DateTime,
                 
             };
 

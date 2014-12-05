@@ -44,8 +44,14 @@
     <div class="map-container col-sm-8 col-xs-12">
         <ui-gmap-google-map events="map.events" center='map.center' zoom='map.zoom' control="map.control">
             <ui-gmap-marker coords="marker.coords" icon="marker.icon" idkey="marker.id" options="marker.options" click="showWindowClick(marker.id)" events="marker.events" ng-repeat="marker in markers">
-                <ui-gmap-window options="windowOptions[marker.id]" closeclick="closeWindowClick(marker.id)" ng-cloak>
-                    {{marker.message_bubble}}
+                <ui-gmap-window options="windowOptions[marker.id]" closeclick="closeWindowClick(marker.id)" ng-cloak class="bubblebox">
+                    <p style="white-space: nowrap; text-align:center;">
+                        <input type="image" class="temperature" src="~/Content/Images/temperature.png">
+                        <strong class="desc">{{marker.message.Temperature}}</strong><strong class="celsius">°C</strong><br />
+                        <strong class="description">{{marker.message.Description}}</strong><br />
+                        <em>Date: {{marker.message.DateTime | date: 'shortDate'}}</em><br />
+                        <em>Time: {{marker.message.DateTime | date: 'shortTime'}}</em><br />
+                    </p>
                 </ui-gmap-window>
             </ui-gmap-marker>
         </ui-gmap-google-map>
