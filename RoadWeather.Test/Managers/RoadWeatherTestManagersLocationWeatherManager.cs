@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace RoadWeather.Test.Managers
 {
     [TestClass]
-    public class RoadWeatherTestManagersLocationWeatherProvider
+    public class RoadWeatherTestManagersLocationWeatherManager
     {
         /*
         #region GetEntriesForLocationsLongTerm

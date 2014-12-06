@@ -13,13 +13,13 @@ namespace RoadWeather.Managers
     /// <summary>
     /// This class retrieves forecasts for locations provided.
     /// </summary>
-    public class LocationWeatherProvider : RoadWeather.Managers.Interfaces.ILocationWeatherProvider
+    public class LocationWeatherManager : RoadWeather.Managers.Interfaces.ILocationWeatherProvider
     {
         private static readonly ILog log = LogManager.GetLogger("LocationWeatherProvider");
         private IWeatherProvider weatherProvider;
         private IWeatherUtils weatherUtils;
 
-        public LocationWeatherProvider(IWeatherProvider weatherProvider, IWeatherUtils utils)
+        public LocationWeatherManager(IWeatherProvider weatherProvider, IWeatherUtils utils)
         {
             this.weatherProvider = weatherProvider;
             this.weatherUtils = utils;

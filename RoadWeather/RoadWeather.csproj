@@ -163,7 +163,7 @@
     <Compile Include="Managers\Interfaces\IClock.cs" />
     <Compile Include="Managers\Interfaces\ILocationWeatherProvider.cs" />
     <Compile Include="Managers\Interfaces\IWeatherProvider.cs" />
-    <Compile Include="Managers\LocationWeatherProvider.cs" />
+    <Compile Include="Managers\LocationWeatherManager.cs" />
     <Compile Include="Managers\TripIntervalManager.cs" />
     <Compile Include="Managers\WeatherUtils.cs" />
     <Compile Include="Managers\TripWeatherManager.cs" />

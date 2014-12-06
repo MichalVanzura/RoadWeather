@@ -1,7 +1,9 @@
 ﻿using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoadWeather.Managers;
+using RoadWeather.Managers.Interfaces;
 using RoadWeather.Models;
+using RoadWeather.Test.Fakes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,36 +18,43 @@ namespace RoadWeather.Test.Managers
     [TestClass]
     public class RoadWeatherTestManagersWeatherUtils
     {
-        /*
+
+
         #region AvailableForShortTermForecast
 
         [TestMethod]
         [ExpectedException(typeof(System.ArgumentNullException))]
         public void Test_AvailableForShortTermForecast_TripNull()
         {
-            WeatherUtils.AvailableForShortTermForecast(null);
-        }
+            //Arrange
+            DateTime dtNow = new DateTime(2014, 12, 6, 18, 40, 0);
+            var weatherUtils = new WeatherUtils(new StaticClock(dtNow));
 
+            //Act
+            weatherUtils.AvailableForShortTermForecast(null);
+
+        }
         [TestMethod]
         public void Test_AvailableForShortTermForecast_False()
         {
             //Arrange
-            var dtNow = new DateTime(2014, 10, 01, 15, 0, 0); 
+            var dtNow = new DateTime(2014, 10, 1, 15, 0, 0);
             var dtStart = new DateTime(2014, 10, 7, 17, 0, 0);
+
+            IClock staticClock = new StaticClock(dtNow);
+            IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
 
             var trip = new Trip();
             trip.StartDateTime = dtStart;
-            trip.Duration =  3600; // one hour
+            trip.Duration = 3600; // one hour
 
-            using (ShimsContext.Create())
-            {
-                System.Fakes.ShimDateTime.NowGet = () => { return dtNow; };
-                
-                //Act
-                bool available = WeatherUtils.AvailableForShortTermForecast(trip);
-                
-                Assert.IsFalse(available);
-            }
+            //Act
+            bool available = weatherUtils.AvailableForShortTermForecast(trip);
+
+            //Assert    
+            Assert.IsFalse(available);
+
+
 
         }
 
@@ -60,15 +69,14 @@ namespace RoadWeather.Test.Managers
             trip.StartDateTime = dtStart;
             trip.Duration = 3600; // one hour
 
-            using (ShimsContext.Create())
-            {
-                System.Fakes.ShimDateTime.NowGet = () => { return dtNow; };
+            IClock staticClock = new StaticClock(dtNow);
+            IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
 
-                //Act
-                bool available = WeatherUtils.AvailableForShortTermForecast(trip);
+            //Act
+            bool available = weatherUtils.AvailableForShortTermForecast(trip);
 
-                Assert.IsTrue(available);
-            }
+            //Assert
+            Assert.IsTrue(available);
 
         }
 
@@ -83,15 +91,14 @@ namespace RoadWeather.Test.Managers
             trip.StartDateTime = dtStart;
             trip.Duration = 900; // 15 minutes
 
-            using (ShimsContext.Create())
-            {
-                System.Fakes.ShimDateTime.NowGet = () => { return dtNow; };
-                
-                //Act
-                bool available = WeatherUtils.AvailableForShortTermForecast(trip);
+            IClock staticClock = new StaticClock(dtNow);
+            IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
 
-                Assert.IsTrue(available);
-            }
+            //Act
+            bool available = weatherUtils.AvailableForShortTermForecast(trip);
+
+            //Assert
+            Assert.IsTrue(available);
         }
 
         [TestMethod]
@@ -105,20 +112,18 @@ namespace RoadWeather.Test.Managers
             trip.StartDateTime = dtStart;
             trip.Duration = 3600; // 60 minutes
 
-            using (ShimsContext.Create())
-            {
-                System.Fakes.ShimDateTime.NowGet = () => { return dtNow; };
+            IClock staticClock = new StaticClock(dtNow);
+            IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
 
-                //Act
-                bool available = WeatherUtils.AvailableForShortTermForecast(trip);
+            //Act
+            bool available = weatherUtils.AvailableForShortTermForecast(trip);
 
-                Assert.IsFalse(available);
-            }
+            //Assert
+            Assert.IsFalse(available);
         }
 
 
         #endregion
-
 
 
         #region SelectShortTermEntry
@@ -127,32 +132,41 @@ namespace RoadWeather.Test.Managers
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_SelectShortTermEntry_Argument1Null()
         {
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+
             var fc = new ForecastShortTerm();
-            WeatherUtils.SelectShortTermEntry(null, fc);
+            weatherUtils.SelectShortTermEntry(null, fc);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_SelectShortTermEntry_Argument2Null()
         {
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+
             var loc = new LocationDetail();
-            WeatherUtils.SelectShortTermEntry(loc, null);
+            weatherUtils.SelectShortTermEntry(loc, null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
         public void Test_SelectShortTermEntry_NoEntries()
         {
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+
             var loc = new LocationDetail();
             var fc = new ForecastShortTerm();
             fc.Entries = new List<ForecastShortTermEntry>();
-            WeatherUtils.SelectShortTermEntry(loc, fc);
+
+            weatherUtils.SelectShortTermEntry(loc, fc);
         }
 
         [TestMethod]
         public void Test_SelectShortTermEntry_FirstOne()
         {
             //Arrange
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+
             var forecast = new ForecastShortTerm();
 
             var entry1 = new ForecastShortTermEntry();
@@ -168,16 +182,18 @@ namespace RoadWeather.Test.Managers
             };
 
             //Act
-            var entry = WeatherUtils.SelectShortTermEntry(locDetail, forecast);
+            var entry = weatherUtils.SelectShortTermEntry(locDetail, forecast);
 
             //Assert - entry1 should be selected
             Assert.AreEqual(978361200, entry.UnixTimestamp);
         }
-
+        
         [TestMethod]
         public void Test_SelectShortTermEntry_SecondOne()
         {
             //Arrange
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+
             var forecast = new ForecastShortTerm();
 
             var entry1 = new ForecastShortTermEntry();
@@ -191,7 +207,7 @@ namespace RoadWeather.Test.Managers
             locDetail.Time = new DateTime(2001, 01, 01, 16, 0, 1); //978364801
 
             //Act
-            var entry = WeatherUtils.SelectShortTermEntry(locDetail, forecast);
+            var entry = weatherUtils.SelectShortTermEntry(locDetail, forecast);
 
             //Assert - entry2 should be selected
             Assert.AreEqual(978368400, entry.UnixTimestamp);
@@ -206,26 +222,32 @@ namespace RoadWeather.Test.Managers
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_SelectLongTermEntry_Argument1Null()
         {
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+
             var fc = new ForecastLongTerm();
-            WeatherUtils.SelectLongTermEntry(null, fc);
+            weatherUtils.SelectLongTermEntry(null, fc);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Test_SelectLongTermEntry_Argument2Null()
         {
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+            
             var loc = new LocationDetail();
-            WeatherUtils.SelectShortTermEntry(loc, null);
+            weatherUtils.SelectShortTermEntry(loc, null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
         public void Test_SelectLongTermEntry_NoEntries()
         {
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+
             LocationDetail loc = new LocationDetail();
             var fc = new ForecastLongTerm();
             fc.Entries = new List<ForecastDailyEntry>();
-            WeatherUtils.SelectLongTermEntry(loc, fc);
+            weatherUtils.SelectLongTermEntry(loc, fc);
         }
 
 
@@ -233,6 +255,8 @@ namespace RoadWeather.Test.Managers
         public void Test_SelectLongTermEntry_FirstOne()
         {
             //Arrange
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+
             var forecast = new ForecastLongTerm();
 
             var entry1 = new ForecastDailyEntry();
@@ -246,7 +270,7 @@ namespace RoadWeather.Test.Managers
             locDetail.Time = new DateTime(2012, 5, 2, 0, 0, 0); //1335916800
 
             //Act
-            var entry = WeatherUtils.SelectLongTermEntry(locDetail, forecast);
+            var entry = weatherUtils.SelectLongTermEntry(locDetail, forecast);
 
             //Assert - entry2 should be selected
             Assert.AreEqual(1335927600, entry.UnixTimestamp);
@@ -256,6 +280,8 @@ namespace RoadWeather.Test.Managers
         public void Test_SelectLongTermEntry_SecondOne()
         {
             //Arrange
+            IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
+            
             var forecast = new ForecastLongTerm();
 
             var entry1 = new ForecastDailyEntry();
@@ -269,16 +295,12 @@ namespace RoadWeather.Test.Managers
             locDetail.Time = new DateTime(2012, 5, 1, 0, 0, 0); 
 
             //Act
-            var entry = WeatherUtils.SelectLongTermEntry(locDetail, forecast);
+            var entry = weatherUtils.SelectLongTermEntry(locDetail, forecast);
 
             //Assert - entry2 should be selected
             Assert.AreEqual(1335913200, entry.UnixTimestamp);
         }
 
-
-
-
         #endregion
-         */
     }
 }

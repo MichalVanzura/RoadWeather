@@ -45,7 +45,7 @@ namespace RoadWeather.App_Start
                 .RegisterType<ITripIntervalManager, TripIntervalManager>()
                 .RegisterType<IWeatherUtils, WeatherUtils>(
                     new InjectionConstructor(typeof(IClock)))
-                .RegisterType<ILocationWeatherProvider, LocationWeatherProvider>(
+                .RegisterType<ILocationWeatherProvider, LocationWeatherManager>(
                     new InjectionConstructor(typeof(IWeatherProvider), typeof(IWeatherUtils)))
                 .RegisterType<ITripWeatherManager, TripWeatherManager>(
                     new InjectionConstructor(typeof(ILocationWeatherProvider), typeof(IWeatherUtils), typeof(ITripIntervalManager)))

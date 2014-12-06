@@ -11,7 +11,7 @@ namespace RoadWeather.Test.Controllers
     [TestClass]
     public class RoadWeatherTestControllers
     {
-        /*
+        
         #region GetWeatherMarkers
 
         [TestMethod]
@@ -39,6 +39,6 @@ namespace RoadWeather.Test.Controllers
         }
 
         #endregion
-         * */
+        
     }
 }

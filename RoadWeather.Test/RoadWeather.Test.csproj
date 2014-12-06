@@ -37,6 +37,9 @@
   <ItemGroup>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib.4.0.0.0.Fakes">
       <HintPath>FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
     </Reference>
@@ -66,10 +69,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\RoadWeatherTestControllers.cs" />
+    <Compile Include="Fakes\Mocks.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersWeatherUtils.cs" />
-    <Compile Include="Managers\RoadWeatherTestManagersWeatherProvides.cs" />
+    <Compile Include="Managers\RoadWeatherTestManagersWeatherProvider.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersTripWeatherManager.cs" />
-    <Compile Include="Managers\RoadWeatherTestManagersLocationWeatherProvider.cs" />
+    <Compile Include="Managers\RoadWeatherTestManagersLocationWeatherManager.cs" />
     <Compile Include="Models\RoadWeatherTestModelsForecastEntryAdapter.cs" />
     <Compile Include="Models\RoadWeatherTestModelsMarker.cs" />
     <Compile Include="Models\RoadWeatherTestModelsLocation.cs" />
