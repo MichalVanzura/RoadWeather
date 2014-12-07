@@ -1573,11 +1573,20 @@
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.IconSetString">
             <summary>Sets the shim of ForecastEntry.set_Icon(String value)</summary>
         </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.IsShortTermGet">
+            <summary>Sets the shim of ForecastEntry.get_IsShortTerm()</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.IsShortTermSetBoolean">
+            <summary>Sets the shim of ForecastEntry.set_IsShortTerm(Boolean value)</summary>
+        </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.TemperatureGet">
             <summary>Sets the shim of ForecastEntry.get_Temperature()</summary>
         </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.TemperatureSetInt32">
             <summary>Sets the shim of ForecastEntry.set_Temperature(Int32 value)</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.TimeTextGet">
+            <summary>Sets the shim of ForecastEntry.get_TimeText()</summary>
         </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.ToString">
             <summary>Sets the shim of ForecastEntry.ToString()</summary>
@@ -1612,11 +1621,20 @@
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.IconSetString">
             <summary>Sets the shim of ForecastEntry.set_Icon(String value)</summary>
         </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.IsShortTermGet">
+            <summary>Sets the shim of ForecastEntry.get_IsShortTerm()</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.IsShortTermSetBoolean">
+            <summary>Sets the shim of ForecastEntry.set_IsShortTerm(Boolean value)</summary>
+        </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.TemperatureGet">
             <summary>Sets the shim of ForecastEntry.get_Temperature()</summary>
         </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.TemperatureSetInt32">
             <summary>Sets the shim of ForecastEntry.set_Temperature(Int32 value)</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.TimeTextGet">
+            <summary>Sets the shim of ForecastEntry.get_TimeText()</summary>
         </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.ToString01">
             <summary>Sets the shim of ForecastEntry.ToString()</summary>

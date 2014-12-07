@@ -88,11 +88,58 @@ namespace RoadWeather.Managers
             }
 
             var entry = forecast.Entries.FirstOrDefault(x => x.ForecastTime.Date == location.Time.Date);
+
             if (entry == null)
             {
                 string msg = "No forecast for the day selected";
                 log.Error(msg);
-                throw new NullReferenceException(msg);
+            
+                int hrs = 12;
+                int min = 0;
+                var lastEntry = forecast.Entries.LastOrDefault();
+                if (lastEntry != null)
+                {
+                    hrs = lastEntry.ForecastTime.Hour;
+                    min = lastEntry.ForecastTime.Minute;
+                }
+
+                return new ForecastDailyEntry()
+                {
+                    Clouds = 0,
+                    Deg = 0,
+                    Humidity = 0,
+                    Pressure = 0,
+                    Rain = 0,
+                    Speed = 0,
+                    Temp = new Temp()
+                    {
+                        Day = 0,
+                        Eve = 0,
+                        Max = 0,
+                        Min = 0,
+                        Morn = 0,
+                        Night = 0
+                    },
+                    UnixTimestamp = (int) UnixTimeConverter.DateTimeToUnixTimestamp(
+                        new DateTime()
+                            .AddYears(location.Time.Year)
+                            .AddMonths(location.Time.Month)
+                            .AddDays(location.Time.Day)
+                            .AddHours(hrs)
+                            .AddMinutes(min)),
+                    WeatherDescription = new List<WeatherDescription>()
+                    {
+                        new WeatherDescription()
+                        {
+                            Description = "N/A",
+                            Icon = "N/A",
+                            Id = 0,
+                            Main = "N/A"
+                        }
+                    }
+
+                };
+                //throw new NullReferenceException(msg);
             }
             return entry;
         }

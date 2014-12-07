@@ -49,8 +49,8 @@
                         <input type="image" class="temperature" src="~/Content/Images/temperature.png">
                         <strong class="desc">{{marker.message.Temperature}}</strong><strong class="celsius">°C</strong><br />
                         <strong class="description">{{marker.message.Description}}</strong><br />
-                        <em>Date: {{marker.message.DateTime | date: 'shortDate'}}</em><br />
-                        <em>Time: {{marker.message.DateTime | date: 'shortTime'}}</em><br />
+                        <em>Date: {{marker.message.DateTime | date: 'd MMM yyyy'}}</em><br />
+                        <em>Time: {{marker.message.DateTime | date: 'HH:mm'}}</em><br />
                     </p>
                 </ui-gmap-window>
             </ui-gmap-marker>

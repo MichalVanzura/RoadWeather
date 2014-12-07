@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using log4net;
+using System.Globalization;
 
 namespace RoadWeather.Managers
 {
@@ -27,14 +28,16 @@ namespace RoadWeather.Managers
         /// <returns>Long term forecast for location</returns>
         public async Task<ForecastLongTerm> GetForecastLongTerm(Location location)
         {
+            CultureInfo ci = CultureInfo.CreateSpecificCulture("en-US");
             Uri uri = new Uri
             (
-                string.Format(WEATHER_API_URI_LONG, location.Latitude, location.Longitude)
+                string.Format(ci, WEATHER_API_URI_LONG, location.Latitude, location.Longitude)
             );
             using (var webClient = new System.Net.WebClient())
             {
                 try
                 {
+                    log.Debug(uri);
                     var json = await webClient.DownloadStringTaskAsync(uri);
                     return JsonConvert.DeserializeObject<ForecastLongTerm>(json);
                 }
@@ -56,14 +59,16 @@ namespace RoadWeather.Managers
         /// <returns>Short term forecast for location</returns>
         public async Task<ForecastShortTerm> GetForecastShortTerm(Location location)
         {
+            CultureInfo ci = CultureInfo.CreateSpecificCulture("en-US");
             Uri uri = new Uri
             (
-                string.Format(WEATHER_API_URI_SHORT, location.Latitude, location.Longitude)
+                string.Format(ci, WEATHER_API_URI_SHORT, location.Latitude, location.Longitude)
             );
             using (var webClient = new System.Net.WebClient())
             {
                 try
                 {
+                    log.Debug(uri);
                     var json = await webClient.DownloadStringTaskAsync(uri);
                     return JsonConvert.DeserializeObject<ForecastShortTerm>(json);
                 }

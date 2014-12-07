@@ -1,6 +1,7 @@
 ﻿<table class="table">
     <thead>
         <tr>
+            <th>#</th>
             <th></th>
             <th>Date</th>
             <th>Time</th>
@@ -9,22 +10,25 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="marker in markers track by $index">
-            <td>
-                <img src="{{marker.icon.url}}" />
-            </td>
-            <td>
-                {{marker.message.DateTime | date: 'shortDate'}}
-            </td>
-            <td>
-                {{marker.message.DateTime | date: 'shortTime'}}
-            </td>
-            <td>
-                {{marker.message.Description}}
-            </td>
-            <td>
-                {{marker.message.Temperature}}
-            </td>
-        </tr>
+    <tr ng-repeat="marker in markers track by $index">
+        <td>
+            {{marker.message.Index}} 
+        </td>
+        <td>
+            <img src="{{marker.icon.url}}"/>
+        </td>
+        <td>
+            {{marker.message.DateTime | date : 'd MMM yyyy'}}
+        </td>
+        <td>
+            {{marker.message.TimeText}}
+        </td>
+        <td>
+            {{marker.message.Description}}
+        </td>
+        <td>
+            {{marker.message.Temperature}}
+        </td>
+    </tr>
     </tbody>
 </table>
