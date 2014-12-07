@@ -40,7 +40,7 @@ namespace RoadWeather.Controllers
 
             var results = await _tripWeatherManager.GetForecastForTrip(trip);
             var markers = new List<Marker>();
-
+            int i = 1;
             foreach (var kvp in results)
             {
                 Marker marker = new Marker
@@ -54,7 +54,9 @@ namespace RoadWeather.Controllers
                     {
                         Description = kvp.Value.Description,
                         Temperature = kvp.Value.Temperature,
-                        DateTime = kvp.Value.DateTime
+                        DateTime = kvp.Value.DateTime,
+                        TimeText = kvp.Value.TimeText,
+                        Index = i++
                     },
                     //string.Format("<div style='width: 120px;'><b>{0}</b><br/>{1}°C<br/>{2}</div>",
                     //    kvp.Value.Description,

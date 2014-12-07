@@ -40,27 +40,38 @@ namespace RoadWeather.Managers
                 throw new ArgumentNullException("Trip is null");
             }
 
-            var dictResult = new Dictionary<LocationDetail, ForecastEntry>();
-            if (weatherUtils.AvailableForShortTermForecast(trip))
+            try
             {
-                var locations = tripIntervalMgr.GetLocationsInIntervalsWithTime(trip);
-                var locationForecasts = await locationWeatherManager.GetEntriesForLocationsShortTerm(locations);
+                var dictResult = new Dictionary<LocationDetail, ForecastEntry>();
+                if (weatherUtils.AvailableForShortTermForecast(trip))
+                {
+                    log.Info("Getting ");
+                    var locations = tripIntervalMgr.GetLocationsInIntervalsWithTime(trip);
+                    var locationForecasts = await locationWeatherManager.GetEntriesForLocationsShortTerm(locations);
 
-                dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntry(kvp.Value));
+                    dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntry(kvp.Value));
 
-                return dictResult;
+                    return dictResult;
+                }
+                else
+                {
+                    //TODO: check end time doesn't exceed 16 days
+                    //bool exceed = trip.StartDateTime.AddSeconds(trip.Duration) > DateTime.Now.Date.AddDays(16);
+                    var locations = tripIntervalMgr.GetLocationsInIntervalsWithTime(trip);
+                    var locationForecasts = await locationWeatherManager.GetEntriesForLocationsLongTerm(locations);
+
+                    dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntry(kvp.Value));
+
+                    return dictResult;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //TODO: check end time doesn't exceed 16 days
-                //bool exceed = trip.StartDateTime.AddSeconds(trip.Duration) > DateTime.Now.Date.AddDays(16);
-                var locations = tripIntervalMgr.GetLocationsInIntervalsWithTime(trip);
-                var locationForecasts = await locationWeatherManager.GetEntriesForLocationsLongTerm(locations);
-
-                dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntry(kvp.Value));
-
-                return dictResult;
+                string msg = "Problem in TripWeatherManager";
+                log.Error(msg, ex);
+                throw new Exception(msg, ex);
             }
+          
         }
     }
 }

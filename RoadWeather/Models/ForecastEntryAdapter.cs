@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Web;
 
 namespace RoadWeather.Models
 {
     public class ForecastEntry
     {
+        public bool IsShortTerm { get; set; }
         public string Icon {get; set; }
 
         public string Description {get; set;}
@@ -16,22 +18,42 @@ namespace RoadWeather.Models
 
         public DateTime DateTime {get; set; }
 
+        public string TimeText
+        {
+            get
+            {
+                if (IsShortTerm)
+                {
+                    return this.DateTime.ToString("HH:ss");
+                }
+                else
+                {
+                    return "Day";
+                }
+            }
+        }
+        
         public ForecastEntry(ForecastShortTermEntry entry)
         {
+            this.IsShortTerm = true;
             this.Description = entry.WeatherDescription[0].Main;
             this.Temperature = (int)Math.Round(entry.MainValues.Temp);
             this.DateTime = entry.ForecastTime;
             this.Icon = entry.WeatherDescription[0].Icon;
+            
         }
 
         public ForecastEntry(ForecastDailyEntry entry)
         {
+            this.IsShortTerm = false;
             this.Description = entry.WeatherDescription[0].Description;
             this.Temperature = (int)Math.Round(entry.Temp.Day);
             this.DateTime = entry.ForecastTime;
             this.Icon = entry.WeatherDescription[0].Icon;
 
         }
+
+        
 
         protected bool Equals(ForecastEntry other)
         {

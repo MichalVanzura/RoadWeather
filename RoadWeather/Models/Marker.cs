@@ -22,5 +22,9 @@ namespace RoadWeather.Models
         public string Description { get; set; }
         public double Temperature { get; set; }
         public DateTime DateTime { get; set; }
+        public string TimeText { get; set; }
+        public int Index { get; set; }
+
+
     }
 }
