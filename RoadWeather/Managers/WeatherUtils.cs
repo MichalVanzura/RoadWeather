@@ -87,7 +87,7 @@ namespace RoadWeather.Managers
                 throw new ArgumentNullException("Forecast is null");
             }
 
-            var entry = forecast.Entries.Where(x => x.ForecastTime.Date == location.Time.Date).FirstOrDefault();
+            var entry = forecast.Entries.FirstOrDefault(x => x.ForecastTime.Date == location.Time.Date);
             if (entry == null)
             {
                 string msg = "No forecast for the day selected";

@@ -9,10 +9,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace RoadWeather.Test.Managers
 {
     [TestClass]
-    public class RoadWeatherTestManagersWeatherProvides
+    public class RoadWeatherTestManagersWeatherProvider
     {
-
-        #region GetForecastLongTerm
 
         [TestMethod]
         public void Test_GetForecastLongTerm_Return()
@@ -24,6 +22,21 @@ namespace RoadWeather.Test.Managers
             //Act and Assert
             Assert.IsInstanceOfType(provider.GetForecastLongTerm(location), typeof(Task<ForecastLongTerm>));
         }
+
+        [TestMethod]
+
+        public void Test_GetForecastShortTerm_Return()
+        {
+            //Arrange
+            Location location = new Location();
+            WeatherProvider provider = new WeatherProvider();
+
+            //Act and Assert
+            Assert.IsInstanceOfType(provider.GetForecastShortTerm(location), typeof(Task<ForecastShortTerm>));
+        }
+
+        /// TODO: we would need to create fake service that would return static result json that could be tested...
+
 
         /* This one is probably totally bad, but I do not know how to test, that the result is equal
          * [TestMethod]
@@ -44,19 +57,5 @@ namespace RoadWeather.Test.Managers
             Assert.Equals(result.ToString(),myResult.ToString());
         }*/
 
-        #endregion
-
-        #region GetForecastShortTerm
-        [TestMethod]
-        public void Test_GetForecastShortTerm_Return()
-        {
-            //Arrange
-            Location location = new Location();
-            WeatherProvider provider = new WeatherProvider();
-
-            //Act and Assert
-            Assert.IsInstanceOfType(provider.GetForecastShortTerm(location), typeof(Task<ForecastShortTerm>));
-        }
-        #endregion
     }
 }

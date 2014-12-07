@@ -10,26 +10,32 @@ namespace RoadWeather.Test.Models
     public class RoadWeatherTestModelsForecastEntryAdapter
     {
         
-        /* Do not understand why this test is not working :(
+         /*Do not understand why this test is not working :(
         [TestMethod]
         public void Test_Icon()
         {
             //Arrange
-            WeatherDescription temp = new WeatherDescription();
-            temp.Id = 0;
-            temp.Main = "main";
-            temp.Description = "description";
-            temp.Icon = "icon";
+            WeatherDescription weatherDescription = new WeatherDescription();
+            weatherDescription.Id = 0;
+            weatherDescription.Main = "main";
+            weatherDescription.Description = "description";
+            weatherDescription.Icon = "icon";
+
+            var list = new List<WeatherDescription>();
+            list.Add(weatherDescription);
 
             ForecastShortTermEntry entry = new ForecastShortTermEntry();
-            entry.WeatherDescription[0] = temp;
+            entry.WeatherDescription = list;
+            
+            // other attributes must be also assigned for this test to pass.
+            // it might be best ti implement null checking in ForecastEntry class.
 
             //Act
-            ForecastEntryAdapter adapter = new ForecastEntryAdapter(entry);
+            ForecastEntry adapter = new ForecastEntry(entry);
 
-            //Arange
+            //Assert
             Assert.AreEqual(entry.WeatherDescription[0].Icon, "icon");
-
+        
         }*/
     }
 }

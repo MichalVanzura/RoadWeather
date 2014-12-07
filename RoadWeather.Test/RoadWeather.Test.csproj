@@ -77,7 +77,6 @@
     <Compile Include="Models\RoadWeatherTestModelsForecastEntryAdapter.cs" />
     <Compile Include="Models\RoadWeatherTestModelsMarker.cs" />
     <Compile Include="Models\RoadWeatherTestModelsLocation.cs" />
-    <Compile Include="WeatherServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
