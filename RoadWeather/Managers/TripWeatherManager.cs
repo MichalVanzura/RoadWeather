@@ -15,14 +15,14 @@ namespace RoadWeather.Managers
     public class TripWeatherManager : RoadWeather.Managers.Interfaces.ITripWeatherManager
     {
         private static readonly ILog log = LogManager.GetLogger("WeatherManager");
-        private ILocationWeatherManager locationWeatherProvider;
+        private ILocationWeatherManager locationWeatherManager;
         private IWeatherUtils weatherUtils;
         private ITripIntervalManager tripIntervalMgr;
 
         public TripWeatherManager(ILocationWeatherManager locationWeatherManager,
             IWeatherUtils weatherUtils, ITripIntervalManager tripIntervalMgr)
         {
-            this.locationWeatherProvider = locationWeatherManager;
+            this.locationWeatherManager = locationWeatherManager;
             this.weatherUtils = weatherUtils;
             this.tripIntervalMgr = tripIntervalMgr;
         }
@@ -44,7 +44,7 @@ namespace RoadWeather.Managers
             if (weatherUtils.AvailableForShortTermForecast(trip))
             {
                 var locations = tripIntervalMgr.GetLocationsInIntervalsWithTime(trip);
-                var locationForecasts = await locationWeatherProvider.GetEntriesForLocationsShortTerm(locations);
+                var locationForecasts = await locationWeatherManager.GetEntriesForLocationsShortTerm(locations);
 
                 dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntry(kvp.Value));
 
@@ -55,7 +55,7 @@ namespace RoadWeather.Managers
                 //TODO: check end time doesn't exceed 16 days
                 //bool exceed = trip.StartDateTime.AddSeconds(trip.Duration) > DateTime.Now.Date.AddDays(16);
                 var locations = tripIntervalMgr.GetLocationsInIntervalsWithTime(trip);
-                var locationForecasts = await locationWeatherProvider.GetEntriesForLocationsLongTerm(locations);
+                var locationForecasts = await locationWeatherManager.GetEntriesForLocationsLongTerm(locations);
 
                 dictResult = locationForecasts.ToDictionary(kvp => kvp.Key, kvp => new ForecastEntry(kvp.Value));
 

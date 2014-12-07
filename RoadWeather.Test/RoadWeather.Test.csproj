@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Controllers\RoadWeatherTestControllers.cs" />
     <Compile Include="Fakes\Mocks.cs" />
+    <Compile Include="Managers\RoadWeatherTestManagersTripIntervalManager.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersWeatherUtils.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersWeatherProvider.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersTripWeatherManager.cs" />

@@ -17,26 +17,24 @@ namespace RoadWeather.Test.Managers
     {
         
       //  #region GetForecastForTrip
-/*
+
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
         public void Test_GetForecastForTrip_NullReferenceException()
         {
+            /*
             //Arrange
-            Location location = new Location();
-            List<Location> list = new List<Location>();
+            var location = new Location();
+            var list = new List<Location>();
 
-            DateTime dtNow = new DateTime(2014, 11, 24, 20, 00, 00);
+            var dtNow = new DateTime(2014, 11, 24, 20, 00, 00);
+            
             IClock staticClock = new MockClock(dtNow);
             IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
-
             IWeatherProvider weatherProvider = new MockWeatherProvider();
-            
-
 
             var mockWeatherUtils = new Mock<IWeatherUtils>();
             mockWeatherUtils.Setup(t => t.AvailableForShortTermForecast(It.IsAny<Trip>())).Returns(true);
-
 
 
             for (var i = 0; i < 200; i++)
@@ -49,12 +47,12 @@ namespace RoadWeather.Test.Managers
             trip.Duration = 72000; // 20 hrs
             trip.StartDateTime = new DateTime(2014, 12, 01, 20, 00, 00);
 
+            */
 
-
-            var result = weatherProvider.GetForecastLongTerm(trip);
+            //var result = weatherProvider.GetForecastLongTerm(trip);
             //Act and Assert
             //Assert.IsInstanceOfType(weatherProvider.GetForecastForTrip(trip), typeof(Task<Dictionary<LocationDetail, ForecastEntry>>));
-        }*/
+        }
         /*
         #endregion
 
