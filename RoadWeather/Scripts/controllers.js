@@ -91,11 +91,37 @@
                                 });
                                 $scope.loading = false;
                             });
-                    } else if (status === maps.DirectionsStatus.ZERO_RESULTS) {
-                        alert('Submitted route is not available');
-                        $scope.loading = false;                 
-                    } else {
-                        alert('Computing route was unsuccesfull');
+                    }
+                    else if (!request.origin || !request.destination) {
+                        alert('Please fill in the route origin and destination');
+                        $scope.loading = false;
+                    }
+                    else if (status === maps.DirectionsStatus.ZERO_RESULTS) {
+                            alert('Submitted route is not available. Please note some travel modes might not be available in select countries/regions');
+                            $scope.loading = false;
+                    }
+                    else if (status === maps.DirectionsStatus.NOT_FOUND) {
+                        alert('Some of the submitted destinations could not be found. Please check the input values.');
+                        $scope.loading = false;
+                    }
+                    else if (status === maps.DirectionsStatus.MAX_WAYPOINTS_EXCEEDED) {
+                        alert('Too many waypoints were submitted. Please try to use at most 8 plus origin and destination values.');
+                        $scope.loading = false;
+                    }
+                    else if (status === maps.DirectionsStatus.INVALID_REQUEST) {
+                        alert('Request was invalid. Please check the input values.');
+                        $scope.loading = false;
+                    }
+                    else if (status === maps.DirectionsStatus.OVER_QUERY_LIMIT) {
+                        alert('Request could not be processed. Please hold on a moment and try again.');
+                        $scope.loading = false;
+                    }
+                    else if (status === maps.DirectionsStatus.REQUEST_DENIED) {
+                        alert('Request could not be processed.');
+                        $scope.loading = false;
+                    }
+                    else {
+                        alert('Computing route was unsuccesful. Please hold on a moment and try again.');
                         $scope.loading = false;
                     }
                 });
