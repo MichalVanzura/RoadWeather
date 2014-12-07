@@ -30,7 +30,7 @@ namespace RoadWeather.Managers
             int stepLength = locations.Count() / (INTERVAL_COUNT);
 
             double stepSizeRatio = (double)stepLength / (double)locations.Count();
-            double stepDuration = (stepSizeRatio * trip.Duration);
+            int stepDuration = (int)(stepSizeRatio * trip.Duration);
             log.Debug(string.Format("Expected duration: {0} min", (int)(trip.Duration / 60)));
             log.Debug(string.Format("Estimated step duration: {0} min", (int)(stepDuration / 60)));
 

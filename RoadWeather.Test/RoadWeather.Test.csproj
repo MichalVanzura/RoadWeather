@@ -75,7 +75,6 @@
     <Compile Include="Managers\RoadWeatherTestManagersWeatherProvider.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersTripWeatherManager.cs" />
     <Compile Include="Managers\RoadWeatherTestManagersLocationWeatherManager.cs" />
-    <Compile Include="Managers\RoadWeatherTestManagersTripIntervalManager.cs" />
     <Compile Include="Models\RoadWeatherTestModelsForecastEntryAdapter.cs" />
     <Compile Include="Models\RoadWeatherTestModelsMarker.cs" />
     <Compile Include="Models\RoadWeatherTestModelsLocation.cs" />
