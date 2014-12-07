@@ -13,7 +13,7 @@ namespace RoadWeather.Managers
     /// <summary>
     /// This class retrieves forecasts for locations provided.
     /// </summary>
-    public class LocationWeatherManager : RoadWeather.Managers.Interfaces.ILocationWeatherProvider
+    public class LocationWeatherManager : RoadWeather.Managers.Interfaces.ILocationWeatherManager
     {
         private static readonly ILog log = LogManager.GetLogger("LocationWeatherProvider");
         private IWeatherProvider weatherProvider;
@@ -32,12 +32,16 @@ namespace RoadWeather.Managers
         /// <returns>Dictionary of long term forecasts for locations</returns>
         public async Task<Dictionary<LocationDetail, ForecastDailyEntry>> GetEntriesForLocationsLongTerm(List<LocationDetail> locations)
         {
-            // Create tasks for getting forecast
-            var dictOfTasks = new Dictionary<LocationDetail, Task<ForecastLongTerm>>();
-            foreach (LocationDetail loc in locations)
+            if (locations == null)
             {
-                dictOfTasks.Add(loc, weatherProvider.GetForecastLongTerm(loc.Location));
+                throw new ArgumentNullException("Locations are null");
             }
+            if (locations.Count == 0)
+            {
+                throw new ArgumentException("List of locations has length 0");
+            }
+            // Create tasks for getting forecast
+            var dictOfTasks = locations.ToDictionary(loc => loc, loc => weatherProvider.GetForecastLongTerm(loc.Location));
             await Task.WhenAll(dictOfTasks.Values);
 
             // Return as dict of locations with forecasts
@@ -57,12 +61,16 @@ namespace RoadWeather.Managers
         /// <returns>Dictionary of short term forecasts for locations</returns>
         public async Task<Dictionary<LocationDetail, ForecastShortTermEntry>> GetEntriesForLocationsShortTerm(List<LocationDetail> locations)
         {
-            // Create tasks for getting forecast
-            var dictOfTasks = new Dictionary<LocationDetail, Task<ForecastShortTerm>>();
-            foreach (LocationDetail loc in locations)
+            if (locations == null)
             {
-                dictOfTasks.Add(loc, weatherProvider.GetForecastShortTerm(loc.Location));
+                throw new ArgumentNullException("Locations are null");
             }
+            if (locations.Count == 0)
+            {
+                throw new ArgumentException("List of locations has length 0");
+            }
+            // Create tasks for getting forecast
+            var dictOfTasks = locations.ToDictionary(loc => loc, loc => weatherProvider.GetForecastShortTerm(loc.Location));
             await Task.WhenAll(dictOfTasks.Values);
 
             // Return as dict of locations with forecasts

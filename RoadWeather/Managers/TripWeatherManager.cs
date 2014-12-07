@@ -15,14 +15,14 @@ namespace RoadWeather.Managers
     public class TripWeatherManager : RoadWeather.Managers.Interfaces.ITripWeatherManager
     {
         private static readonly ILog log = LogManager.GetLogger("WeatherManager");
-        private ILocationWeatherProvider locationWeatherProvider;
+        private ILocationWeatherManager locationWeatherProvider;
         private IWeatherUtils weatherUtils;
         private ITripIntervalManager tripIntervalMgr;
 
-        public TripWeatherManager(ILocationWeatherProvider locationWeatherProvider,
+        public TripWeatherManager(ILocationWeatherManager locationWeatherManager,
             IWeatherUtils weatherUtils, ITripIntervalManager tripIntervalMgr)
         {
-            this.locationWeatherProvider = locationWeatherProvider;
+            this.locationWeatherProvider = locationWeatherManager;
             this.weatherUtils = weatherUtils;
             this.tripIntervalMgr = tripIntervalMgr;
         }

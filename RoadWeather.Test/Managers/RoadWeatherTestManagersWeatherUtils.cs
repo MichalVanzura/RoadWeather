@@ -28,7 +28,7 @@ namespace RoadWeather.Test.Managers
         {
             //Arrange
             DateTime dtNow = new DateTime(2014, 12, 6, 18, 40, 0);
-            var weatherUtils = new WeatherUtils(new StaticClock(dtNow));
+            var weatherUtils = new WeatherUtils(new MockClock(dtNow));
 
             //Act
             weatherUtils.AvailableForShortTermForecast(null);
@@ -41,7 +41,7 @@ namespace RoadWeather.Test.Managers
             var dtNow = new DateTime(2014, 10, 1, 15, 0, 0);
             var dtStart = new DateTime(2014, 10, 7, 17, 0, 0);
 
-            IClock staticClock = new StaticClock(dtNow);
+            IClock staticClock = new MockClock(dtNow);
             IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
 
             var trip = new Trip();
@@ -53,8 +53,6 @@ namespace RoadWeather.Test.Managers
 
             //Assert    
             Assert.IsFalse(available);
-
-
 
         }
 
@@ -69,7 +67,7 @@ namespace RoadWeather.Test.Managers
             trip.StartDateTime = dtStart;
             trip.Duration = 3600; // one hour
 
-            IClock staticClock = new StaticClock(dtNow);
+            IClock staticClock = new MockClock(dtNow);
             IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
 
             //Act
@@ -91,7 +89,7 @@ namespace RoadWeather.Test.Managers
             trip.StartDateTime = dtStart;
             trip.Duration = 900; // 15 minutes
 
-            IClock staticClock = new StaticClock(dtNow);
+            IClock staticClock = new MockClock(dtNow);
             IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
 
             //Act
@@ -112,7 +110,7 @@ namespace RoadWeather.Test.Managers
             trip.StartDateTime = dtStart;
             trip.Duration = 3600; // 60 minutes
 
-            IClock staticClock = new StaticClock(dtNow);
+            IClock staticClock = new MockClock(dtNow);
             IWeatherUtils weatherUtils = new WeatherUtils(staticClock);
 
             //Act

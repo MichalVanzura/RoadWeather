@@ -10,6 +10,26 @@ namespace RoadWeather.Models
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
+        protected bool Equals(Location other)
+        {
+            return Latitude.Equals(other.Latitude) && Longitude.Equals(other.Longitude);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == this.GetType() && Equals((Location) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (Latitude.GetHashCode()*397) ^ Longitude.GetHashCode();
+            }
+        }
     }
 
     public class Trip
@@ -24,5 +44,26 @@ namespace RoadWeather.Models
     {
         public Location Location { get; set; }
         public DateTime Time { get; set; }
+
+        protected bool Equals(LocationDetail other)
+        {
+            return Location.Equals(other.Location) && Time.Equals(other.Time);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == this.GetType() && Equals((LocationDetail) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (Location.GetHashCode()*397) ^ Time.GetHashCode();
+            }
+        }
+
     }
 }
