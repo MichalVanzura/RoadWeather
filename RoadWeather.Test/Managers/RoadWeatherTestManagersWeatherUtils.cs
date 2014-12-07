@@ -237,7 +237,6 @@ namespace RoadWeather.Test.Managers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
         public void Test_SelectLongTermEntry_NoEntries()
         {
             IWeatherUtils weatherUtils = new WeatherUtils(new SystemClock());
@@ -245,7 +244,11 @@ namespace RoadWeather.Test.Managers
             LocationDetail loc = new LocationDetail();
             var fc = new ForecastLongTerm();
             fc.Entries = new List<ForecastDailyEntry>();
-            weatherUtils.SelectLongTermEntry(loc, fc);
+            
+            var result = weatherUtils.SelectLongTermEntry(loc, fc);
+
+            Assert.AreEqual("N/A", result.WeatherDescription[0].Description);
+            
         }
 
 
