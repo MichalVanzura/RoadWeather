@@ -943,12 +943,6 @@
         <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.GetLocationsInIntervalsWithTimeTrip">
             <summary>Sets the shim of TripIntervalManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
         </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.GetTimeForLocationsIListOfLocationDoubleDateTime">
-            <summary>Sets the shim of TripIntervalManager.GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Double stepDuration, DateTime start)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.SelectLocationsInIntervalsIListOfLocationInt32">
-            <summary>Sets the shim of TripIntervalManager.SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
-        </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.StaticConstructor">
             <summary>Sets the shim of TripIntervalManager.TripIntervalManager()</summary>
         </member>
@@ -957,12 +951,6 @@
         </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.GetLocationsInIntervalsWithTimeTrip">
             <summary>Sets the shim of TripIntervalManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.GetTimeForLocationsIListOfLocationDoubleDateTime">
-            <summary>Sets the shim of TripIntervalManager.GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Double stepDuration, DateTime start)</summary>
-        </member>
-        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.SelectLocationsInIntervalsIListOfLocationInt32">
-            <summary>Sets the shim of TripIntervalManager.SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
         </member>
         <member name="T:RoadWeather.Managers.Fakes.ShimTripWeatherManager">
             <summary>Shim type of RoadWeather.Managers.TripWeatherManager</summary>
