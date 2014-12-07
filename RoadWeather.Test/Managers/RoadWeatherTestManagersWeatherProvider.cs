@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Web;
 using RoadWeather.Managers;
 using RoadWeather.Models;
+using RoadWeather.Managers.Interfaces;
+using RoadWeather.Test.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RoadWeather.Test.Managers
@@ -12,16 +14,41 @@ namespace RoadWeather.Test.Managers
     public class RoadWeatherTestManagersWeatherProvider
     {
 
+
+        #region GetForecastLongTerm
         [TestMethod]
         public void Test_GetForecastLongTerm_Return()
         {
             //Arrange
             Location location = new Location();
-            WeatherProvider provider = new WeatherProvider();
+            IWeatherProvider provider = new WeatherProvider();
 
             //Act and Assert
             Assert.IsInstanceOfType(provider.GetForecastLongTerm(location), typeof(Task<ForecastLongTerm>));
         }
+        /*
+        [TestMethod]
+        public async Task Test_GetForecastLongTerm_IsEqual()
+        {
+            //Arrange
+            Location location = new Location();
+            location.Latitude = 49.2;
+            location.Longitude = 16.6;
+
+            IWeatherProvider provider = new WeatherProvider();
+            MockWeatherProvider mockProvider = new MockWeatherProvider();
+
+            //Act
+            ForecastLongTerm result = await provider.GetForecastLongTerm(location);
+            ForecastLongTerm expectedResult = await mockProvider.GetForecastLongTerm(location);
+
+            //Assert
+            Assert.AreEqual(result.Entries.Count, expectedResult.Entries.Count);
+        }*/
+
+        #endregion
+
+        #region GetForecastShortTerm
 
         [TestMethod]
 
@@ -29,33 +56,33 @@ namespace RoadWeather.Test.Managers
         {
             //Arrange
             Location location = new Location();
-            WeatherProvider provider = new WeatherProvider();
+            IWeatherProvider provider = new WeatherProvider();
 
             //Act and Assert
             Assert.IsInstanceOfType(provider.GetForecastShortTerm(location), typeof(Task<ForecastShortTerm>));
         }
 
         /// TODO: we would need to create fake service that would return static result json that could be tested...
-
-
-        /* This one is probably totally bad, but I do not know how to test, that the result is equal
-         * [TestMethod]
-        public void Test_GetForecastLongTerm_IsEqual()
+        
+/*
+        [TestMethod]
+        public async Task Test_GetForecastShortTerm_IsEqual()
         {
             //Arrange
             Location location = new Location();
-            WeatherProvider provider = new WeatherProvider();
+            location.Latitude = 49.2;
+            location.Longitude = 16.6;
 
-            var webClient = new System.Net.WebClient();
-            var json = webClient.DownloadStringTaskAsync("http://api.openweathermap.org/data/2.5/forecast/daily?lat={0}&lon={1}&APPID=3e498b17220c9b49140ea1bb8a94c010&units=metric&cnt=16");
-           
+            IWeatherProvider provider = new WeatherProvider();
+            MockWeatherProvider mockProvider = new MockWeatherProvider();
+
             //Act
-            Task<ForecastLongTerm> result = provider.GetForecastLongTerm(location);
-            var myResult = JsonConvert.DeserializeObject<ForecastLongTerm>(json);
+            ForecastShortTerm result = await provider.GetForecastShortTerm(location);
+            ForecastShortTerm expectedResult = await mockProvider.GetForecastShortTerm(location);
 
             //Assert
-            Assert.Equals(result.ToString(),myResult.ToString());
+            Assert.AreEqual(result.Entries.Count, expectedResult.Entries.Count);
         }*/
-
+        #endregion
     }
 }
