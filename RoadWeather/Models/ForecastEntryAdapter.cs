@@ -32,5 +32,35 @@ namespace RoadWeather.Models
             this.Icon = entry.WeatherDescription[0].Icon;
 
         }
+
+        protected bool Equals(ForecastEntry other)
+        {
+            return string.Equals(Icon, other.Icon) && string.Equals(Description, other.Description) && Temperature == other.Temperature && DateTime.Equals(other.DateTime);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((ForecastEntry) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (Icon != null ? Icon.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (Description != null ? Description.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ Temperature;
+                hashCode = (hashCode*397) ^ DateTime.GetHashCode();
+                return hashCode;
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Icon: {0}, Description: {1}, Temperature: {2}, DateTime: {3}", Icon, Description, Temperature, DateTime);
+        }
     }
 }

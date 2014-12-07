@@ -28,14 +28,16 @@ namespace RoadWeather.Test.Fakes
 
     public class MockLocationWeatherManager : ILocationWeatherManager
     {
+        private IWeatherUtils mockWeatherUtils = new MockWeatherUtils();
+
         public async Task<Dictionary<LocationDetail, ForecastDailyEntry>> GetEntriesForLocationsLongTerm(List<LocationDetail> locations)
         {
-            return null;
+            return locations.ToDictionary(t => t, t => mockWeatherUtils.SelectLongTermEntry(new LocationDetail(), new ForecastLongTerm()));
         }
 
         public async Task<Dictionary<LocationDetail, ForecastShortTermEntry>> GetEntriesForLocationsShortTerm(List<LocationDetail> locations)
         {
-            return null;
+            return locations.ToDictionary(t => t, t => mockWeatherUtils.SelectShortTermEntry(new LocationDetail(), new ForecastShortTerm()));
         }
     }
 

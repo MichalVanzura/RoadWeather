@@ -943,6 +943,12 @@
         <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.GetLocationsInIntervalsWithTimeTrip">
             <summary>Sets the shim of TripIntervalManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
         </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.GetTimeForLocationsIListOfLocationDoubleDateTime">
+            <summary>Sets the shim of TripIntervalManager.GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Double stepDuration, DateTime start)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.SelectLocationsInIntervalsIListOfLocationInt32">
+            <summary>Sets the shim of TripIntervalManager.SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
+        </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.StaticConstructor">
             <summary>Sets the shim of TripIntervalManager.TripIntervalManager()</summary>
         </member>
@@ -951,6 +957,12 @@
         </member>
         <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.GetLocationsInIntervalsWithTimeTrip">
             <summary>Sets the shim of TripIntervalManager.GetLocationsInIntervalsWithTime(Trip trip)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.GetTimeForLocationsIListOfLocationDoubleDateTime">
+            <summary>Sets the shim of TripIntervalManager.GetTimeForLocations(IList`1&lt;Location&gt; selectedLocations, Double stepDuration, DateTime start)</summary>
+        </member>
+        <member name="P:RoadWeather.Managers.Fakes.ShimTripIntervalManager.AllInstances.SelectLocationsInIntervalsIListOfLocationInt32">
+            <summary>Sets the shim of TripIntervalManager.SelectLocationsInIntervals(IList`1&lt;Location&gt; locations, Int32 stepLength)</summary>
         </member>
         <member name="T:RoadWeather.Managers.Fakes.ShimTripWeatherManager">
             <summary>Shim type of RoadWeather.Managers.TripWeatherManager</summary>
@@ -1546,6 +1558,15 @@
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.DescriptionSetString">
             <summary>Sets the shim of ForecastEntry.set_Description(String value)</summary>
         </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.EqualsForecastEntry">
+            <summary>Sets the shim of ForecastEntry.Equals(ForecastEntry other)</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.EqualsObject">
+            <summary>Sets the shim of ForecastEntry.Equals(Object obj)</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.GetHashCode">
+            <summary>Sets the shim of ForecastEntry.GetHashCode()</summary>
+        </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.IconGet">
             <summary>Sets the shim of ForecastEntry.get_Icon()</summary>
         </member>
@@ -1557,6 +1578,9 @@
         </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.TemperatureSetInt32">
             <summary>Sets the shim of ForecastEntry.set_Temperature(Int32 value)</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.ToString">
+            <summary>Sets the shim of ForecastEntry.ToString()</summary>
         </member>
         <member name="T:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances">
             <summary>Define shims for all instances members</summary>
@@ -1573,6 +1597,15 @@
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.DescriptionSetString">
             <summary>Sets the shim of ForecastEntry.set_Description(String value)</summary>
         </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.EqualsForecastEntry">
+            <summary>Sets the shim of ForecastEntry.Equals(ForecastEntry other)</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.EqualsObject">
+            <summary>Sets the shim of ForecastEntry.Equals(Object obj)</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.GetHashCode01">
+            <summary>Sets the shim of ForecastEntry.GetHashCode()</summary>
+        </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.IconGet">
             <summary>Sets the shim of ForecastEntry.get_Icon()</summary>
         </member>
@@ -1584,6 +1617,9 @@
         </member>
         <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.TemperatureSetInt32">
             <summary>Sets the shim of ForecastEntry.set_Temperature(Int32 value)</summary>
+        </member>
+        <member name="P:RoadWeather.Models.Fakes.ShimForecastEntry.AllInstances.ToString01">
+            <summary>Sets the shim of ForecastEntry.ToString()</summary>
         </member>
         <member name="T:RoadWeather.Models.Fakes.ShimForecastLongTerm">
             <summary>Shim type of RoadWeather.Models.ForecastLongTerm</summary>
@@ -2536,8 +2572,26 @@
         <member name="M:RoadWeather.Models.Fakes.StubForecastEntry.#ctor(RoadWeather.Models.ForecastShortTermEntry)">
             <summary>Initializes a new instance</summary>
         </member>
+        <member name="M:RoadWeather.Models.Fakes.StubForecastEntry.Equals(System.Object)">
+            <summary>Sets the stub of ForecastEntry.Equals(Object obj)</summary>
+        </member>
+        <member name="F:RoadWeather.Models.Fakes.StubForecastEntry.EqualsObject">
+            <summary>Sets the stub of ForecastEntry.Equals(Object obj)</summary>
+        </member>
+        <member name="M:RoadWeather.Models.Fakes.StubForecastEntry.GetHashCode">
+            <summary>Sets the stub of ForecastEntry.GetHashCode()</summary>
+        </member>
+        <member name="F:RoadWeather.Models.Fakes.StubForecastEntry.GetHashCode01">
+            <summary>Sets the stub of ForecastEntry.GetHashCode()</summary>
+        </member>
         <member name="M:RoadWeather.Models.Fakes.StubForecastEntry.InitializeStub">
             <summary>Initializes a new instance of type StubForecastEntry</summary>
+        </member>
+        <member name="M:RoadWeather.Models.Fakes.StubForecastEntry.ToString">
+            <summary>Sets the stub of ForecastEntry.ToString()</summary>
+        </member>
+        <member name="F:RoadWeather.Models.Fakes.StubForecastEntry.ToString01">
+            <summary>Sets the stub of ForecastEntry.ToString()</summary>
         </member>
         <member name="P:RoadWeather.Models.Fakes.StubForecastEntry.CallBase">
             <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
