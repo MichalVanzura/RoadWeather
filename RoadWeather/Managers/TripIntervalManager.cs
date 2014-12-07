@@ -34,28 +34,18 @@ namespace RoadWeather.Managers
             log.Debug(string.Format("Expected duration: {0} min", (int)(trip.Duration / 60)));
             log.Debug(string.Format("Estimated step duration: {0} min", (int)(stepDuration / 60)));
 
-            var selectedLocations = SelectLocationsInIntervals(trip.Locations.ToList(), stepLength);
-            var locationsWithTime = GetTimeForLocations(selectedLocations, stepDuration, trip.StartDateTime);
-            return locationsWithTime;
-        }
+            var selectedLocations = trip.Locations.Where((x, i) => i % stepLength == 0);
 
-        private List<LocationDetail> GetTimeForLocations(IList<Location> selectedLocations, int stepDuration, DateTime start)
-        {
-            var list = new List<LocationDetail>();
-
+            var locationsWithTime = new List<LocationDetail>();
             int counter = 0;
             foreach (Location loc in selectedLocations)
             {
-                DateTime dt = start.AddSeconds(counter * stepDuration);
-                list.Add(new LocationDetail() { Location = loc, Time = dt });
+                DateTime dt = trip.StartDateTime.AddSeconds(counter * stepDuration);
+                locationsWithTime.Add(new LocationDetail() { Location = loc, Time = dt });
                 counter++;
             }
-            return list;
-        }
-
-        private List<Location> SelectLocationsInIntervals(IList<Location> locations, int stepLength)
-        {
-            return locations.Where((x, i) => i % stepLength == 0).ToList();
+            
+            return locationsWithTime;
         }
     }
 }
