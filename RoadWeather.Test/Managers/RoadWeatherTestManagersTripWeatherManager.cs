@@ -25,9 +25,9 @@ namespace RoadWeather.Test.Managers
             IClock iClock = new SystemClock();
             IWeatherProvider weatherProvider = new WeatherProvider();
             IWeatherUtils weatherUtils = new WeatherUtils(iClock);
-            ILocationWeatherProvider locationWeatherProvider = new LocationWeatherManager(weatherProvider, weatherUtils);
+            ILocationWeatherManager locationWeatherManager = new LocationWeatherManager(weatherProvider, weatherUtils);
             ITripIntervalManager tripIntervalManager = new TripIntervalManager();
-            ITripWeatherManager temp = new TripWeatherManager(locationWeatherProvider, weatherUtils, tripIntervalManager);
+            ITripWeatherManager temp = new TripWeatherManager(locationWeatherManager, weatherUtils, tripIntervalManager);
 
             //Act and Assert
             Task<Dictionary<LocationDetail, ForecastEntry>> result = temp.GetForecastForTrip(null);
@@ -57,9 +57,9 @@ namespace RoadWeather.Test.Managers
             IClock iClock = new SystemClock();
             IWeatherProvider weatherProvider = new WeatherProvider();
             IWeatherUtils weatherUtils = new WeatherUtils(iClock);
-            ILocationWeatherProvider locationWeatherProvider = new LocationWeatherManager(weatherProvider, weatherUtils);
+            ILocationWeatherManager locationWeatherManager = new LocationWeatherManager(weatherProvider, weatherUtils);
             ITripIntervalManager tripIntervalManager = new TripIntervalManager();
-            ITripWeatherManager temp = new TripWeatherManager(locationWeatherProvider, weatherUtils, tripIntervalManager);
+            ITripWeatherManager temp = new TripWeatherManager(locationWeatherManager, weatherUtils, tripIntervalManager);
 
             //Act and Assert
             Task<Dictionary<LocationDetail, ForecastEntry>> result = temp.GetForecastForTrip(trip);
