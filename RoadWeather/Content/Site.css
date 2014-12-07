@@ -121,6 +121,13 @@ body {
     height: 28px;
     vertical-align: middle;
 }
+
+.showdate {
+    border:none;
+    font-weight:bold;
+    padding-left: 10px;
+}
+
 .delete {
     width:23px;
     vertical-align: middle;

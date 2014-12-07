@@ -12,8 +12,11 @@
                         <button class="collapse-button" ng-click="isCollapsed = !isCollapsed"></button>
                     </div>
                     <div collapse="isCollapsed" ng-cloak>
-                        <input type="text" style="border:none; font-weight:bold" value="Trip start date:" readonly />
-                        <input type="text" style="border:none; font-weight:bold" ng-model="label" readonly />
+                        <div class="row">
+                            <input class="showdate" type="text" value="Trip start date:" readonly />
+                            <input class="showdate" type="text" ng-model="label" readonly />
+                        </div>
+                        
                         <hr />
                         <div class="row" ng-repeat="waypoint in waypoints track by $index">
                             <div class="col-xs-9 col-sm-10-11">
