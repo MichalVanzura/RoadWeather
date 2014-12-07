@@ -71,7 +71,6 @@ body {
         padding: 0px 10px 0;
     }
 
-
 /*.destination_style {
     border-bottom: 1px solid #B6B6B4;
     border-bottom-left-radius: 10px;
@@ -212,3 +211,4 @@ hr {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+

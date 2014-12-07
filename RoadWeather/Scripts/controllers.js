@@ -3,6 +3,16 @@
 
         $scope.dateTime;
 
+        if ($scope.dateTime != null)
+        {
+            $scope.label = $scope.dateTime.toLocaleString();
+        }
+        else
+        {
+            $scope.label = new Date().toLocaleString();
+        }
+        
+
         $scope.markers = [];
 
         $scope.isCollapsed = false;
@@ -30,6 +40,11 @@
 
         $scope.closeWindowClick = function (id) {
             $scope.windowOptions[id].visible = false;
+        };
+
+
+        $scope.showDate = function () {
+            $scope.label = $scope.dateTime.toLocaleString();
         };
 
 
